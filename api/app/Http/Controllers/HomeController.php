@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Volunteer;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $title = "TesseractAdmin | Home";
+        return view('home')->withTitle($title);
+    }
+    public function getVolunteers()
+    {
+        $volunteers = Volunteer::all();
+        return view('volunteerslist')->withVolunteer($volunteers);
     }
 }

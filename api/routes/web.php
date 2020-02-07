@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', 'Auth\\LoginController@showLoginForm')->name('login');
+Route::get('/', function() {
+	return redirect('/admin/login');
 });
-
 
 Route::prefix('admin')->group(function () {
 	Auth::routes();
-	Route::get('/home', 'HomeController@index')->name('home');    
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/volunteers-list', 'HomeController@getVolunteers')->name('getVolunteers');  
 });
 

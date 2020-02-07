@@ -15,7 +15,7 @@ class RegisterController extends Controller
     		'department' => 'required',
     		'college_id' => 'required|regex:[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}',
     		'email' => 'required',
-    		'phone' => 'required|max:10|min:10',
+    		'phone' => 'required|digits:10',
     		'field_of_interest' => 'required'
     	]);
     	$volunteer = Volunteer::create($validatedData);
