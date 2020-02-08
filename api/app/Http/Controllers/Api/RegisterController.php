@@ -13,7 +13,7 @@ class RegisterController extends Controller
     		'name' => 'required',
     		'college_roll' => 'required|max:12|min:12',
     		'department' => 'required',
-    		'college_id' => 'required|regex:[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}',
+    		'college_id' => 'required|regex:/[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/',
     		'email' => 'required',
     		'phone' => 'required|digits:10',
     		'field_of_interest' => 'required'
