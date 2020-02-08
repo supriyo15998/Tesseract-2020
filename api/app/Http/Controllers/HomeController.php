@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Volunteer;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -28,7 +29,9 @@ class HomeController extends Controller
     }
     public function getVolunteers()
     {
-        $volunteers = Volunteer::all();
+
+        //$volunteers = Volunteer::all();
+        $volunteers = DB::table('volunteers')->paginate(5);
         return view('volunteerslist')->withVolunteers($volunteers);
     }
 }

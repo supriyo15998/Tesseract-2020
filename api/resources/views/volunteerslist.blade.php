@@ -57,6 +57,7 @@
                   <th>Name</th>
                   <th>College Roll</th>
                   <th>Department</th>
+                  <th>Year</th>
                   <th>College ID</th>
                   <th>Email</th>
                   <th>Phone</th>
@@ -70,15 +71,19 @@
                       <td>{{ $volunteer->name }}</td>
                       <td>{{ $volunteer->college_roll }}</td>
                       <td>{{ $volunteer->department }}</td>
+                      <td>{{ $volunteer->year }}</td>
                       <td>{{ $volunteer->college_id }}</td>
                       <td>{{ $volunteer->email }}</td>
                       <td>{{ $volunteer->phone }}</td>
                       <td>{{ $volunteer->field_of_interest }}</td>
-                      <td>{{ $volunteer->created_at->format('d/m/Y') }}</td>
+                      <td>{{ $volunteer->created_at }}</td>
                     </tr>
                   @endforeach
                 </tbody>
               </table>
+              <div style="text-align: center;">
+                {{ $volunteers->links() }}
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
