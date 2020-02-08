@@ -29,6 +29,6 @@ class HomeController extends Controller
     public function getVolunteers()
     {
         $volunteers = Volunteer::all();
-        return view('volunteerslist')->withVolunteer($volunteers);
+        return view('volunteerslist')->withVolunteers($volunteers);
     }
 }

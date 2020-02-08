@@ -65,7 +65,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($volunteer as $volunteer)
+                  @foreach($volunteers as $volunteer)
                     <tr>
                       <td>{{ $volunteer->name }}</td>
                       <td>{{ $volunteer->college_roll }}</td>
