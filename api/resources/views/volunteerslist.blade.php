@@ -70,7 +70,7 @@
                     <tr>
                       <td>{{ $volunteer->name }}</td>
                       <td>{{ $volunteer->college_roll }}</td>
-                      <td>{{ $volunteer->department }}</td>
+                      <td>{{ $volunteer->department->name }}</td>
                       <td>{{ $volunteer->year }}</td>
                       <td>{{ $volunteer->college_id }}</td>
                       <td>{{ $volunteer->email }}</td>
