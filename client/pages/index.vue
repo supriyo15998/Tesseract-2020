@@ -1200,6 +1200,13 @@ export default {
                 })
                 .catch((err) => {
                     this.isLoading = false
+                    this.volunteerForm.name = ''
+                    this.volunteerForm.email = ''
+                    this.volunteerForm.college_roll = ''
+                    this.volunteerForm.college_id = ''
+                    this.volunteerForm.phone = ''
+                    this.volunteerForm.department_id = null
+                    this.volunteerForm.year = null
                 })
 
 
@@ -1241,6 +1248,11 @@ export default {
             window.setInterval(() => {
                 this.countDown();
             }, 1000);
+        })
+
+        this.$root.$on('bv::modal::hide', (bvEvent, modalId) => {
+            if (this.isSuccess)
+                this.isSuccess = false
         })
     },
     data () {
