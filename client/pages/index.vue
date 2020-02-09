@@ -17,14 +17,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="#intro">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#schedule">Schedule</a></li>
-                        <li><a href="#venue">Venue</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#supporters">Sponsors</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="menu-active"><a href="#intro" style="text-decoration: none;">Home</a></li>
+                        <li><a href="#about" style="text-decoration: none;">About</a></li>
+                        <li><a href="#events" style="text-decoration: none;">Events</a></li>
+                        <li><a href="#schedule" style="text-decoration: none;">Schedule</a></li>
+                        <li><a href="#venue" style="text-decoration: none;">Venue</a></li>
+                        <li><a href="#gallery" style="text-decoration: none;">Gallery</a></li>
+                        <li><a href="#supporters" style="text-decoration: none;">Sponsors</a></li>
+                        <li><a href="#contact" style="text-decoration: none;">Contact</a></li>
                         <li class="buy-tickets">
                             <a
                                 v-b-modal.register-volunteer
@@ -375,12 +375,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/hack.jpg"
+                                    href="img/venue-gallery/hack1.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/hack.jpg"
+                                        src="img/venue-gallery/hack1.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -468,37 +468,6 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-4">
-                            <div class="venue-gallery">
-                                <a
-                                    href="img/venue-gallery/7.jpg"
-                                    class="venobox"
-                                    data-gall="venue-gallery"
-                                >
-                                    <img
-                                        src="img/venue-gallery/7.jpg"
-                                        alt=""
-                                        class="img-fluid"
-                                    >
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4">
-                            <div class="venue-gallery">
-                                <a
-                                    href="img/venue-gallery/8.jpg"
-                                    class="venobox"
-                                    data-gall="venue-gallery"
-                                >
-                                    <img
-                                        src="img/venue-gallery/8.jpg"
-                                        alt=""
-                                        class="img-fluid"
-                                    >
-                                </a>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -520,9 +489,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-lg-12 col-md-6 text-center">
-                    <h2>Coming Soon..</h2>
-                </div> -->
+                
 
                 <div class="owl-carousel gallery-carousel">
                     <a
@@ -863,7 +830,7 @@
                             <div class="contact-email">
                                 <i class="ion-ios-email-outline"></i>
                                 <h3>Email</h3>
-                                <p><a href="mailto:info@example.com">info@gnittesseract.in</a></p>
+                                <p><a href="mailto:info@example.com">info@tesseractgnit.com</a></p>
                             </div>
                         </div>
 
@@ -968,8 +935,8 @@
                                 157/F, Nilgunj Road <br>
                                 Sodepur, Kolkata-700114<br>
                                 Kolkata <br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@gnittesseract.in<br>
+                                <strong>Phone:</strong> +91-79807-27708<br>
+                                <strong>Email:</strong> info@tesseractgnit.com<br>
                             </p>
 
                             <div class="social-links">
