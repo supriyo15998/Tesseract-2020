@@ -1064,15 +1064,15 @@
                         >
                             <b-form-select
                                 id="input-3"
-                                v-model="volunteerForm.department"
-                                :class="{'is-invalid': errors.department}"
+                                v-model="volunteerForm.department_id"
+                                :class="{'is-invalid': errors.department_id}"
                                 :options="computedDepartments"
                                 required
                             ></b-form-select>
                             <div
                                 class="invalid-feedback"
                                 v-if="errors.department"
-                            >{{ errors.department[0] }}</div>
+                            >{{ errors.department_id[0] }}</div>
                         </b-form-group>
 
                         <b-form-group
@@ -1254,7 +1254,7 @@ export default {
                 college_id: '',
                 name: '',
                 phone: '',
-                department: null,
+                department_id: null,
                 year: null,
 
             },
