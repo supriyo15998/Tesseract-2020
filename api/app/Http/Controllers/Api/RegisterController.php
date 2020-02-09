@@ -20,7 +20,7 @@ class RegisterController extends Controller
     		'field_of_interest' => 'required'
 		]);
 
-		return response()->json($validatedData, 500);
+		//return response()->json($validatedData, 500);
 		
 		$volunteer = Volunteer::create($validatedData);
 		
