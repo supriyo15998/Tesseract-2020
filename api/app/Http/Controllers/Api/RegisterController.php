@@ -28,4 +28,5 @@ class RegisterController extends Controller
             'volunteer' => $volunteer
         ]);
     }
+    
 }

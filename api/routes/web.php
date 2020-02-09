@@ -22,5 +22,6 @@ Route::prefix('admin')->group(function () {
 	Route::get('/volunteers-list', 'HomeController@getVolunteers')->name('getVolunteers');
 	Route::get('/add-event', 'HomeController@viewEventForm')->name('viewEventForm');
 	Route::get('/show-participants', 'HomeController@viewParticipants')->name('viewParticipants');
+	Route::post('/event', 'HomeController@registerEvent')->name('registerEvent');
 });
 

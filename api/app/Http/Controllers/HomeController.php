@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Volunteer;
+use App\Category;
+use App\Event;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
@@ -25,8 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         $volunteersCount = Volunteer::count();
+        $eventsCount = Event::count();
         $title = "TesseractAdmin | Home";
-        return view('home')->withTitle($title)->withVolunteersCount($volunteersCount);
+        return view('home')->withTitle($title)->withVolunteersCount($volunteersCount)->withEventsCount($eventsCount);
     }
     public function getVolunteers()
     {
@@ -38,11 +42,33 @@ class HomeController extends Controller
     }
     public function viewEventForm()
     {
-        $title = "TesseractAdmin | Add Event";        
-        return view('eventForm')->withTitle($title);
+        $title = "TesseractAdmin | Add Event";
+        $categories = Category::all();
+        return view('eventForm')->withTitle($title)->withCategories($categories);
     }
     public function viewParticipants()
     {
         return view('participants');
+    }
+    public function registerEvent(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'photo' => 'required|file',
+            'description' => 'required',
+            'rules' => 'required'
+        ]);
+        $image= $request->file('photo');
+        $randomNum = bin2hex(random_bytes(8));
+        $fileName = time() . '_' . $randomNum . '.jpg';
+        $location = public_path('img/events/' . $fileName);
+        Image::make($image)->save($location);
+
+        $package = Event::create($validatedData);
+        //$this->storeImage($package); 
+        $package->update(['photo' => $fileName]);
+        return redirect('/admin/home')->with('message', 'Event Created Successfully');
     }
 }
