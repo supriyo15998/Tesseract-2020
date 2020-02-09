@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Tesseract 2020 | The GNIT TechFest',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -13,12 +13,12 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'css/style.css'},
-      { rel: 'stylesheet', href: 'lib/owlcarousel/assets/owl.carousel.min.css'},
-      { rel: 'stylesheet', href: 'lib/venobox/venobox.css'},
-      { rel: 'stylesheet', href: 'lib/animate/animate.min.css'},
-      { rel: 'stylesheet', href: 'lib/font-awesome/css/font-awesome.min.css'},
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800'}
+      { rel: 'stylesheet', href: 'css/style.css' },
+      { rel: 'stylesheet', href: 'lib/owlcarousel/assets/owl.carousel.min.css' },
+      { rel: 'stylesheet', href: 'lib/venobox/venobox.css' },
+      { rel: 'stylesheet', href: 'lib/animate/animate.min.css' },
+      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800' }
     ],
     script: [
       {
@@ -50,9 +50,6 @@ export default {
       },
       {
         src: "js/main.js"
-      },
-      {
-        src: "js/countdown.js"
       }
     ]
   },
@@ -69,6 +66,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    './plugins/mixins/validation',
+    './plugins/axios'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -90,6 +89,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://127.0.0.1:8000/api/'
   },
   /*
   ** Build configuration
@@ -102,6 +102,12 @@ export default {
     }
   },
   server: {
-    //host: '172.19.101.130'
+    host: '192.168.31.125'
+  },
+  manifest: {
+    name: 'Tesseract 2020',
+    short_name: 'Tesseract',
+    lang: 'en',
+    display: 'standalone'
   }
 }

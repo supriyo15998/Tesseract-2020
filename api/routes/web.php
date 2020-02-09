@@ -17,7 +17,7 @@ Route::get('/', function() {
 });
 
 Route::prefix('admin')->group(function () {
-	Auth::routes();
+	Auth::routes(['register' => false]);
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/volunteers-list', 'HomeController@getVolunteers')->name('getVolunteers');
 	Route::get('/add-event', 'HomeController@viewEventForm')->name('viewEventForm');
