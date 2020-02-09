@@ -12,7 +12,8 @@ class RegisterController extends Controller
     	$validatedData = $request->validate([
     		'name' => 'required',
     		'college_roll' => 'required|max:12|min:12|unique:volunteers',
-            'year' => 'required',
+			'year' => 'required',
+			'department_id' => 'required',
     		'college_id' => 'required|regex:/[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/|unique:volunteers',
     		'email' => 'required|unique:volunteers|email',
     		'phone' => 'required|digits:10',
