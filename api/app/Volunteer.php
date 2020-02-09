@@ -9,6 +9,6 @@ class Volunteer extends Model
     protected $guarded = [];
 
     public function department() {
-        return $this->belongsTo('App\Department', 'department');
+        return $this->belongsTo('App\Department');
     }
 }
