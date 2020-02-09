@@ -17,7 +17,7 @@ class CreateVolunteersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('college_roll');
-            $table->string('department');
+            $table->integer('department');
             $table->string('college_id');
             $table->string('email');
             $table->string('phone');
