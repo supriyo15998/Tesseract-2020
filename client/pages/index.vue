@@ -973,7 +973,10 @@
                 <div class="copyright"> <strong>Tesseract</strong>- The GNIT TechFest.
                 </div>
                 <div class="credits">
-                    Designed with <i class="fa fa-heart fa-beat text-danger"></i> by <a href="https://www.thebuglabs.com">The BugLabs</a>
+                    Designed with <i class="fa fa-heart fa-beat text-danger"></i> by <a
+                        href="https://www.thebuglabs.com"
+                        target="_blank"
+                    >The BugLabs</a>
                 </div>
             </div>
         </footer><!-- #footer -->
@@ -1128,7 +1131,7 @@
 
                         <b-form-group
                             id="input-group-2"
-                            label="Field of Intere:"
+                            label="Field of Interest:"
                             label-for="input-2"
                         >
                             <b-form-input

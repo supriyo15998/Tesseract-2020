@@ -89,7 +89,10 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/'
+    // Development
+    // baseURL: 'http://127.0.0.1:8000/api/'
+    // Production
+    baseURL: 'https://api.tesseractgnit.com/api/'
   },
   /*
   ** Build configuration
@@ -101,9 +104,9 @@ export default {
     extend (config, ctx) {
     }
   },
-  server: {
-    host: '192.168.31.125'
-  },
+  // server: {
+  //   host: '192.168.31.125'
+  // },
   manifest: {
     name: 'Tesseract 2020',
     short_name: 'Tesseract',
