@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Volunteer;
 class RegisterController extends Controller
 {
-    public function registerV(Request $request)
-    {
+    public function registerV(Request $request) {
+
     	$validatedData = $request->validate([
     		'name' => 'required',
     		'college_roll' => 'required|max:12|min:12|unique:volunteers',
@@ -17,8 +17,12 @@ class RegisterController extends Controller
     		'email' => 'required|unique:volunteers|email',
     		'phone' => 'required|digits:10',
     		'field_of_interest' => 'required'
-    	]);
-    	$volunteer = Volunteer::create($validatedData);
+		]);
+
+		return response()->json($validatedData, 500);
+		
+		$volunteer = Volunteer::create($validatedData);
+		
         return response()->json([
             'volunteer' => $volunteer
         ]);
