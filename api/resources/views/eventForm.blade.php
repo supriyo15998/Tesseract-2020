@@ -12,13 +12,10 @@
   <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('bower_components/Ionicons/css/ionicons.min.css') }}">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -26,73 +23,81 @@
   @include('layouts.navbar')
   <!-- Left side column. contains the logo and sidebar -->
   @include('layouts.sidebar')
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Data Tables
-        <small>advanced tables</small>
-      </h1>
+      <h1>Add Events</h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Events</a></li>
+        <li class="active">Add Events</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Hover Data Table</h3>
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary" style="padding: 4%">
+            <div class="box-header with-border" style="text-align: center; font-weight: bold;">
+              <h3 class="box-title">Add Events</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>College Roll</th>
-                  <th>Department</th>
-                  <th>Year</th>
-                  <th>College ID</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Field of Interest</th>
-                  <th>Registered At</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach($volunteers as $volunteer)
-                    <tr>
-                      <td>{{ $volunteer->name }}</td>
-                      <td>{{ $volunteer->college_roll }}</td>
-                      <td>{{ $volunteer->department }}</td>
-                      <td>{{ $volunteer->year }}</td>
-                      <td>{{ $volunteer->college_id }}</td>
-                      <td>{{ $volunteer->email }}</td>
-                      <td>{{ $volunteer->phone }}</td>
-                      <td>{{ $volunteer->field_of_interest }}</td>
-                      <td>{{ $volunteer->created_at }}</td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              <div style="text-align: center;">
-                {{ $volunteers->links() }}
+            <!-- form start -->
+            <form method="POST" action="#" enctype="multipart/form-data">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="package_category">Package Category</label>
+                  <select id="package_category" class="form-control" name="package_category">
+                    <option autofocus disabled>Select Package Category</option>
+                    <option value="adventurous-tour">Adventurous Tour</option>
+                    <option value="trekking">Trekking</option>
+                    <option value="city-tour">City Tour</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputName">Package Name</label>
+                  <input type="text" name="package_name" id="inputName" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="amount-per-head">Amount per head</label>
+                  <input id="amount-per-head" name="amount_per_head" type="number" class="form-control">
+                </div>
+               
+                <div class="form-group">
+                  <label for="facilities">Facilities (comma separated)</label>
+                  <input type="text" name="facilities" id="facilities" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="t-date-depart">Tentative Date Departure</label>
+                  <input type="date" name="depart_date" id="t-date-depart" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="t-date-arrival">Tentative Date Arrival</label>
+                  <input type="date" name="arrival_date" id="t-date-arrival" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="number" name="days"><b>Days</b> <input type="number" name="nights"><b>Nights</b>
+                </div>
+                <div class="form-group d-flex flex-column">
+                  <label for="image">Upload Photo</label>
+                  <input type="file" id="image" name="image">
+                </div>
+                <div class="form-group d-flex flex-column">
+                  <input type="submit" name="create_package" class="btn btn-success" value="Add New Package">
+                </div>
               </div>
-            </div>
-            <!-- /.box-body -->
+            <form>
           </div>
-          <!-- /.box -->
-
-        
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
+        <!--/.col (left) -->
+        <!-- right column -->
+
+        <!--/.col (right) -->
       </div>
       <!-- /.row -->
     </section>
@@ -307,18 +312,11 @@
 <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- DataTables -->
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-<!-- SlimScroll -->
-<script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- FastClick -->
-<script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
+<script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
-<!-- page script -->
-
 </body>
 </html>

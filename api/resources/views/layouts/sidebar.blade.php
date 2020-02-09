@@ -47,7 +47,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Create Event</a></li>
+            <li><a href="{{ route('viewEventForm') }}"><i class="fa fa-circle-o"></i> Create Event</a></li>
             <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> View All Events</a></li>
 <!--             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> -->
           </ul>
@@ -60,7 +60,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> View Participants List</a></li>
+            <li><a href="{{ route('viewParticipants') }}"><i class="fa fa-circle-o"></i> View Participants List</a></li>
             <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
           </ul>
         </li>

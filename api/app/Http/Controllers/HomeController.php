@@ -24,14 +24,24 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $volunteersCount = Volunteer::count();
         $title = "TesseractAdmin | Home";
-        return view('home')->withTitle($title);
+        return view('home')->withTitle($title)->withVolunteersCount($volunteersCount);
     }
     public function getVolunteers()
     {
-
+        $title = "TesseractAdmin | View Volunteers";
         //$volunteers = Volunteer::all();
         $volunteers = DB::table('volunteers')->paginate(5);
-        return view('volunteerslist')->withVolunteers($volunteers);
+        return view('volunteerslist')->withVolunteers($volunteers)->withTitle($title);
+    }
+    public function viewEventForm()
+    {
+        $title = "TesseractAdmin | Add Event";        
+        return view('eventForm')->withTitle($title);
+    }
+    public function viewParticipants()
+    {
+        return view('participants');
     }
 }
