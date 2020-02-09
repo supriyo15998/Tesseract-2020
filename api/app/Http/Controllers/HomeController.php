@@ -32,7 +32,7 @@ class HomeController extends Controller
     {
         $title = "TesseractAdmin | View Volunteers";
         //$volunteers = Volunteer::all();
-        $volunteers = Volunter::paginate(10);
+        $volunteers = Volunteer::paginate(10);
         return view('volunteerslist')->withVolunteers($volunteers)->withTitle($title);
     }
     public function viewEventForm()
