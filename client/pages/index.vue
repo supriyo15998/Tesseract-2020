@@ -56,7 +56,7 @@
                         style="display: inline;"
                     ></div> <span>Seconds</span>
                 </h2>
-                <p class="mb-4 pb-0">14-15 March, Guru Nanak Institute of Technology, Kolkata</p>
+                <p class="mb-4 pb-0">13-14 March, Guru Nanak Institute of Technology, Kolkata</p>
                 <a
                     href="https://www.youtube.com/watch?v=USIeXaPdwuQ"
                     class="venobox play-btn mb-4"
@@ -375,12 +375,44 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
+                                    href="img/venue-gallery/hack.jpg"
+                                    class="venobox"
+                                    data-gall="venue-gallery"
+                                >
+                                    <img
+                                        src="img/venue-gallery/hack.jpg"
+                                        alt=""
+                                        class="img-fluid"
+                                    >
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="venue-gallery">
+                                <a
                                     href="img/venue-gallery/14.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
                                         src="img/venue-gallery/14.jpg"
+                                        alt=""
+                                        class="img-fluid"
+                                    >
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="venue-gallery">
+                                <a
+                                    href="img/venue-gallery/check.jpg"
+                                    class="venobox"
+                                    data-gall="venue-gallery"
+                                >
+                                    <img
+                                        src="img/venue-gallery/check.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -488,11 +520,11 @@
                     </div>
                 </div>
 
-                <div class="col-lg-12 col-md-6 text-center">
+                <!-- <div class="col-lg-12 col-md-6 text-center">
                     <h2>Coming Soon..</h2>
-                </div>
+                </div> -->
 
-                <!-- <div class="owl-carousel gallery-carousel">
+                <div class="owl-carousel gallery-carousel">
                     <a
                         href="img/gallery/1.jpg"
                         class="venobox"
@@ -557,7 +589,7 @@
                             src="img/gallery/8.jpg"
                             alt=""
                         ></a>
-                </div> -->
+                </div>
 
             </section>
 
@@ -823,7 +855,7 @@
                             <div class="contact-phone">
                                 <i class="ion-ios-telephone-outline"></i>
                                 <h3>Phone Number</h3>
-                                <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+                                <p><a href="tel:+155895548855">+91-79807-27708</a></p>
                             </div>
                         </div>
 
@@ -1170,7 +1202,7 @@ export default {
     methods: {
         countDown () {
             var now = new Date();
-            var eventDate = new Date(2020, 2, 14);
+            var eventDate = new Date(2020, 2, 13);
             var currentTime = now.getTime();
             var eventTime = eventDate.getTime();
             var remTime = eventTime - currentTime;
