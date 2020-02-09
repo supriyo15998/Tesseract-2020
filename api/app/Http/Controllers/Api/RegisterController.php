@@ -10,7 +10,7 @@ class RegisterController extends Controller
     public function registerV(Request $request) {
 
     	$validatedData = $request->validate([
-    		'name' => 'required',
+    		'name' => 'required|regex:/^[A-Za-z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/',
     		'college_roll' => 'required|max:12|min:12|unique:volunteers',
 			'year' => 'required',
 			'department_id' => 'required',
