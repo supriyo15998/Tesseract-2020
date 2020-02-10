@@ -17,4 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/registration/volunteer', 'Api\\RegisterController@registerV')->name('registerV');
+Route::post('/registration/campuss-ambassador', 'Api\\RegisterController@registerC')->name('registerC');
 Route::get('/generic/departments', 'Api\\GenericController@getDepartments');
+Route::get('/events', 'Api\\GenericController@getEvents');
