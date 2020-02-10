@@ -343,12 +343,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/1.jpg"
+                                    href="img/venue-gallery/1-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/1.jpg"
+                                        src="img/venue-gallery/1-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -359,12 +359,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/n3.jpg"
+                                    href="img/venue-gallery/n3-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/n3.jpg"
+                                        src="img/venue-gallery/n3-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -391,12 +391,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/14.jpg"
+                                    href="img/venue-gallery/14-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/14.jpg"
+                                        src="img/venue-gallery/14-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -407,12 +407,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/check.jpg"
+                                    href="img/venue-gallery/check-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/check.jpg"
+                                        src="img/venue-gallery/check-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -423,12 +423,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/7.jpg"
+                                    href="img/venue-gallery/7-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/7.jpg"
+                                        src="img/venue-gallery/7-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -439,12 +439,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/n6.jpg"
+                                    href="img/venue-gallery/n6-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/n6.jpg"
+                                        src="img/venue-gallery/n6-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -455,12 +455,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/n7.jpg"
+                                    href="img/venue-gallery/n7-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/n7.jpg"
+                                        src="img/venue-gallery/n7-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
@@ -493,67 +493,67 @@
 
                 <div class="owl-carousel gallery-carousel">
                     <a
-                        href="img/gallery/1.jpg"
+                        href="img/gallery/1-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/1.jpg"
+                            src="img/gallery/1-min.jpg"
                             alt=""
                         ></a>
                     <a
-                        href="img/gallery/2.jpg"
+                        href="img/gallery/2-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/2.jpg"
+                            src="img/gallery/2-min.jpg"
                             alt=""
                         ></a>
                     <a
-                        href="img/gallery/3.jpg"
+                        href="img/gallery/3-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/3.jpg"
+                            src="img/gallery/3-min.jpg"
                             alt=""
                         ></a>
                     <a
-                        href="img/gallery/4.jpg"
+                        href="img/gallery/4-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/4.jpg"
+                            src="img/gallery/4-min.jpg"
                             alt=""
                         ></a>
                     <a
-                        href="img/gallery/5.jpg"
+                        href="img/gallery/5-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/5.jpg"
+                            src="img/gallery/5-min.jpg"
                             alt=""
                         ></a>
                     <a
-                        href="img/gallery/6.jpg"
+                        href="img/gallery/6-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/6.jpg"
+                            src="img/gallery/6-min.jpg"
                             alt=""
                         ></a>
                     <a
-                        href="img/gallery/7.jpg"
+                        href="img/gallery/7-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/7.jpg"
+                            src="img/gallery/7-min.jpg"
                             alt=""
                         ></a>
                     <a
-                        href="img/gallery/8.jpg"
+                        href="img/gallery/8-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
                     ><img
-                            src="img/gallery/8.jpg"
+                            src="img/gallery/8-min.jpg"
                             alt=""
                         ></a>
                 </div>
