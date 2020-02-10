@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use Mail;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Volunteer;
 use App\CampussAmbassador;
+use App\Mail\VolunteerRegistered;
+
 class RegisterController extends Controller
 {
     public function registerV(Request $request) {
@@ -23,7 +28,9 @@ class RegisterController extends Controller
 
 		//return response()->json($validatedData, 500);
 		
-		$volunteer = Volunteer::create($validatedData);
+        $volunteer = Volunteer::create($validatedData);
+        
+        Mail::to($volunteer->email)->send(new VolunteerRegistered());
 		
         return response()->json([
             'volunteer' => $volunteer
