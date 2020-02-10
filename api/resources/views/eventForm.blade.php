@@ -72,7 +72,7 @@
                 
                 <div class="form-group">
                   <label for="rules">Event Rules</label>
-                  <textarea name="rules" id="rules" class="form-control"></textarea>
+                  <input type="file" id="rules" name="rules">
                 </div>
 
                 <div class="form-group d-flex flex-column">
