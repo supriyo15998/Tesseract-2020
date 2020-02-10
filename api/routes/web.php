@@ -24,5 +24,6 @@ Route::prefix('admin')->group(function () {
 	Route::get('/show-participants', 'HomeController@viewParticipants')->name('viewParticipants');
 	Route::post('/event', 'HomeController@registerEvent')->name('registerEvent');
 	Route::get('/event/list', 'HomeController@showEvent')->name('showEvent');
+	Route::get('/campuss-ambassador/list', 'HomeController@showCampussAmbassadors')->name('showCampussAmbassadors');
 });
 

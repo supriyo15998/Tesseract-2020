@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Volunteer;
 use App\Category;
 use App\Event;
+use App\CampussAmbassador;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
@@ -77,5 +78,10 @@ class HomeController extends Controller
         //dd($events);
         $title = "TesseractAdmin | Show Events";
         return view('showEvents')->withTitle($title)->withEvents($events);
+    }
+    public function showCampussAmbassadors() {
+        $title = "TesseractAdmin | Show Events";
+        $cas = CampussAmbassador::all();
+        return view('showCampussAmbassadors')->withTitle($title)->withCas($cas);
     }
 }
