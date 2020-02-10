@@ -48,7 +48,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('viewEventForm') }}"><i class="fa fa-circle-o"></i> Create Event</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> View All Events</a></li>
+            <li><a href="{{ route('showEvent') }}"><i class="fa fa-circle-o"></i> View All Events</a></li>
 <!--             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> -->
           </ul>
         </li>

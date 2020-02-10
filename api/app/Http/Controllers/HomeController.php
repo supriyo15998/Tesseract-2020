@@ -71,4 +71,11 @@ class HomeController extends Controller
         $package->update(['photo' => $fileName]);
         return redirect('/admin/home')->with('message', 'Event Created Successfully');
     }
+    public function showEvent()
+    {
+        $events = Event::all();
+        //dd($events);
+        $title = "TesseractAdmin | Show Events";
+        return view('showEvents')->withTitle($title)->withEvents($events);
+    }
 }

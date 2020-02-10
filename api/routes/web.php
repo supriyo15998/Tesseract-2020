@@ -23,5 +23,6 @@ Route::prefix('admin')->group(function () {
 	Route::get('/add-event', 'HomeController@viewEventForm')->name('viewEventForm');
 	Route::get('/show-participants', 'HomeController@viewParticipants')->name('viewParticipants');
 	Route::post('/event', 'HomeController@registerEvent')->name('registerEvent');
+	Route::get('/event/list', 'HomeController@showEvent')->name('showEvent');
 });
 
