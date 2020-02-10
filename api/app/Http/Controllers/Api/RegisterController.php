@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Volunteer;
+use App\CampussAmbassador;
 class RegisterController extends Controller
 {
     public function registerV(Request $request) {
@@ -28,5 +29,20 @@ class RegisterController extends Controller
             'volunteer' => $volunteer
         ]);
     }
-    
+    public function registerC(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'phone' => 'required|digits:10',
+            'college_name' => 'required',
+            'email' => 'required|email|unique:campuss_ambassadors',
+            'year' => 'required',
+            'department' => 'required'
+        ]);
+        $campuss_ambassador = CampussAmbassador::create($validatedData);
+        
+        return response()->json([
+            'campuss_ambassador' => $campuss_ambassador
+        ]);
+    }
 }

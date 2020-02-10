@@ -36,7 +36,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('getVolunteers') }}"><i class="fa fa-circle-o"></i> View Volunteer List</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> View Campus Ambassadors </a></li>
+            <li><a href="{{ route('showCampussAmbassadors') }}"><i class="fa fa-circle-o"></i> View Campus Ambassadors </a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -48,7 +48,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('viewEventForm') }}"><i class="fa fa-circle-o"></i> Create Event</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> View All Events</a></li>
+            <li><a href="{{ route('showEvent') }}"><i class="fa fa-circle-o"></i> View All Events</a></li>
 <!--             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> -->
           </ul>
         </li>
