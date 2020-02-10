@@ -375,12 +375,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
                                 <a
-                                    href="img/venue-gallery/hack1.jpg"
+                                    href="img/venue-gallery/hack1-min.jpg"
                                     class="venobox"
                                     data-gall="venue-gallery"
                                 >
                                     <img
-                                        src="img/venue-gallery/hack1.jpg"
+                                        src="img/venue-gallery/hack1-min.jpg"
                                         alt=""
                                         class="img-fluid"
                                     >
