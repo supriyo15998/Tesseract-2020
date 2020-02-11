@@ -28,8 +28,9 @@
                         <li class="buy-tickets">
                             <a
                                 v-b-modal.register-volunteer
-                                href="#"
+                                href="#" style="text-decoration: none;"
                             >Volunteer Registration</a>
+                            
                         </li>
                     </ul>
                 </nav>
@@ -69,9 +70,14 @@
                 >Download the App</a>
                 <a
                     v-b-modal.register-volunteer
-                    href="#"
+                    href="#" style="text-decoration: none;"
                     class="about-btn"
                 >Volunteer Registration</a>
+                <a
+                    v-b-modal.register-campus-ambassador
+                    href="#"
+                    class="about-btn"
+                >Campus Ambassador Registration</a>
             </div>
         </section>
         <main id="main">
@@ -468,6 +474,23 @@
                             </div>
                         </div>
 
+                        
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="venue-gallery">
+                                <a
+                                    href="img/venue-gallery/8-min.jpg"
+                                    class="venobox"
+                                    data-gall="venue-gallery"
+                                >
+                                    <img
+                                        src="img/venue-gallery/8-min.jpg"
+                                        alt=""
+                                        class="img-fluid"
+                                    >
+                                </a>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -489,7 +512,9 @@
                     </div>
                 </div>
 
-                
+                <!-- <div class="col-lg-12 col-md-6 text-center">
+                    <h2>Coming Soon..</h2>
+                </div> -->
 
                 <div class="owl-carousel gallery-carousel">
                     <a
@@ -830,7 +855,7 @@
                             <div class="contact-email">
                                 <i class="ion-ios-email-outline"></i>
                                 <h3>Email</h3>
-                                <p><a href="mailto:info@example.com">info@tesseractgnit.com</a></p>
+                                <p><a href="mailto:info@example.com">info@gnittesseract.in</a></p>
                             </div>
                         </div>
 
@@ -911,12 +936,12 @@
 
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
-                            <!-- <ul>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
+                            <ul>
+                                <li><i class="fa fa-angle-right"></i> <a href="#" style="text-decoration: none;">Register as Campuss Ambassador</a></li>
+                                <!-- <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Speakers</a></li>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Schedule</a></li>
-                            </ul> -->
+                                <li><i class="fa fa-angle-right"></i> <a href="#">Schedule</a></li> -->
+                            </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
@@ -935,8 +960,8 @@
                                 157/F, Nilgunj Road <br>
                                 Sodepur, Kolkata-700114<br>
                                 Kolkata <br>
-                                <strong>Phone:</strong> +91-79807-27708<br>
-                                <strong>Email:</strong> info@tesseractgnit.com<br>
+                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Email:</strong> info@gnittesseract.in<br>
                             </p>
 
                             <div class="social-links">
@@ -1039,16 +1064,16 @@
                         </b-form-group>
 
                         <b-form-group
-                            id="input-group-2"
+                            id="input-group-3"
                             label="University Roll Number:"
-                            label-for="input-2"
+                            label-for="input-3"
                         >
                             <b-form-input
-                                id="input-2"
+                                id="input-3"
                                 v-model="volunteerForm.college_roll"
                                 :class="{'is-invalid': errors.college_roll}"
                                 required
-                                placeholder="500618700354"
+                                placeholder="Enter your college roll here"
                             ></b-form-input>
                             <div
                                 class="invalid-feedback"
@@ -1057,12 +1082,12 @@
                         </b-form-group>
 
                         <b-form-group
-                            id="input-group-3"
+                            id="input-group-4"
                             label="Department:"
-                            label-for="input-3"
+                            label-for="input-4"
                         >
                             <b-form-select
-                                id="input-3"
+                                id="input-4"
                                 v-model="volunteerForm.department_id"
                                 :class="{'is-invalid': errors.department_id}"
                                 :options="computedDepartments"
@@ -1075,12 +1100,12 @@
                         </b-form-group>
 
                         <b-form-group
-                            id="input-group-3"
+                            id="input-group-5"
                             label="Year:"
-                            label-for="input-3"
+                            label-for="input-5"
                         >
                             <b-form-select
-                                id="input-3"
+                                id="input-5"
                                 v-model="volunteerForm.year"
                                 :class="{'is-invalid': errors.year}"
                                 :options="years"
@@ -1093,30 +1118,12 @@
                         </b-form-group>
 
                         <b-form-group
-                            id="input-group-2"
-                            label="College ID:"
-                            label-for="input-2"
-                        >
-                            <b-form-input
-                                id="input-2"
-                                v-model="volunteerForm.college_id"
-                                :class="{'is-invalid': errors.college_id}"
-                                required
-                                placeholder="GNIT/YEAR/XXXX"
-                            ></b-form-input>
-                            <div
-                                class="invalid-feedback"
-                                v-if="errors.college_id"
-                            >{{ errors.college_id[0] }}</div>
-                        </b-form-group>
-
-                        <b-form-group
-                            id="input-group-2"
+                            id="input-group-6"
                             label="Phone number:"
-                            label-for="input-2"
+                            label-for="input-6"
                         >
                             <b-form-input
-                                id="input-2"
+                                id="input-6"
                                 v-model="volunteerForm.phone"
                                 :class="{'is-invalid': errors.phone}"
                                 required
@@ -1129,12 +1136,12 @@
                         </b-form-group>
 
                         <b-form-group
-                            id="input-group-2"
+                            id="input-group-7"
                             label="Field of Interest:"
-                            label-for="input-2"
+                            label-for="input-7"
                         >
                             <b-form-input
-                                id="input-2"
+                                id="input-7"
                                 v-model="volunteerForm.field_of_interest"
                                 :class="{'is-invalid': errors.field_of_interest}"
                                 required
@@ -1145,6 +1152,146 @@
                                 class="invalid-feedback"
                                 v-if="errors.field_of_interest"
                             >{{ errors.field_of_interest[0] }}</div>
+                        </b-form-group>
+
+                        <b-button
+                            type="submit"
+                            variant="outline-success"
+                            :disabled="isLoading"
+                            pill
+                            block
+                        >
+                            <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
+                    </b-form>
+                </div>
+            </div>
+        </b-modal>
+
+
+        <b-modal
+            id="register-campus-ambassador"
+            hide-footer
+        >
+            <template v-slot:modal-title>
+                Campus Ambassador Registration
+            </template>
+            <div class="d-block">
+                <b-alert
+                    variant="success"
+                    show
+                    v-if="isSuccess"
+                >Hey {{ successData.name }}, thanks for applying! We will contact you soon! </b-alert>
+                <div v-else>
+                    <p>Fill in the fields below to complete your registration!</p>
+                    <b-form @submit.prevent="campusAmbassadorSubmit">
+                       <b-form-group
+                            id="input-group-1"
+                            label="Email address:"
+                            label-for="input-1"
+                            description="We'll never share your email with anyone else."
+                        >
+                            <b-form-input
+                                id="input-1"
+                                v-model="campusAmbassadorForm.email"
+                                type="email"
+                                :class="{'is-invalid': errors.email}"
+                                required
+                                placeholder="you@domain.com"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.email"
+                            >{{ errors.email[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-2"
+                            label="Your Name:"
+                            label-for="input-2"
+                        >
+                            <b-form-input
+                                id="input-2"
+                                v-model="campusAmbassadorForm.name"
+                                :class="{'is-invalid': errors.name}"
+                                required
+                                placeholder="Enter name"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.name"
+                            >{{ errors.name[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-3"
+                            label="College name:"
+                            label-for="input-3"
+                        >
+                            <b-form-input
+                                id="input-3"
+                                v-model="campusAmbassadorForm.college_name"
+                                :class="{'is-invalid': errors.college_name}"
+                                required
+                                placeholder="Guru Nanak Institute of Technology"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.college_name"
+                            >{{ errors.college_name[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-4"
+                            label="Department:"
+                            label-for="input-4"
+                        >
+                            <b-form-input
+                                id="input-4"
+                                v-model="campusAmbassadorForm.department"
+                                :class="{'is-invalid': errors.department}"
+                                required
+                                placeholder="Computer Science"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.department"
+                            >{{ errors.department[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-5"
+                            label="Year:"
+                            label-for="input-5"
+                        >
+                            <b-form-select
+                                id="input-5"
+                                v-model="campusAmbassadorForm.year"
+                                :class="{'is-invalid': errors.year}"
+                                :options="years"
+                                required
+                            ></b-form-select>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.year"
+                            >{{ errors.year[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-6"
+                            label="Phone number:"
+                            label-for="input-6"
+                        >
+                            <b-form-input
+                                id="input-6"
+                                v-model="campusAmbassadorForm.phone"
+                                :class="{'is-invalid': errors.phone}"
+                                required
+                                placeholder="9150656598"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.phone"
+                            >{{ errors.phone[0] }}</div>
                         </b-form-group>
 
                         <b-button
@@ -1207,8 +1354,25 @@ export default {
                     this.volunteerForm.department_id = null
                     this.volunteerForm.year = null
                 })
-
-
+        },
+        async campusAmbassadorSubmit() {
+            this.isLoading = true
+            await this.$axios
+                .$post('/registration/campuss-ambassador', this.volunteerForm)
+                .then((res) => {
+                    this.isLoading = false
+                    this.isSuccess = true
+                    this.successData = res.campuss_ambassador
+                })
+                .catch((err) => {
+                    this.isLoading = false
+                    this.campusAmbassadorForm.name = ''
+                    this.campusAmbassadorForm.email = ''
+                    this.campusAmbassadorForm.college_name = ''
+                    this.campusAmbassadorForm.phone = ''
+                    this.campusAmbassadorForm.department = ''
+                    this.campusAmbassadorForm.year = null
+                })
         }
     },
     mounted () {
@@ -1243,6 +1407,10 @@ export default {
             });
         }
 
+        setTimeout(function () {
+            this.isPreLoading = false;
+        }, 3000);
+
         this.$nextTick(function () {
             window.setInterval(() => {
                 this.countDown();
@@ -1257,6 +1425,7 @@ export default {
     data () {
         return {
             isLoading: false,
+            isPreLoading: true,
             isSuccess: false,
             successData: null,
             volunteerForm: {
@@ -1266,6 +1435,15 @@ export default {
                 name: '',
                 phone: '',
                 department_id: null,
+                year: null,
+
+            },
+            campusAmbassadorForm: {
+                email: '',
+                college_name: '',
+                name: '',
+                phone: '',
+                department: null,
                 year: null,
 
             },

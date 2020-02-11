@@ -57,6 +57,7 @@
                   <th>Event Category</th>
                   <th>Event Name</th>
                   <th>Price</th>
+                  <th>Rules</th>
                   <th>Description</th>
                   <th>Created At</th>
                 </tr>
@@ -67,6 +68,7 @@
                      <td>{{ $event->category->name }}</td>
                      <td>{{ $event->name }}</td>
                      <td>{{ $event->price }}</td>
+                     <td><a href="{{ asset('storage/rules/' . $event->rules) }}" target="_blank" class="btn btn-info">View Rules</a>
                      <td>{{ $event->description }}</td>
                      <td>{{ $event->created_at }}</td>
                    </tr>

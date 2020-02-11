@@ -59,8 +59,14 @@ class HomeController extends Controller
             'category_id' => 'required',
             'photo' => 'required|file',
             'description' => 'required',
-            'rules' => 'required'
+            'rules' => 'required|file'
         ]);
+
+        //hack your code here to upload the pdf of rules // hackedxD
+        $request->rules->storeAs('rules', $request->rules->getClientOriginalName());
+
+        $validatedData['rules'] = $request->rules->getClientOriginalName();
+
         $image= $request->file('photo');
         $randomNum = bin2hex(random_bytes(8));
         $fileName = time() . '_' . $randomNum . '.jpg';
