@@ -17,20 +17,45 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="#intro" style="text-decoration: none;">Home</a></li>
-                        <li><a href="#about" style="text-decoration: none;">About</a></li>
-                        <li><a href="#events" style="text-decoration: none;">Events</a></li>
-                        <li><a href="#schedule" style="text-decoration: none;">Schedule</a></li>
-                        <li><a href="#venue" style="text-decoration: none;">Venue</a></li>
-                        <li><a href="#gallery" style="text-decoration: none;">Gallery</a></li>
-                        <li><a href="#supporters" style="text-decoration: none;">Sponsors</a></li>
-                        <li><a href="#contact" style="text-decoration: none;">Contact</a></li>
+                        <li class="menu-active"><a
+                                href="#intro"
+                                style="text-decoration: none;"
+                            >Home</a></li>
+                        <li><a
+                                href="#about"
+                                style="text-decoration: none;"
+                            >About</a></li>
+                        <li><a
+                                href="#events"
+                                style="text-decoration: none;"
+                            >Events</a></li>
+                        <li><a
+                                href="#schedule"
+                                style="text-decoration: none;"
+                            >Schedule</a></li>
+                        <li><a
+                                href="#venue"
+                                style="text-decoration: none;"
+                            >Venue</a></li>
+                        <li><a
+                                href="#gallery"
+                                style="text-decoration: none;"
+                            >Gallery</a></li>
+                        <li><a
+                                href="#supporters"
+                                style="text-decoration: none;"
+                            >Sponsors</a></li>
+                        <li><a
+                                href="#contact"
+                                style="text-decoration: none;"
+                            >Contact</a></li>
                         <li class="buy-tickets">
                             <a
                                 v-b-modal.register-volunteer
-                                href="#" style="text-decoration: none;"
+                                href="#"
+                                style="text-decoration: none;"
                             >Volunteer Registration</a>
-                            
+
                         </li>
                     </ul>
                 </nav>
@@ -70,7 +95,8 @@
                 >Download the App</a>
                 <a
                     v-b-modal.register-volunteer
-                    href="#" style="text-decoration: none;"
+                    href="#"
+                    style="text-decoration: none;"
                     class="about-btn"
                 >Volunteer Registration</a>
                 <a
@@ -473,8 +499,6 @@
                                 </a>
                             </div>
                         </div>
-
-                        
 
                         <div class="col-lg-3 col-md-4">
                             <div class="venue-gallery">
@@ -937,7 +961,10 @@
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
-                                <li><i class="fa fa-angle-right"></i> <a href="#" style="text-decoration: none;">Register as Campuss Ambassador</a></li>
+                                <li><i class="fa fa-angle-right"></i> <a
+                                        href="#"
+                                        style="text-decoration: none;"
+                                    >Register as Campuss Ambassador</a></li>
                                 <!-- <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Speakers</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Schedule</a></li> -->
@@ -1064,6 +1091,24 @@
                         </b-form-group>
 
                         <b-form-group
+                            id="input-group-8"
+                            label="College ID:"
+                            label-for="input-8"
+                        >
+                            <b-form-input
+                                id="input-8"
+                                v-model="volunteerForm.college_id"
+                                :class="{'is-invalid': errors.college_id}"
+                                required
+                                placeholder="GNIT/YYYY/XXXX"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.college_id"
+                            >{{ errors.college_id[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
                             id="input-group-3"
                             label="University Roll Number:"
                             label-for="input-3"
@@ -1167,7 +1212,6 @@
             </div>
         </b-modal>
 
-
         <b-modal
             id="register-campus-ambassador"
             hide-footer
@@ -1184,7 +1228,7 @@
                 <div v-else>
                     <p>Fill in the fields below to complete your registration!</p>
                     <b-form @submit.prevent="campusAmbassadorSubmit">
-                       <b-form-group
+                        <b-form-group
                             id="input-group-1"
                             label="Email address:"
                             label-for="input-1"
@@ -1355,7 +1399,7 @@ export default {
                     this.volunteerForm.year = null
                 })
         },
-        async campusAmbassadorSubmit() {
+        async campusAmbassadorSubmit () {
             this.isLoading = true
             await this.$axios
                 .$post('/registration/campuss-ambassador', this.volunteerForm)
