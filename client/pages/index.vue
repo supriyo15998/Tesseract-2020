@@ -30,6 +30,7 @@
                                 v-b-modal.register-volunteer
                                 href="#"
                             >Volunteer Registration</a>
+                            
                         </li>
                     </ul>
                 </nav>
@@ -911,12 +912,12 @@
 
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
-                            <!-- <ul>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
+                            <ul>
+                                <li><i class="fa fa-angle-right"></i> <a href="#" style="text-decoration: none;">Register as Campuss Ambassador</a></li>
+                                <!-- <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Speakers</a></li>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Schedule</a></li>
-                            </ul> -->
+                                <li><i class="fa fa-angle-right"></i> <a href="#">Schedule</a></li> -->
+                            </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
