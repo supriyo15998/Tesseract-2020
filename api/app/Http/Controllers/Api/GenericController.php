@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class GenericController extends Controller
 {
     //
-    public function getDepartments() {
-        return response()->json(['departments' => \App\Department::all()]);
+    public function getGeneric() {
+        return response()->json(['departments' => \App\Department::all(), 'events' => \App\Event::with('category')->get()]);
     }
-    public function getEvents() {
-    	return response()->json(['events' => \App\Event::with('category')->get()]);
-    }
+//     public function getEvents() {
+//     	return response()->json([]);
+//     }
 }

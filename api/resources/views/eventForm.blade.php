@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" integrity="sha256-yMjaV542P+q1RnH6XByCPDfUFhmOafWbeLPmqKh11zo=" crossorigin="anonymous" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -69,6 +70,38 @@
                   <label for="description">Event Description</label>
                   <textarea name="description" id="description" class="form-control"></textarea>
                 </div>
+                <div class="form-group">
+                  <label for="event_time">Event Time</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" name="event_time" id="event_time" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+                <div class="form-group">
+                  <label for="is_team">Is this event for teams?</label><br>
+                  <input type="radio" id="yes" name="is_team" value="1">
+                  <label for="yes">Yes</label><br>
+                  <input type="radio" name="is_team" value="0" checked>
+                  <label for="no">No</label>
+                </div>
+                <div class="form-group">
+                  <label for="max_member">Maximum Member</label>
+                  <input type="number" name="max_member">
+                </div>
+                <div class="form-group">
+                  <label for="min_member">Minimum Member</label>
+                  <input type="number" name="min_member">
+                </div>
+
+                <div class="form-group">
+                  <label for="is_price_per_head">Is this price for per head?</label><br>
+                  <input type="radio" id="yes" name="is_price_per_head" value="1">
+                  <label for="yes">Yes</label><br>
+                  <input type="radio" name="is_price_per_head" value="0" checked>
+                  <label for="no">No</label>
+                </div>
                 
                 <div class="form-group">
                   <label for="rules">Event Rules</label>
@@ -82,6 +115,7 @@
                 <div class="form-group d-flex flex-column">
                   <input type="submit" name="create_package" class="btn btn-success" value="Create Event">
                 </div>
+                
               </div>
             <form>
           </div>
@@ -103,5 +137,12 @@
 <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" integrity="sha256-5YmaxAwMjIpMrVlK84Y/+NjCpKnFYa8bWWBbUHSBGfU=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
 </body>
 </html>
