@@ -9,6 +9,9 @@ use App\Event;
 use App\CampussAmbassador;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
+
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     /**
@@ -59,6 +62,7 @@ class HomeController extends Controller
             'category_id' => 'required',
             'photo' => 'required|file',
             'description' => 'required',
+            'event_time' => 'required',
             'rules' => 'required|file',
             'is_team' => 'required',
             'max_member' => 'required',
@@ -67,6 +71,9 @@ class HomeController extends Controller
         ]);
 
         //hack your code here to upload the pdf of rules // hackedxD
+
+        $validatedData['event_time'] = Carbon::parse($validatedData['event_time']);
+
         $request->rules->storeAs('rules', $request->rules->getClientOriginalName());
 
         $validatedData['rules'] = $request->rules->getClientOriginalName();
