@@ -126,7 +126,7 @@
                 </div>
             </section>
             <section
-                id="speakers"
+                id="events"
                 class="wow fadeInUp"
             >
                 <div class="container">
@@ -135,14 +135,18 @@
                         <p>Here are some of our events</p>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 col-md-6 text-center">
+                        <!-- <div class="col-lg-12 col-md-6 text-center">
                             <h2>Coming Soon..</h2>
-                        </div>
+                        </div> -->
 
-                        <!-- <div class="col-lg-4 col-md-6">
+                        <div
+                            class="col-lg-4 col-md-6"
+                            v-for="event in events"
+                            :key="event.id"
+                        >
                             <div class="speaker">
                                 <img
-                                    src="img/speakers/1.jpg"
+                                    :src="`http://api.tesseractgnit.com/img/events/${event.photo}`"
                                     alt="Speaker 1"
                                     class="img-fluid"
                                 >
@@ -150,12 +154,12 @@
                                     <h3><a
                                             href="#"
                                             target="_blank"
-                                        >Robo Soccer</a></h3>
-                                    <p>A soccer competition of manual bots</p>
+                                        >{{ event.name }}</a></h3>
+                                    <p>{{ event.description }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <!-- <div class="col-lg-4 col-md-6">
                             <div class="speaker">
                                 <img
                                     src="img/speakers/1.jpg"
@@ -1492,6 +1496,7 @@ export default {
 
             },
             departments: [],
+            events: [],
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
         }
     },
@@ -1505,9 +1510,10 @@ export default {
         }
     },
     async asyncData ({ params, app }) {
-        const response = await app.$axios.$get('/generic/departments')
+        const response = await app.$axios.$get('/generic')
         return {
-            departments: response.departments
+            departments: response.departments,
+            events: response.events
         }
     }
 }

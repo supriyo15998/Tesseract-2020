@@ -695,20 +695,20 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /*--------------------------------------------------------------
-# Speakers Section
+# events Section
 --------------------------------------------------------------*/
 
-#speakers {
+#events {
   padding: 60px 0 30px 0;
 }
 
-#speakers .speaker {
+#events .speaker {
   position: relative;
   overflow: hidden;
   margin-bottom: 30px;
 }
 
-#speakers .speaker .details {
+#events .speaker .details {
   background: rgba(6, 12, 34, 0.76);
   position: absolute;
   left: 0;
@@ -719,52 +719,52 @@ body.mobile-nav-active #mobile-nav-toggle {
   transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-#speakers .speaker .details h3 {
+#events .speaker .details h3 {
   color: #fff;
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
-#speakers .speaker .details p {
+#events .speaker .details p {
   color: #fff;
   font-size: 15px;
   margin-bottom: 10px;
   font-style: italic;
 }
 
-#speakers .speaker .details .social {
+#events .speaker .details .social {
   height: 30px;
 }
 
-#speakers .speaker .details a {
+#events .speaker .details a {
   color: #fff;
 }
 
-#speakers .speaker .details a:hover {
+#events .speaker .details a:hover {
   color: #f82249;
 }
 
-#speakers .speaker:hover .details {
+#events .speaker:hover .details {
   bottom: 0;
 }
 
-#speakers-details {
+#events-details {
   padding: 60px 0;
 }
 
-#speakers-details .details h2 {
+#events-details .details h2 {
   color: #112363;
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
-#speakers-details .details .social {
+#events-details .details .social {
   margin-bottom: 15px;
 }
 
-#speakers-details .details .social a {
+#events-details .details .social a {
   background: #e9edfb;
   color: #112363;
   line-height: 1;
@@ -776,16 +776,16 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding-top: 9px;
 }
 
-#speakers-details .details .social a:hover {
+#events-details .details .social a:hover {
   background: #f82249;
   color: #fff;
 }
 
-#speakers-details .details .social a i {
+#events-details .details .social a i {
   font-size: 18px;
 }
 
-#speakers-details .details p {
+#events-details .details p {
   color: #112363;
   font-size: 15px;
   margin-bottom: 10px;
