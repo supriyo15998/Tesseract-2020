@@ -60,6 +60,10 @@
                   <th>Rules</th>
                   <th>Description</th>
                   <th>Created At</th>
+                  <th>Is Team</th>
+                  <th>Minimum Member</th>
+                  <th>Maximum Member</th>
+                  <th>Is price per head</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -71,12 +75,24 @@
                      <td><a href="{{ asset('storage/rules/' . $event->rules) }}" target="_blank" class="btn btn-info">View Rules</a>
                      <td>{{ $event->description }}</td>
                      <td>{{ $event->created_at }}</td>
+                      @if($event->is_team == 1)
+                        <td>Yes</td>
+                      @else
+                        <td>No</td>
+                      @endif
+                     <td>{{ $event->min_member }}</td>
+                     <td>{{ $event->max_member }}</td>
+                     @if($event->is_price_per_head == 1)
+                        <td>Yes</td>
+                      @else
+                        <td>No</td>
+                      @endif
                    </tr>
                   @endforeach
                 </tbody>
               </table>
               <div style="text-align: center;">
-                pagination
+                {{ $events->links() }}
               </div>
             </div>
             <!-- /.box-body -->

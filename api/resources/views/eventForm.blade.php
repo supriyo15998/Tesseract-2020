@@ -69,7 +69,30 @@
                   <label for="description">Event Description</label>
                   <textarea name="description" id="description" class="form-control"></textarea>
                 </div>
-                
+                <div class="form-group">
+                  <label for="is_team">Is this event for teams?</label><br>
+                  <input type="radio" id="yes" name="is_team" value="1">
+                  <label for="yes">Yes</label><br>
+                  <input type="radio" name="is_team" value="0" checked>
+                  <label for="no">No</label>
+                </div>
+                <div class="form-group">
+                  <label for="max_member">Maximum Member</label>
+                  <input type="number" name="max_member">
+                </div>
+                <div class="form-group">
+                  <label for="min_member">Minimum Member</label>
+                  <input type="number" name="min_member">
+                </div>
+
+                <div class="form-group">
+                  <label for="is_price_per_head">Is this price for per head?</label><br>
+                  <input type="radio" id="yes" name="is_price_per_head" value="1">
+                  <label for="yes">Yes</label><br>
+                  <input type="radio" name="is_price_per_head" value="0" checked>
+                  <label for="no">No</label>
+                </div>
+
                 <div class="form-group">
                   <label for="rules">Event Rules</label>
                   <input type="file" id="rules" name="rules">
