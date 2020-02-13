@@ -60,6 +60,7 @@
                 <div class="form-group">
                   <label for="inputName">Event Name</label>
                   <input type="text" name="name" id="inputName" class="form-control">
+                  <input type="hidden" name="slug" value="abcd1234">
                 </div>
                 <div class="form-group">
                   <label for="price">Price</label>
