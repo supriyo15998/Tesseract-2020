@@ -122,7 +122,7 @@ x                   href="#"
 
                         <div class="col-lg-3 col-md-6 footer-info">
                             <img
-                                src="img/logo.png"
+                                src="/img/logo.png"
                                 alt="TheEvenet"
                             >
                             <p>Tesseract 2020 is here being bigger and better with a lot of newer events than the previous year. Get you hands dirty and start building your skills to showboat them in the celebration of technology at Guru Nanak Institute of Technology.</p>
@@ -224,8 +224,9 @@ export default {
     },
     methods: {
         downloadRules (ruleName) {
-        this.$axios.$get(`https://api.tesseractgnit.com/storage/rules/${ruleName}`, 
-        {
+        this.$axios({
+            url: `/downloads/${ruleName}`,
+            method: 'GET',
             responseType: 'blob',
         }).then((response) => {
             var fileURL = window.URL.createObjectURL(new Blob([response.data]));
