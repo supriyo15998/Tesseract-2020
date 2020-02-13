@@ -66,6 +66,7 @@ class HomeController extends Controller
             'rules' => 'required|file',
             'is_team' => 'required',
             'max_member' => 'required',
+            'slug' => 'required',
             'min_member' => 'required',
             'is_price_per_head' => 'required'
         ]);
