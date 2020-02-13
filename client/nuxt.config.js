@@ -13,43 +13,40 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '../css/style.css' },
-      { rel: 'stylesheet', href: '../lib/owlcarousel/assets/owl.carousel.min.css' },
-      { rel: 'stylesheet', href: '../lib/venobox/venobox.css' },
-      { rel: 'stylesheet', href: '../lib/animate/animate.min.css' },
+      { rel: 'stylesheet', href: '/css/style.css' },
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css' },
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.css' },
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css' },
       { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800' }
     ],
     script: [
       {
-        src: "./lib/jquery/jquery.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
       },
       {
-        src: "./lib/jquery/jquery-migrate.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.min.js"
       },
       {
-        src: "./lib/bootstrap/js/bootstrap.bundle.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"
       },
       {
-        src: "./lib/easing/easing.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery.hoverintent/1.10.1/jquery.hoverIntent.min.js"
       },
       {
-        src: "./lib/superfish/hoverIntent.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js"
       },
       {
-        src: "./lib/superfish/superfish.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
       },
       {
-        src: "./lib/wow/wow.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.min.js"
       },
       {
-        src: "./lib/venobox/venobox.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
       },
       {
-        src: "./lib/owlcarousel/owl.carousel.min.js"
-      },
-      {
-        src: "./js/main.js"
+        src: "/js/main.js"
       }
     ]
   },
