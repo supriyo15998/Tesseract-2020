@@ -88,13 +88,11 @@
                   <h5>Minimum Members : {{ event.min_member }}</h5>
                   <h5>Maximum Members : {{ event.max_member }}</h5>
               </div>
-                 <a
-                    href="#"
-                    style="text-decoration: none;"
-                    target="_blank"
+                 <button
                     class="rules-btn"
                     @click.prevent="downloadRules(event.rules)"
-                >View Rules</a>
+                    :disabled="isLoading"
+                ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>View Rules</span></b-button></button>
                 <a
 x                   href="#"
                     style="text-decoration: none;"
@@ -210,10 +208,13 @@ x                   href="#"
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     data() {
         return {
-            event: null
+            event: null,
+            isLoading: false
         }
     },
     async asyncData({ app, params }) {
@@ -224,20 +225,25 @@ export default {
     },
     methods: {
         downloadRules (ruleName) {
-        this.$axios({
-            url: `/downloads/${ruleName}`,
-            method: 'GET',
-            responseType: 'blob',
-        }).then((response) => {
-            var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-            var fileLink = document.createElement('a');
+            this.isLoading = true
+            axios({
+                url: `/downloads/${ruleName}`,
+                method: 'GET',
+                responseType: 'blob',
+            }).then((response) => {
+                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                var fileLink = document.createElement('a');
 
-            fileLink.href = fileURL;
-            fileLink.setAttribute('download', ruleName);
-            document.body.appendChild(fileLink);
+                fileLink.href = fileURL;
+                fileLink.setAttribute('download', ruleName);
+                document.body.appendChild(fileLink);
 
-            fileLink.click();
-        });
+                fileLink.click();
+
+                window.setInterval(() => {
+                    this.isLoading = false
+                }, 5000);
+            });
         }
     }
 }
