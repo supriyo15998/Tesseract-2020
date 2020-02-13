@@ -103,6 +103,7 @@
                     v-b-modal.register-campus-ambassador
                     href="#"
                     class="about-btn"
+		    style="text-decoration: none"
                 >Campus Ambassador Registration</a>
             </div>
         </section>
@@ -151,7 +152,7 @@
                                     class="img-fluid"
                                 >
                                 <div class="details">
-                                    <h3><nuxt-link :to="`/${event.category.slug}/${event.slug}`" target="_blank">{{ event.name }}</nuxt-link></h3>
+                                    <h3><nuxt-link :to="`/${event.category.slug}/${event.slug}`" style="text-decoration: none">{{ event.name }}</nuxt-link></h3>
                                     <p>{{ event.description }}</p>
                                 </div>
                             </div>
@@ -872,7 +873,7 @@
                             <div class="contact-phone">
                                 <i class="ion-ios-telephone-outline"></i>
                                 <h3>Phone Number</h3>
-                                <p><a href="tel:+155895548855">+91-79807-27708</a></p>
+                                <p><a href="#">+91-79807-27708</a></p>
                             </div>
                         </div>
 
@@ -988,7 +989,7 @@
                                 157/F, Nilgunj Road <br>
                                 Sodepur, Kolkata-700114<br>
                                 Kolkata <br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Phone:</strong>+91 79807-27708<br>
                                 <strong>Email:</strong> info@gnittesseract.in<br>
                             </p>
 
