@@ -151,10 +151,7 @@
                                     class="img-fluid"
                                 >
                                 <div class="details">
-                                    <h3><a
-                                            href="#"
-                                            target="_blank"
-                                        >{{ event.name }}</a></h3>
+                                    <h3><nuxt-link :to="`/${event.category.slug}/${event.slug}`" target="_blank">{{ event.name }}</nuxt-link></h3>
                                     <p>{{ event.description }}</p>
                                 </div>
                             </div>
