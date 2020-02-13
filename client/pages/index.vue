@@ -1403,7 +1403,7 @@ export default {
         async campusAmbassadorSubmit () {
             this.isLoading = true
             await this.$axios
-                .$post('/registration/campuss-ambassador', this.volunteerForm)
+                .$post('/registration/campuss-ambassador', this.campusAmbassadorForm)
                 .then((res) => {
                     this.isLoading = false
                     this.isSuccess = true
