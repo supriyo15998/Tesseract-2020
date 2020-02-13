@@ -137,7 +137,7 @@
                     </div>
                     <div
                         class="row"
-                        v-for="category in categories"
+                        v-for="category in computedCategories"
                         :key="category.id"
                     >
                         <div class="col-lg-12 col-md-6 text-center">
@@ -1449,6 +1449,13 @@ export default {
                 departments[d.id] = { text: d.name, value: d.id }
             })
             return departments
+        },
+        computedCategories () {
+            const categories = [];
+            this.categories.forEach((c) => {
+                if (c.events.length > 0) categories.push(c)
+            })
+            return categories
         }
     },
     async asyncData ({ params, app }) {
