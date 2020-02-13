@@ -64,7 +64,7 @@
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53</h3>
+              <h3>0</h3>
 
               <p>Participants Registered</p>
             </div>
@@ -94,7 +94,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>0</h3>
 
               <p>Campus Ambassadors Registered</p>
             </div>
