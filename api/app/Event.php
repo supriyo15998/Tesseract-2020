@@ -16,4 +16,8 @@ class Event extends Model
    		$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', strtolower($this->attributes['name']));
    		$this->attributes['slug'] = $slug;
    	}
+
+   	public function getEventTimeAttribute() {
+   		return \Carbon\Carbon::createFromTimeStamp(strtotime($this->attributes['event_time']))->format('l jS \\of F Y, h:i A');
+   	}
 }
