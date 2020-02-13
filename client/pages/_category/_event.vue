@@ -224,9 +224,8 @@ export default {
     },
     methods: {
         downloadRules (ruleName) {
-        this.$axios.$get({
-            url: `https://api.tesseractgnit.com/storage/rules/${ruleName}`,
-            method: 'GET',
+        this.$axios.$get(`https://api.tesseractgnit.com/storage/rules/${ruleName}`, 
+        {
             responseType: 'blob',
         }).then((response) => {
             var fileURL = window.URL.createObjectURL(new Blob([response.data]));
