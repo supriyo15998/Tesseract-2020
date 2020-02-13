@@ -103,7 +103,7 @@
                     v-b-modal.register-campus-ambassador
                     href="#"
                     class="about-btn"
-		    style="text-decoration: none"
+                    style="text-decoration: none"
                 >Campus Ambassador Registration</a>
             </div>
         </section>
@@ -135,14 +135,18 @@
                         <h2>Event List</h2>
                         <p>Here are some of our events</p>
                     </div>
-                    <div class="row">
-                        <!-- <div class="col-lg-12 col-md-6 text-center">
-                            <h2>Coming Soon..</h2>
-                        </div> -->
+                    <div
+                        class="row"
+                        v-for="category in categories"
+                        :key="category.id"
+                    >
+                        <div class="col-lg-12 col-md-6 text-center">
+                            <h2>{{ category.name }}</h2>
+                        </div>
 
                         <div
                             class="col-lg-4 col-md-6"
-                            v-for="event in events"
+                            v-for="event in category.events"
                             :key="event.id"
                         >
                             <div class="speaker">
@@ -152,76 +156,16 @@
                                     class="img-fluid"
                                 >
                                 <div class="details">
-                                    <h3><nuxt-link :to="`/${event.category.slug}/${event.slug}`" style="text-decoration: none">{{ event.name }}</nuxt-link></h3>
+                                    <h3>
+                                        <nuxt-link
+                                            :to="`/${category.slug}/${event.slug}`"
+                                            style="text-decoration: none"
+                                        >{{ event.name }}</nuxt-link>
+                                    </h3>
                                     <p>{{ event.description }}</p>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-4 col-md-6">
-                            <div class="speaker">
-                                <img
-                                    src="img/speakers/1.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3><a href="speaker-details.html">Super Coder</a></h3>
-                                    <p>Quas alias incidunt</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="speaker">
-                                <img
-                                    src="img/speakers/1.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3><a href="speaker-details.html">Super Coder</a></h3>
-                                    <p>Quas alias incidunt</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="speaker">
-                                <img
-                                    src="img/speakers/1.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3><a href="speaker-details.html">Super Coder</a></h3>
-                                    <p>Quas alias incidunt</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="speaker">
-                                <img
-                                    src="img/speakers/1.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3><a href="speaker-details.html">Super Coder</a></h3>
-                                    <p>Quas alias incidunt</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="speaker">
-                                <img
-                                    src="img/speakers/1.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3><a href="speaker-details.html">Super Coder</a></h3>
-                                    <p>Quas alias incidunt</p>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
 
@@ -1494,7 +1438,7 @@ export default {
 
             },
             departments: [],
-            events: [],
+            categories: [],
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
         }
     },
@@ -1511,7 +1455,7 @@ export default {
         const response = await app.$axios.$get('/generic')
         return {
             departments: response.departments,
-            events: response.events
+            categories: response.categories
         }
     }
 }
