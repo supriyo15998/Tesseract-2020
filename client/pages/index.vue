@@ -151,7 +151,7 @@
                         >
                             <div class="speaker">
                                 <img
-                                    :src="`http://api.tesseractgnit.com/img/events/${event.photo}`"
+                                    :src="`https://api.tesseractgnit.com/img/events/${event.photo}`"
                                     alt="Speaker 1"
                                     class="img-fluid"
                                 >
