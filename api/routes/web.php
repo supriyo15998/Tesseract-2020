@@ -28,6 +28,6 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/events/{event}/rules', function($event) {
-	return response()->download(asset('storage/' . \App\Event::where('slug', $event)->firstOrFail()->rules));
+	return response()->download(asset('storage/rules/' . \App\Event::where('slug', $event)->firstOrFail()->rules));
 });
 
