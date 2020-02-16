@@ -117,11 +117,11 @@
                                     <h5>Minimum Members : {{ event.min_member }}</h5>
                                     <h5>Maximum Members : {{ event.max_member }}</h5>
                                 </div>
-                                <button
+                                <a
+                                    :href="`https://api.tesseractgnit.com/events/${event.slug}/rules`"
                                     class="rules-btn"
-                                    @click.prevent="downloadRules(event.rules)"
-                                    :disabled="isLoading"
-                                ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>View Rules</span></b-button></button>
+                                    target="_blank"
+                                >View Rules</a>
                                 <a
                                     x
                                     href="#"
