@@ -103,7 +103,7 @@
                     v-b-modal.register-campus-ambassador
                     href="#"
                     class="about-btn"
-                    style="text-decoration: none"
+                    style="text-decoration: none;"
                 >Campus Ambassador Registration</a>
             </div>
         </section>
