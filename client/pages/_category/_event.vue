@@ -74,7 +74,6 @@
                                 href="#"
                                 style="text-decoration: none;"
                             >Volunteer Registration</a>
-
                         </li>
                     </ul>
                 </nav>
@@ -112,22 +111,35 @@
               </div> -->
                                 <p>{{ event.description }}</p>
                                 <h3 style="font-weight: bold;">Price : ₹ {{ event.price }} <span v-if="event.is_price_per_head">Per member</span></h3>
-                                <h4 style="font-weight: bold;">Timing : {{ event.event_time }} <span v-if="event.is_price_per_head">Per head</span></h4>
+                                <h4 style="font-weight: bold;">Timing : {{ event.event_time }}</h4>
                                 <div v-if="event.is_team">
                                     <h5>Minimum Members : {{ event.min_member }}</h5>
                                     <h5>Maximum Members : {{ event.max_member }}</h5>
                                 </div>
-                                <a
-                                    :href="`https://api.tesseractgnit.com/events/${event.slug}/rules`"
-                                    class="rules-btn"
-                                    target="_blank"
-                                >View Rules</a>
-                                <a
-                                    x
-                                    href="#"
-                                    style="text-decoration: none;"
-                                    class="rules-btn"
-                                >Enroll</a>
+                                <ul class="nav-menu">
+                                    <li class="buy-tickets">
+                                        <a
+                                            :href="`https://api.tesseractgnit.com/events/${event.slug}/rules`"
+                                            target="_blank"
+                                        >View Rules</a>
+                                    </li>
+                                    <li class="buy-tickets">
+                                        <a
+                                            v-if="event.min_member === 1"
+                                            v-b-modal='`enroll-${event.category.slug}-${event.slug}-solo`'
+                                            href="#"
+                                            style="text-decoration: none;"
+                                        >Enroll - Solo</a>
+                                    </li>
+                                    <li class="buy-tickets">
+                                        <a
+                                            v-if="event.max_member > 1"
+                                            v-b-modal='`enroll-${event.category.slug}-${event.slug}-team`'
+                                            href="#"
+                                            style="text-decoration: none;"
+                                        >Enroll - Team</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
@@ -234,6 +246,284 @@
             class="back-to-top"
         ><i class="fa fa-angle-up"></i></a>
 
+        <b-modal
+            :id="`enroll-${event.category.slug}-${event.slug}-solo`"
+            hide-footer
+        >
+            <template v-slot:modal-title>
+                Enroll Solo in {{ event.category.name }}/{{ event.name }}
+            </template>
+            <div class="d-block">
+                <b-alert
+                    variant="success"
+                    show
+                    v-if="isSuccess"
+                >Hey {{ successData.name }}, thanks for applying! We will contact you soon! </b-alert>
+                <div v-else>
+                    <p>Fill in the fields below to complete your registration!</p>
+                    <b-form @submit.prevent="campusAmbassadorSubmit">
+                        <b-form-group
+                            id="input-group-1"
+                            label="Email address:"
+                            label-for="input-1"
+                            description="We'll never share your email with anyone else."
+                        >
+                            <b-form-input
+                                id="input-1"
+                                v-model="campusAmbassadorForm.email"
+                                type="email"
+                                :class="{'is-invalid': errors.email}"
+                                required
+                                placeholder="you@domain.com"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.email"
+                            >{{ errors.email[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-2"
+                            label="Your Name:"
+                            label-for="input-2"
+                        >
+                            <b-form-input
+                                id="input-2"
+                                v-model="campusAmbassadorForm.name"
+                                :class="{'is-invalid': errors.name}"
+                                required
+                                placeholder="Enter name"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.name"
+                            >{{ errors.name[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-3"
+                            label="College name:"
+                            label-for="input-3"
+                        >
+                            <b-form-input
+                                id="input-3"
+                                v-model="campusAmbassadorForm.college_name"
+                                :class="{'is-invalid': errors.college_name}"
+                                required
+                                placeholder="Guru Nanak Institute of Technology"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.college_name"
+                            >{{ errors.college_name[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-4"
+                            label="Department:"
+                            label-for="input-4"
+                        >
+                            <b-form-input
+                                id="input-4"
+                                v-model="campusAmbassadorForm.department"
+                                :class="{'is-invalid': errors.department}"
+                                required
+                                placeholder="Computer Science"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.department"
+                            >{{ errors.department[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-5"
+                            label="Year:"
+                            label-for="input-5"
+                        >
+                            <b-form-select
+                                id="input-5"
+                                v-model="campusAmbassadorForm.year"
+                                :class="{'is-invalid': errors.year}"
+                                :options="years"
+                                required
+                            ></b-form-select>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.year"
+                            >{{ errors.year[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-6"
+                            label="Phone number:"
+                            label-for="input-6"
+                        >
+                            <b-form-input
+                                id="input-6"
+                                v-model="campusAmbassadorForm.phone"
+                                :class="{'is-invalid': errors.phone}"
+                                required
+                                placeholder="9150656598"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.phone"
+                            >{{ errors.phone[0] }}</div>
+                        </b-form-group>
+
+                        <b-button
+                            type="submit"
+                            variant="outline-success"
+                            :disabled="isLoading"
+                            pill
+                            block
+                        >
+                            <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
+                    </b-form>
+                </div>
+            </div>
+        </b-modal>
+
+        <b-modal
+            :id="`enroll-${event.category.slug}-${event.slug}-team`"
+            hide-footer
+        >
+            <template v-slot:modal-title>
+                Enroll as a Team in {{ event.category.name }}/{{ event.name }}
+            </template>
+            <div class="d-block">
+                <b-alert
+                    variant="success"
+                    show
+                    v-if="isSuccess"
+                >Hey {{ successData.name }}, thanks for applying! We will contact you soon! </b-alert>
+                <div v-else>
+                    <p>Fill in the fields below to complete your registration!</p>
+                    <b-form @submit.prevent="campusAmbassadorSubmit">
+                        <b-form-group
+                            id="input-group-1"
+                            label="Email address:"
+                            label-for="input-1"
+                            description="We'll never share your email with anyone else."
+                        >
+                            <b-form-input
+                                id="input-1"
+                                v-model="campusAmbassadorForm.email"
+                                type="email"
+                                :class="{'is-invalid': errors.email}"
+                                required
+                                placeholder="you@domain.com"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.email"
+                            >{{ errors.email[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-2"
+                            label="Your Name:"
+                            label-for="input-2"
+                        >
+                            <b-form-input
+                                id="input-2"
+                                v-model="campusAmbassadorForm.name"
+                                :class="{'is-invalid': errors.name}"
+                                required
+                                placeholder="Enter name"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.name"
+                            >{{ errors.name[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-3"
+                            label="College name:"
+                            label-for="input-3"
+                        >
+                            <b-form-input
+                                id="input-3"
+                                v-model="campusAmbassadorForm.college_name"
+                                :class="{'is-invalid': errors.college_name}"
+                                required
+                                placeholder="Guru Nanak Institute of Technology"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.college_name"
+                            >{{ errors.college_name[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-4"
+                            label="Department:"
+                            label-for="input-4"
+                        >
+                            <b-form-input
+                                id="input-4"
+                                v-model="campusAmbassadorForm.department"
+                                :class="{'is-invalid': errors.department}"
+                                required
+                                placeholder="Computer Science"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.department"
+                            >{{ errors.department[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-5"
+                            label="Year:"
+                            label-for="input-5"
+                        >
+                            <b-form-select
+                                id="input-5"
+                                v-model="campusAmbassadorForm.year"
+                                :class="{'is-invalid': errors.year}"
+                                :options="years"
+                                required
+                            ></b-form-select>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.year"
+                            >{{ errors.year[0] }}</div>
+                        </b-form-group>
+
+                        <b-form-group
+                            id="input-group-6"
+                            label="Phone number:"
+                            label-for="input-6"
+                        >
+                            <b-form-input
+                                id="input-6"
+                                v-model="campusAmbassadorForm.phone"
+                                :class="{'is-invalid': errors.phone}"
+                                required
+                                placeholder="9150656598"
+                            ></b-form-input>
+                            <div
+                                class="invalid-feedback"
+                                v-if="errors.phone"
+                            >{{ errors.phone[0] }}</div>
+                        </b-form-group>
+
+                        <b-button
+                            type="submit"
+                            variant="outline-success"
+                            :disabled="isLoading"
+                            pill
+                            block
+                        >
+                            <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
+                    </b-form>
+                </div>
+            </div>
+        </b-modal>
+
     </div>
 </template>
 
@@ -244,7 +534,16 @@ export default {
     data () {
         return {
             event: null,
-            isLoading: false
+            isLoading: false,
+            campusAmbassadorForm: {
+                email: '',
+                college_name: '',
+                name: '',
+                phone: '',
+                department: null,
+                year: null,
+
+            },
         }
     },
     async asyncData ({ app, params }) {
@@ -281,18 +580,8 @@ export default {
 }
 </script>
 
-<style>
-.rules-btn {
-  color: #fff;
-  background: #f82249;
-  padding: 7px 22px;
-  border-radius: 50px;
-  border: 2px solid #f82249;
-  transition: all ease-in-out 0.3s;
-  font-weight: 500;
-  margin-left: 8px;
-  margin-top: 2px;
-  line-height: 1;
-  font-size: 13px;
+<style scoped>
+.nav-menu li.buy-tickets a:hover {
+  background: rgba(6, 12, 34, 0.98);
 }
 </style>

@@ -103,7 +103,7 @@
                     v-b-modal.register-campus-ambassador
                     href="#"
                     class="about-btn"
-                    style="text-decoration: none"
+                    style="text-decoration: none;"
                 >Campus Ambassador Registration</a>
             </div>
         </section>
@@ -907,24 +907,24 @@
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
-                                <li><i class="fa fa-angle-right"></i> <a
+                                <!-- <li><i class="fa fa-angle-right"></i> <a
                                         href="#"
                                         style="text-decoration: none;"
-                                    >Register as Campuss Ambassador</a></li>
-                                <!-- <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Speakers</a></li>
+                                    >Register as Campuss Ambassador</a></li> -->
+                                <li><i class="fa fa-angle-right"></i> <a href="https://gnit.ac.in" target="_blank" style="text-decoration: none;">GNIT</a></li>
+                                <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Speakers</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Schedule</a></li> -->
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
-                            <!-- <ul>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Venue</a></li>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Gallery</a></li>
+                            <ul>
+                                <li><i class="fa fa-angle-right"></i> <a href="https://jisgroup.org" target="_blank" style="text-decoration: none;">JIS GROUP</a></li>
+                                <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Gallery</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Sponsors</a></li>
-                                <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li>
-                            </ul> -->
+                                <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li> -->
+                            </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-contact">
