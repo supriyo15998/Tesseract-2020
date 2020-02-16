@@ -27,3 +27,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('/campuss-ambassador/list', 'HomeController@showCampussAmbassadors')->name('showCampussAmbassadors');
 });
 
+Route::get('/events/{event}/rules', function($event) {
+	return response()->download(asset('storage/' . \App\Event::where('slug', $event)->firstOrFail()->rules));
+});
+

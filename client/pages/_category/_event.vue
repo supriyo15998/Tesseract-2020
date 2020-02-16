@@ -1,6 +1,9 @@
 <template>
     <div>
-        <header id="header" class="header-fixed">
+        <header
+            id="header"
+            class="header-fixed"
+        >
             <div class="container">
                 <div
                     id="logo"
@@ -17,38 +20,54 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a
-                                href="#intro"
+                        <li>
+                            <nuxt-link
+                                to="/#intro"
                                 style="text-decoration: none;"
-                            >Home</a></li>
-                        <li><a
-                                href="#about"
+                            >Home</nuxt-link>
+                        </li>
+                        <li>
+                            <nuxt-link
+                                to="/#about"
                                 style="text-decoration: none;"
-                            >About</a></li>
-                        <li><a
-                                href="#events"
+                            >About</nuxt-link>
+                        </li>
+                        <li class="menu-active">
+                            <nuxt-link
+                                to="/#events"
                                 style="text-decoration: none;"
-                            >Events</a></li>
-                        <li><a
-                                href="#schedule"
+                            >Events</nuxt-link>
+                        </li>
+                        <li>
+                            <nuxt-link
+                                to="/#schedule"
                                 style="text-decoration: none;"
-                            >Schedule</a></li>
-                        <li><a
-                                href="#venue"
+                            >Schedule</nuxt-link>
+                        </li>
+                        <li>
+                            <nuxt-link
+                                to="/#venue"
                                 style="text-decoration: none;"
-                            >Venue</a></li>
-                        <li><a
-                                href="#gallery"
+                            >Venue</nuxt-link>
+                        </li>
+                        <li>
+                            <nuxt-link
+                                to="/#gallery"
                                 style="text-decoration: none;"
-                            >Gallery</a></li>
-                        <li><a
-                                href="#supporters"
+                            >Gallery</nuxt-link>
+                        </li>
+                        <li>
+                            <nuxt-link
+                                to="/#supporters"
                                 style="text-decoration: none;"
-                            >Sponsors</a></li>
-                        <li><a
-                                href="#contact"
+                            >Sponsors</nuxt-link>
+                        </li>
+                        <li>
+                            <nuxt-link
+                                to="/#contact"
                                 style="text-decoration: none;"
-                            >Contact</a></li>
+                            >Contact</nuxt-link>
+                        </li>
                         <li class="buy-tickets">
                             <a
                                 v-b-modal.register-volunteer
@@ -61,53 +80,64 @@
                 </nav>
             </div>
         </header>
-        <main id="main" class="main-page">
-            <section id="speakers-details" class="wow fadeIn">
-      <div class="container">
-        <div class="section-header">
-          <h2>Event Details</h2>
-          <p>{{ event.category.name }}.</p>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <img :src="`https://api.tesseractgnit.com/img/events/${event.photo}`" alt="Speaker 1" class="img-fluid">
-          </div>
-          <div class="col-md-6">
-            <div class="details">
-              <h2>{{ event.name }}</h2>
-              <!-- <div class="social">
+        <main
+            id="main"
+            class="main-page"
+        >
+            <section
+                id="speakers-details"
+                class="wow fadeIn"
+            >
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Event Details</h2>
+                        <p>{{ event.category.name }}.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img
+                                :src="`https://api.tesseractgnit.com/img/events/${event.photo}`"
+                                alt="Speaker 1"
+                                class="img-fluid"
+                            >
+                        </div>
+                        <div class="col-md-6">
+                            <div class="details">
+                                <h2>{{ event.name }}</h2>
+                                <!-- <div class="social">
                 <a href=""><i class="fa fa-twitter"></i></a>
                 <a href=""><i class="fa fa-facebook"></i></a>
                 <a href=""><i class="fa fa-google-plus"></i></a>
                 <a href=""><i class="fa fa-linkedin"></i></a>
               </div> -->
-              <p>{{ event.description }}</p>
-              <h3 style="font-weight: bold;">Price : ₹ {{ event.price }} <span v-if="event.is_price_per_head">Per member</span></h3>
-              <h4 style="font-weight: bold;">Timing : {{ event.event_time }} <span v-if="event.is_price_per_head">Per head</span></h4>
-              <div v-if="event.is_team">
-                  <h5>Minimum Members : {{ event.min_member }}</h5>
-                  <h5>Maximum Members : {{ event.max_member }}</h5>
-              </div>
-                 <button
-                    class="rules-btn"
-                    @click.prevent="downloadRules(event.rules)"
-                    :disabled="isLoading"
-                ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>View Rules</span></b-button></button>
-                <a
-x                   href="#"
-                    style="text-decoration: none;"
-                    class="rules-btn"
-                >Enroll</a>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-        <br>
-        <br>
-        <br>
-    </section>
-            
+                                <p>{{ event.description }}</p>
+                                <h3 style="font-weight: bold;">Price : ₹ {{ event.price }} <span v-if="event.is_price_per_head">Per member</span></h3>
+                                <h4 style="font-weight: bold;">Timing : {{ event.event_time }} <span v-if="event.is_price_per_head">Per head</span></h4>
+                                <div v-if="event.is_team">
+                                    <h5>Minimum Members : {{ event.min_member }}</h5>
+                                    <h5>Maximum Members : {{ event.max_member }}</h5>
+                                </div>
+                                <button
+                                    class="rules-btn"
+                                    @click.prevent="downloadRules(event.rules)"
+                                    :disabled="isLoading"
+                                ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>View Rules</span></b-button></button>
+                                <a
+                                    x
+                                    href="#"
+                                    style="text-decoration: none;"
+                                    class="rules-btn"
+                                >Enroll</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+            </section>
+
         </main>
 
         <!--==========================
@@ -211,13 +241,13 @@ x                   href="#"
 import axios from 'axios'
 
 export default {
-    data() {
+    data () {
         return {
             event: null,
             isLoading: false
         }
     },
-    async asyncData({ app, params }) {
+    async asyncData ({ app, params }) {
         const resp = await app.$axios.$get(`/events/${params.event}`)
         return {
             event: resp.event
@@ -230,12 +260,14 @@ export default {
                 url: `/downloads/${ruleName}`,
                 method: 'GET',
                 responseType: 'blob',
+                headers: { 'Accept': 'application/pdf' }
             }).then((response) => {
                 var fileURL = window.URL.createObjectURL(new Blob([response.data]));
                 var fileLink = document.createElement('a');
 
                 fileLink.href = fileURL;
                 fileLink.setAttribute('download', ruleName);
+                console.log(fileLink)
                 document.body.appendChild(fileLink);
 
                 fileLink.click();
