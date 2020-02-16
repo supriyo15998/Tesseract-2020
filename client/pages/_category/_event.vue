@@ -197,8 +197,8 @@
                                 157/F, Nilgunj Road <br>
                                 Sodepur, Kolkata-700114<br>
                                 Kolkata <br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@gnittesseract.in<br>
+                                <strong>Phone:</strong> +91 79807-27708 / 91-79807-63840<br>
+                                <strong>Email:</strong> info@tesseractgnit.com<br>
                             </p>
 
                             <div class="social-links">
