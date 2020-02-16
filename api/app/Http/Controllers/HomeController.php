@@ -33,8 +33,9 @@ class HomeController extends Controller
     {
         $volunteersCount = Volunteer::count();
         $eventsCount = Event::count();
+        $campusAmbassadorCount = CampussAmbassador::count();
         $title = "TesseractAdmin | Home";
-        return view('home')->withTitle($title)->withVolunteersCount($volunteersCount)->withEventsCount($eventsCount);
+        return view('home')->withTitle($title)->withVolunteersCount($volunteersCount)->withEventsCount($eventsCount)->withCampusAmbassadorCount($campusAmbassadorCount);
     }
     public function getVolunteers()
     {
