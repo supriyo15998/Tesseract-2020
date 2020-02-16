@@ -50,7 +50,7 @@
               <h3 class="box-title">Hover Data Table</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body table-responsive">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -65,6 +65,7 @@
                 </thead>
                 <tbody>
                   @foreach($cas as $ca)
+                  <tr>
                     <td>{{ $ca->name }}</td>
                     <td>{{ $ca->college_name }}</td>
                     <td>{{ $ca->email }}</td>
@@ -72,6 +73,7 @@
                     <td>{{ $ca->year }}</td>
                     <td>{{ $ca->department }}</td>
                     <td>{{ $ca->created_at }}</td>
+                  </tr>
                   @endforeach
                 </tbody>
               </table>
