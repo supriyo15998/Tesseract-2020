@@ -15,7 +15,6 @@
 
 Route::domain('downloads.tesseractgnit.com')->group(function() {
 	Route::get('/', function() {
-		dd("He He He He");
 		return redirect('https://www.tesseractgnit.com');
 	});
 
