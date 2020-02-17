@@ -254,133 +254,176 @@
                 Enroll Solo in {{ event.category.name }}/{{ event.name }}
             </template>
             <div class="d-block">
+                <div v-if="events.includes(this.event.id) && !this.isSuccess && !this.isLoading">
                 <b-alert
-                    variant="success"
+                    variant="warning"
                     show
-                    v-if="isSuccess"
-                >Hey {{ successData.name }}, thanks for applying! We will contact you soon! </b-alert>
+                >You have already enrolled in this event! </b-alert>
+                <ul class="nav-menu pull-right">
+                    <li class="buy-tickets">
+                        <nuxt-link
+                            to="/#events"
+                        >Check other events</nuxt-link>
+                    </li>
+                    <li class="buy-tickets">
+                        <a
+                            :href="`https://downloads.tesseractgnit.com/events/${event.slug}/rules`"
+                            target="_blank"
+                        >Checkout</a>
+                    </li>
+                </ul>
+                </div>
                 <div v-else>
-                    <p>Fill in the fields below to complete your registration!</p>
-                    <b-form @submit.prevent="campusAmbassadorSubmit">
-                        <b-form-group
-                            id="input-group-1"
-                            label="Email address:"
-                            label-for="input-1"
-                            description="We'll never share your email with anyone else."
-                        >
-                            <b-form-input
-                                id="input-1"
-                                v-model="campusAmbassadorForm.email"
-                                type="email"
-                                :class="{'is-invalid': errors.email}"
-                                required
-                                placeholder="you@domain.com"
-                            ></b-form-input>
-                            <div
-                                class="invalid-feedback"
-                                v-if="errors.email"
-                            >{{ errors.email[0] }}</div>
-                        </b-form-group>
+                    <div v-if="isSuccess">
+                        <b-alert
+                            variant="success"
+                            show
+                            v-if="isSuccess"
+                        >{{ event.name }} has been successfully added to your cart! Please look into more events or Checkout! </b-alert>
+                        <ul class="nav-menu pull-right">
+                            <li class="buy-tickets">
+                                <nuxt-link
+                                    to="/#events"
+                                >Check other events</nuxt-link>
+                            </li>
+                            <li class="buy-tickets">
+                                <a
+                                    :href="`https://downloads.tesseractgnit.com/events/${event.slug}/rules`"
+                                    target="_blank"
+                                >Checkout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-else>
+                        <p>Fill in the fields below to complete your registration!</p>
+                        <b-form @submit.prevent="enrollSoloSubmit">
+                            <b-form-group
+                                id="input-group-1"
+                                label="Email address:"
+                                label-for="input-1"
+                                description="We'll never share your email with anyone else."
+                            >
+                                <b-form-input
+                                    id="input-1"
+                                    v-model="enrollSoloForm.email"
+                                    type="email"
+                                    :class="{'is-invalid': errors.email}"
+                                    required
+                                    :disabled="this.user ? true : false"
+                                    placeholder="you@domain.com"
+                                >{{ this.user ? this.user.email : '' }}</b-form-input>
+                                <div
+                                    class="invalid-feedback"
+                                    v-if="errors.email"
+                                >{{ errors.email[0] }}</div>
+                            </b-form-group>
 
-                        <b-form-group
-                            id="input-group-2"
-                            label="Your Name:"
-                            label-for="input-2"
-                        >
-                            <b-form-input
-                                id="input-2"
-                                v-model="campusAmbassadorForm.name"
-                                :class="{'is-invalid': errors.name}"
-                                required
-                                placeholder="Enter name"
-                            ></b-form-input>
-                            <div
-                                class="invalid-feedback"
-                                v-if="errors.name"
-                            >{{ errors.name[0] }}</div>
-                        </b-form-group>
+                            <b-form-group
+                                id="input-group-2"
+                                label="Your Name:"
+                                label-for="input-2"
+                            >
+                                <b-form-input
+                                    id="input-2"
+                                    v-model="enrollSoloForm.name"
+                                    :class="{'is-invalid': errors.name}"
+                                    required
+                                    :disabled="this.user ? true : false"
+                                    placeholder="Enter name"
+                                >{{ this.user ? this.user.name : '' }}</b-form-input>
+                                <div
+                                    class="invalid-feedback"
+                                    v-if="errors.name"
+                                >{{ errors.name[0] }}</div>
+                            </b-form-group>
 
-                        <b-form-group
-                            id="input-group-3"
-                            label="College name:"
-                            label-for="input-3"
-                        >
-                            <b-form-input
-                                id="input-3"
-                                v-model="campusAmbassadorForm.college_name"
-                                :class="{'is-invalid': errors.college_name}"
-                                required
-                                placeholder="Guru Nanak Institute of Technology"
-                            ></b-form-input>
-                            <div
-                                class="invalid-feedback"
-                                v-if="errors.college_name"
-                            >{{ errors.college_name[0] }}</div>
-                        </b-form-group>
+                            <b-form-group
+                                id="input-group-3"
+                                label="College name:"
+                                label-for="input-3"
+                            >
+                                <b-form-input
+                                    id="input-3"
+                                    v-model="enrollSoloForm.college"
+                                    :class="{'is-invalid': errors.college}"
+                                    required
+                                    :disabled="this.user ? true : false"
+                                    placeholder="Guru Nanak Institute of Technology"
+                                >{{ this.user ? this.user.college : '' }}</b-form-input>
+                                <div
+                                    class="invalid-feedback"
+                                    v-if="errors.college"
+                                >{{ errors.college[0] }}</div>
+                            </b-form-group>
 
-                        <b-form-group
-                            id="input-group-4"
-                            label="Department:"
-                            label-for="input-4"
-                        >
-                            <b-form-input
-                                id="input-4"
-                                v-model="campusAmbassadorForm.department"
-                                :class="{'is-invalid': errors.department}"
-                                required
-                                placeholder="Computer Science"
-                            ></b-form-input>
-                            <div
-                                class="invalid-feedback"
-                                v-if="errors.department"
-                            >{{ errors.department[0] }}</div>
-                        </b-form-group>
+                            <b-form-group
+                                id="input-group-3"
+                                label="College ID Number:"
+                                label-for="input-3"
+                            >
+                                <b-form-input
+                                    id="input-3"
+                                    v-model="enrollSoloForm.college_id"
+                                    :class="{'is-invalid': errors.college_id}"
+                                    required
+                                    :disabled="this.user ? true : false"
+                                    placeholder="GNIT/YYYY/XXXX"
+                                >{{ this.user ? this.user.college_id : '' }}</b-form-input>
+                                <div
+                                    class="invalid-feedback"
+                                    v-if="errors.college_id"
+                                >{{ errors.college_id[0] }}</div>
+                            </b-form-group>
 
-                        <b-form-group
-                            id="input-group-5"
-                            label="Year:"
-                            label-for="input-5"
-                        >
-                            <b-form-select
-                                id="input-5"
-                                v-model="campusAmbassadorForm.year"
-                                :class="{'is-invalid': errors.year}"
-                                :options="years"
-                                required
-                            ></b-form-select>
-                            <div
-                                class="invalid-feedback"
-                                v-if="errors.year"
-                            >{{ errors.year[0] }}</div>
-                        </b-form-group>
+                            <b-form-group
+                                id="input-group-5"
+                                label="Year:"
+                                label-for="input-5"
+                            >
+                                <b-form-select
+                                    id="input-5"
+                                    v-model="enrollSoloForm.year"
+                                    :class="{'is-invalid': errors.year}"
+                                    :options="years"
+                                    required
+                                    :value="this.user ? this.user.year : ''"
+                                    :disabled="this.user ? true : false"
+                                ></b-form-select>
+                                <div
+                                    class="invalid-feedback"
+                                    v-if="errors.year"
+                                >{{ errors.year[0] }}</div>
+                            </b-form-group>
 
-                        <b-form-group
-                            id="input-group-6"
-                            label="Phone number:"
-                            label-for="input-6"
-                        >
-                            <b-form-input
-                                id="input-6"
-                                v-model="campusAmbassadorForm.phone"
-                                :class="{'is-invalid': errors.phone}"
-                                required
-                                placeholder="9150656598"
-                            ></b-form-input>
-                            <div
-                                class="invalid-feedback"
-                                v-if="errors.phone"
-                            >{{ errors.phone[0] }}</div>
-                        </b-form-group>
+                            <b-form-group
+                                id="input-group-6"
+                                label="Phone number:"
+                                label-for="input-6"
+                            >
+                                <b-form-input
+                                    id="input-6"
+                                    v-model="enrollSoloForm.phone"
+                                    :class="{'is-invalid': errors.phone}"
+                                    required
+                                    :disabled="this.user ? true : false"
+                                    placeholder="9150656598"
+                                >{{ this.user ? this.user.phone : '' }}</b-form-input>
+                                <div
+                                    class="invalid-feedback"
+                                    v-if="errors.phone"
+                                >{{ errors.phone[0] }}</div>
+                            </b-form-group>
 
-                        <b-button
-                            type="submit"
-                            variant="outline-success"
-                            :disabled="isLoading"
-                            pill
-                            block
-                        >
-                            <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
-                    </b-form>
+                            <b-button
+                                type="submit"
+                                variant="outline-success"
+                                :disabled="isLoading"
+                                pill
+                                block
+                            >
+                                <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
+                        </b-form>
+                    </div>
                 </div>
             </div>
         </b-modal>
@@ -397,9 +440,9 @@
                     variant="success"
                     show
                     v-if="isSuccess"
-                >Hey {{ successData.name }}, thanks for applying! We will contact you soon! </b-alert>
+                >{{ event.name }} has been successfully added to your cart! Please look into more events or Checkout! </b-alert>
                 <div v-else>
-                    <p>Fill in the fields below to complete your registration!</p>
+                    <p>Fill in the fields below to complete your registration! {{ user }}</p>
                     <b-form @submit.prevent="campusAmbassadorSubmit">
                         <b-form-group
                             id="input-group-1"
@@ -409,7 +452,7 @@
                         >
                             <b-form-input
                                 id="input-1"
-                                v-model="campusAmbassadorForm.email"
+                                v-model="enrollSoloForm.email"
                                 type="email"
                                 :class="{'is-invalid': errors.email}"
                                 required
@@ -428,7 +471,7 @@
                         >
                             <b-form-input
                                 id="input-2"
-                                v-model="campusAmbassadorForm.name"
+                                v-model="enrollSoloForm.name"
                                 :class="{'is-invalid': errors.name}"
                                 required
                                 placeholder="Enter name"
@@ -446,8 +489,8 @@
                         >
                             <b-form-input
                                 id="input-3"
-                                v-model="campusAmbassadorForm.college_name"
-                                :class="{'is-invalid': errors.college_name}"
+                                v-model="enrollSoloForm.college"
+                                :class="{'is-invalid': errors.college}"
                                 required
                                 placeholder="Guru Nanak Institute of Technology"
                             ></b-form-input>
@@ -464,7 +507,7 @@
                         >
                             <b-form-input
                                 id="input-4"
-                                v-model="campusAmbassadorForm.department"
+                                v-model="enrollSoloForm.department"
                                 :class="{'is-invalid': errors.department}"
                                 required
                                 placeholder="Computer Science"
@@ -482,7 +525,7 @@
                         >
                             <b-form-select
                                 id="input-5"
-                                v-model="campusAmbassadorForm.year"
+                                v-model="enrollSoloForm.year"
                                 :class="{'is-invalid': errors.year}"
                                 :options="years"
                                 required
@@ -500,7 +543,7 @@
                         >
                             <b-form-input
                                 id="input-6"
-                                v-model="campusAmbassadorForm.phone"
+                                v-model="enrollSoloForm.phone"
                                 :class="{'is-invalid': errors.phone}"
                                 required
                                 placeholder="9150656598"
@@ -535,15 +578,17 @@ export default {
         return {
             event: null,
             isLoading: false,
-            campusAmbassadorForm: {
-                email: '',
-                college_name: '',
+            isSuccess: false,
+            enrollSoloForm: {
                 name: '',
+                email: '',
+                college: '',
                 phone: '',
-                department: null,
                 year: null,
 
             },
+            years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
+
         }
     },
     async asyncData ({ app, params }) {
@@ -553,28 +598,15 @@ export default {
         }
     },
     methods: {
-        downloadRules (ruleName) {
+        enrollSoloSubmit() {
             this.isLoading = true
-            axios({
-                url: `/downloads/${ruleName}`,
-                method: 'GET',
-                responseType: 'blob',
-                headers: { 'Accept': 'application/pdf' }
-            }).then((response) => {
-                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                var fileLink = document.createElement('a');
+            this.setUser(this.enrollSoloForm)
+            this.pushEvent(this.event.id)
 
-                fileLink.href = fileURL;
-                fileLink.setAttribute('download', ruleName);
-                console.log(fileLink)
-                document.body.appendChild(fileLink);
-
-                fileLink.click();
-
-                window.setInterval(() => {
-                    this.isLoading = false
-                }, 5000);
-            });
+            window.setInterval(() => {
+                this.isLoading = false
+                this.isSuccess = true
+            }, 2000)
         }
     }
 }

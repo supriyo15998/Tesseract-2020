@@ -36,6 +36,7 @@ class RegisterController extends Controller
             'volunteer' => $volunteer
         ]);
     }
+
     public function registerC(Request $request)
     {
         $validatedData = $request->validate([
@@ -50,6 +51,17 @@ class RegisterController extends Controller
         
         return response()->json([
             'campuss_ambassador' => $campuss_ambassador
+        ]);
+    }
+
+    public function enrollSolo(Request $request) {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'phone' => 'required|digits:10',
+            'college_name' => 'required',
+            'college_id' => 'required',
+            'email' => 'required|email',
+            'year' => 'required',
         ]);
     }
 }
