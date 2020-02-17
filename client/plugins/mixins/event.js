@@ -7,6 +7,7 @@ const Event = {
             computed: {
                 ...mapGetters({
                     events: 'event/events',
+                    eventIds: 'event/eventIds',
                 })
             },
             methods: {

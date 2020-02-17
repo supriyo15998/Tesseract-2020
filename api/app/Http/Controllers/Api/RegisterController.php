@@ -41,7 +41,7 @@ class RegisterController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'phone' => 'required|digits:10',
+        'phone' => 'required|digits:10',
             'college_name' => 'required',
             'email' => 'required|email|unique:campuss_ambassadors',
             'year' => 'required',
@@ -55,6 +55,9 @@ class RegisterController extends Controller
     }
 
     public function enrollSolo(Request $request) {
+
+        return response()->json([$request->all()], 500);
+
         $validatedData = $request->validate([
             'name' => 'required',
             'phone' => 'required|digits:10',
@@ -63,5 +66,6 @@ class RegisterController extends Controller
             'email' => 'required|email',
             'year' => 'required',
         ]);
+
     }
 }

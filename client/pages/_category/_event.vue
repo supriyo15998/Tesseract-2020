@@ -253,24 +253,19 @@
                 Enroll Solo in {{ event.category.name }}/{{ event.name }}
             </template>
             <div class="d-block">
-                <div v-if="events.includes(this.event.id) && !this.isSuccess && !this.isLoading">
-                <b-alert
-                    variant="warning"
-                    show
-                >You have already enrolled in this event! </b-alert>
-                <ul class="nav-menu pull-right">
-                    <li class="buy-tickets">
-                        <nuxt-link
-                            to="/#events"
-                        >Check other events</nuxt-link>
-                    </li>
-                    <li class="buy-tickets">
-                        <a
-                            :href="`https://downloads.tesseractgnit.com/events/${event.slug}/rules`"
-                            target="_blank"
-                        >Checkout</a>
-                    </li>
-                </ul>
+                <div v-if="eventIds.includes(this.event.id) && !this.isSuccess && !this.isLoading">
+                    <b-alert
+                        variant="warning"
+                        show
+                    >You have already enrolled in this event! </b-alert>
+                    <ul class="nav-menu pull-right">
+                        <li class="buy-tickets">
+                            <nuxt-link to="/#events">Browse other events</nuxt-link>
+                        </li>
+                        <li class="buy-tickets">
+                            <nuxt-link to="/checkout">Checkout</nuxt-link>
+                        </li>
+                    </ul>
                 </div>
                 <div v-else>
                     <div v-if="isSuccess">
@@ -281,20 +276,15 @@
                         >{{ event.name }} has been successfully added to your cart! Please look into more events or Checkout! </b-alert>
                         <ul class="nav-menu pull-right">
                             <li class="buy-tickets">
-                                <nuxt-link
-                                    to="/#events"
-                                >Check other events</nuxt-link>
+                                <nuxt-link to="/#events">Browse other events</nuxt-link>
                             </li>
                             <li class="buy-tickets">
-                                <a
-                                    :href="`https://downloads.tesseractgnit.com/events/${event.slug}/rules`"
-                                    target="_blank"
-                                >Checkout</a>
+                                <nuxt-link to="/checkout">Checkout</nuxt-link>
                             </li>
                         </ul>
                     </div>
                     <div v-else>
-                        <p>Fill in the fields below to complete your registration!</p>
+                        <p>Fill in the fields below to complete your registration! {{ user }}</p>
                         <b-form @submit.prevent="enrollSoloSubmit">
                             <b-form-group
                                 id="input-group-1"
@@ -308,9 +298,9 @@
                                     type="email"
                                     :class="{'is-invalid': errors.email}"
                                     required
-                                    :disabled="this.user ? true : false"
+                                    :disabled="user ? true : false"
                                     placeholder="you@domain.com"
-                                >{{ this.user ? this.user.email : '' }}</b-form-input>
+                                ></b-form-input>
                                 <div
                                     class="invalid-feedback"
                                     v-if="errors.email"
@@ -329,7 +319,7 @@
                                     required
                                     :disabled="this.user ? true : false"
                                     placeholder="Enter name"
-                                >{{ this.user ? this.user.name : '' }}</b-form-input>
+                                ></b-form-input>
                                 <div
                                     class="invalid-feedback"
                                     v-if="errors.name"
@@ -348,7 +338,7 @@
                                     required
                                     :disabled="this.user ? true : false"
                                     placeholder="Guru Nanak Institute of Technology"
-                                >{{ this.user ? this.user.college : '' }}</b-form-input>
+                                ></b-form-input>
                                 <div
                                     class="invalid-feedback"
                                     v-if="errors.college"
@@ -367,7 +357,7 @@
                                     required
                                     :disabled="this.user ? true : false"
                                     placeholder="GNIT/YYYY/XXXX"
-                                >{{ this.user ? this.user.college_id : '' }}</b-form-input>
+                                ></b-form-input>
                                 <div
                                     class="invalid-feedback"
                                     v-if="errors.college_id"
@@ -385,7 +375,6 @@
                                     :class="{'is-invalid': errors.year}"
                                     :options="years"
                                     required
-                                    :value="this.user ? this.user.year : ''"
                                     :disabled="this.user ? true : false"
                                 ></b-form-select>
                                 <div
@@ -406,7 +395,7 @@
                                     required
                                     :disabled="this.user ? true : false"
                                     placeholder="9150656598"
-                                >{{ this.user ? this.user.phone : '' }}</b-form-input>
+                                ></b-form-input>
                                 <div
                                     class="invalid-feedback"
                                     v-if="errors.phone"
@@ -579,7 +568,7 @@ export default {
             isLoading: false,
             isSuccess: false,
             enrollSoloForm: {
-                name: '',
+                name: this.user ? this.user.email : 'ABCD1234',
                 email: '',
                 college: '',
                 phone: '',
@@ -597,21 +586,24 @@ export default {
         }
     },
     methods: {
-        enrollSoloSubmit() {
+        enrollSoloSubmit () {
             this.isLoading = true
             this.setUser(this.enrollSoloForm)
-            this.pushEvent(this.event.id)
+            this.pushEvent(this.event)
 
             window.setInterval(() => {
                 this.isLoading = false
                 this.isSuccess = true
             }, 2000)
         }
-    }
+    },
 }
 </script>
 
 <style scoped>
+.nav-menu li.buy-tickets a {
+    text-decoration: none;
+}
 .nav-menu li.buy-tickets a:hover {
   background: rgba(6, 12, 34, 0.98);
 }

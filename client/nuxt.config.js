@@ -89,9 +89,9 @@ export default {
   */
   axios: {
     // Development
-    baseURL: 'http://172.19.3.21:8000/api/'
+    // baseURL: 'http://127.0.0.1:8000/api/'
     // Production
-    // baseURL: 'https://api.tesseractgnit.com/api/'
+    baseURL: 'https://api.tesseractgnit.com/api/'
   },
   /*
   ** Build configuration
