@@ -125,7 +125,6 @@
                                     </li>
                                     <li class="buy-tickets">
                                         <a
-                                            v-if="event.min_member === 1"
                                             v-b-modal='`enroll-${event.category.slug}-${event.slug}-solo`'
                                             href="#"
                                             style="text-decoration: none;"
@@ -133,7 +132,7 @@
                                     </li>
                                     <li class="buy-tickets">
                                         <a
-                                            v-if="event.max_member > 1"
+                                            v-if="event.is_team"
                                             v-b-modal='`enroll-${event.category.slug}-${event.slug}-team`'
                                             href="#"
                                             style="text-decoration: none;"

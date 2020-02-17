@@ -41,7 +41,7 @@ class HomeController extends Controller
     {
         $title = "TesseractAdmin | View Volunteers";
         //$volunteers = Volunteer::all();
-        $volunteers = Volunteer::paginate(10);
+        $volunteers = Volunteer::paginate(20);
         //dd($volunteers);
         return view('volunteerslist')->withVolunteers($volunteers)->withTitle($title);
     }
@@ -67,9 +67,9 @@ class HomeController extends Controller
             'event_time' => 'required',
             'rules' => 'required|file',
             'is_team' => 'required',
-            'max_member' => 'required',
+            'max_member' => 'required_if:is_team,1',
             'slug' => 'required',
-            'min_member' => 'required',
+            'min_member' => 'required_if:is_team,1',
             'is_price_per_head' => 'required'
         ]);
 
