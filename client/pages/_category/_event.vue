@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <img
-                                :src="`https://api.tesseractgnit.com/img/events/${event.photo}`"
+                                :src="`https://downloads.tesseractgnit.com/img/events/${event.photo}`"
                                 alt="Speaker 1"
                                 class="img-fluid"
                             >
@@ -119,7 +119,7 @@
                                 <ul class="nav-menu">
                                     <li class="buy-tickets">
                                         <a
-                                            :href="`https://api.tesseractgnit.com/events/${event.slug}/rules`"
+                                            :href="`https://downloads.tesseractgnit.com/events/${event.slug}/rules`"
                                             target="_blank"
                                         >View Rules</a>
                                     </li>
