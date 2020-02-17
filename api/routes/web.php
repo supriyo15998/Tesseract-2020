@@ -16,6 +16,17 @@ Route::get('/', function() {
 	return redirect('/admin/login');
 });
 
+Route::domain('downloads.tesseractgnit.com')->group(function() {
+	Route::get('/', function() {
+		return redirect('https://www.tesseractgnit.com');
+	});
+
+	Route::get('/events/{event}/rules', function($event) {
+		return response()->download(public_path() . '/storage/rules/' . \App\Event::where('slug', $event)->firstOrFail()->rules);
+	});
+
+});
+
 Route::prefix('admin')->group(function () {
 	Auth::routes(['register' => false]);
 	Route::get('/home', 'HomeController@index')->name('home');
@@ -27,7 +38,4 @@ Route::prefix('admin')->group(function () {
 	Route::get('/campuss-ambassador/list', 'HomeController@showCampussAmbassadors')->name('showCampussAmbassadors');
 });
 
-Route::get('/events/{event}/rules', function($event) {
-	return response()->download(public_path() . '/storage/rules/' . \App\Event::where('slug', $event)->firstOrFail()->rules);
-});
 
