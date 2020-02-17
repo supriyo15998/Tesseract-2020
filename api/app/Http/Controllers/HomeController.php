@@ -63,6 +63,7 @@ class HomeController extends Controller
             'category_id' => 'required',
             'photo' => 'required|file',
             'description' => 'required',
+            'co_ordinators' => 'required',
             'event_time' => 'required',
             'rules' => 'required|file',
             'is_team' => 'required',

@@ -71,15 +71,21 @@
                   <label for="description">Event Description</label>
                   <textarea name="description" id="description" class="form-control"></textarea>
                 </div>
+
+                <div class="form-group">
+                  <label for="co_ordinators">Event Co ordinator</label>
+                  <input type="text" name="co_ordinators" id="co_ordinators" class="form-control">
+                </div>
+
                 <div class="form-group">
                   <label for="event_time">Event Time</label>
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" name="event_time" id="event_time" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                  <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control" name="event_time" id="event_time" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
                 </div>
-            </div>
                 <div class="form-group">
                   <label for="is_team">Is this event for teams?</label><br>
                   <input type="radio" id="yes" name="is_team" value="1">
