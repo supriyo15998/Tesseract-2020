@@ -12,9 +12,6 @@
 */
 
 // Route::get('/', 'Auth\\LoginController@showLoginForm')->name('login');
-Route::get('/', function() {
-	return redirect('/admin/login');
-});
 
 Route::domain('downloads.tesseractgnit.com')->group(function() {
 	Route::get('/', function() {
@@ -26,6 +23,10 @@ Route::domain('downloads.tesseractgnit.com')->group(function() {
 		return response()->download(public_path() . '/storage/rules/' . \App\Event::where('slug', $event)->firstOrFail()->rules);
 	});
 
+});
+
+Route::get('/', function() {
+	return redirect('/admin/login');
 });
 
 Route::prefix('admin')->group(function () {
