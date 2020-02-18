@@ -68,6 +68,12 @@
                                 style="text-decoration: none;"
                             >Contact</nuxt-link>
                         </li>
+                        <li>
+                            <nuxt-link
+                                to="/cart"
+                                style="text-decoration: none;"
+                            >Cart</nuxt-link>
+                        </li>
                         <li class="buy-tickets">
                             <a
                                 v-b-modal.register-volunteer
@@ -124,25 +130,32 @@
                                             target="_blank"
                                         >View Rules</a>
                                     </li>
-                                        <li class="buy-tickets" :class="{'is-hidden': events.length > 0 && events[0].category.id !== event.category.id}">
-                                            <button
-                                                @click.prevent="addToCart()"
-                                                href="#"
-                                                style="text-decoration: none;"
-                                                v-if="!eventIds.includes(event.id)"
-                                                :disabled="isLoading"
-                                            ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Enroll</span></button>
-                                            <button
-                                                @click.prevent="removeFromCart()"
-                                                href="#"
-                                                style="text-decoration: none;"
-                                                v-else
-                                                :disabled="isLoading"
-                                            ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Remove from Cart</span></button>
-                                        </li>
-                                        <li class="buy-tickets" v-if="events.length > 0">
-                                            <nuxt-link to="/checkout">Checkout</nuxt-link>
-                                        </li>
+                                    <li
+                                        class="buy-tickets"
+                                        :class="{'is-hidden': events.length > 0 && events[0].category.id !== event.category.id}"
+                                    >
+                                        <button
+                                            @click.prevent="addToCart()"
+                                            href="#"
+                                            style="text-decoration: none;"
+                                            v-if="!eventIds.includes(event.id)"
+                                            :disabled="isLoading"
+                                        ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Enroll</span></button>
+                                        <button
+                                            @click.prevent="removeFromCart()"
+                                            href="#"
+                                            style="text-decoration: none;"
+                                            v-else
+                                            :disabled="isLoading"
+                                        ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Remove from Cart</span></button>
+                                    </li>
+                                    <li
+                                        class="buy-tickets"
+                                        v-if="events.length > 0"
+                                        :class="{'is-hidden': isLoading}"
+                                    >
+                                        <nuxt-link to="/cart">Checkout</nuxt-link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -268,7 +281,7 @@
                             <nuxt-link to="/#events">Browse other events</nuxt-link>
                         </li>
                         <li class="buy-tickets">
-                            <nuxt-link to="/checkout">Checkout</nuxt-link>
+                            <nuxt-link to="/cart">Checkout</nuxt-link>
                         </li>
                     </ul>
                 </div>
@@ -284,7 +297,7 @@
                                 <nuxt-link to="/#events">Browse other events</nuxt-link>
                             </li>
                             <li class="buy-tickets">
-                                <nuxt-link to="/checkout">Checkout</nuxt-link>
+                                <nuxt-link to="/cart">Checkout</nuxt-link>
                             </li>
                         </ul>
                     </div>
@@ -601,7 +614,7 @@ export default {
                 this.isSuccess = true
             }, 2000)
         },
-        removeFromCart() {
+        removeFromCart () {
             this.isLoading = true
             this.removeEvent(this.event)
 

@@ -49,6 +49,12 @@
                                 href="#contact"
                                 style="text-decoration: none;"
                             >Contact</a></li>
+                        <li>
+                            <nuxt-link
+                                to="/cart"
+                                style="text-decoration: none;"
+                            >Cart</nuxt-link>
+                        </li>
                         <li class="buy-tickets">
                             <a
                                 v-b-modal.register-volunteer
@@ -911,7 +917,11 @@
                                         href="#"
                                         style="text-decoration: none;"
                                     >Register as Campuss Ambassador</a></li> -->
-                                <li><i class="fa fa-angle-right"></i> <a href="https://gnit.ac.in" target="_blank" style="text-decoration: none;">GNIT</a></li>
+                                <li><i class="fa fa-angle-right"></i> <a
+                                        href="https://gnit.ac.in"
+                                        target="_blank"
+                                        style="text-decoration: none;"
+                                    >GNIT</a></li>
                                 <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Speakers</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Schedule</a></li> -->
                             </ul>
@@ -920,7 +930,11 @@
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
-                                <li><i class="fa fa-angle-right"></i> <a href="https://jisgroup.org" target="_blank" style="text-decoration: none;">JIS GROUP</a></li>
+                                <li><i class="fa fa-angle-right"></i> <a
+                                        href="https://jisgroup.org"
+                                        target="_blank"
+                                        style="text-decoration: none;"
+                                    >JIS GROUP</a></li>
                                 <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Gallery</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Sponsors</a></li>
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li> -->

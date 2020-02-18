@@ -96,153 +96,99 @@
                 <div class="container">
                     <div class="section-header">
                         <h2>Checkout</h2>
-                        <p>Checkout form</p>
+                        <p>Cart Details</p>
                     </div>
                     <div class="row">
                         <div
-                            class="col-lg-12"
                             v-if="events && events.length > 0"
+                            style="width: 100%;"
                         >
-                            <b-form
-                                @submit.prevent="campusAmbassadorSubmit"
-                                v-if="events[0].is_team"
+                            <table
+                                id="cart"
+                                class="table table-hover table-condensed"
                             >
-                                <b-form-group
-                                    id="input-group-team-name"
-                                    label="Team Name:"
-                                    label-for="team-name"
-                                >
-                                    <b-form-input
-                                        id="team-name"
-                                        v-model="enrollSoloForm.name"
-                                        :class="{'is-invalid': errors.name}"
-                                        required
-                                        placeholder="Enter Team name"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.name"
-                                    >{{ errors.name[0] }}</div>
-                                </b-form-group>
-                                <b-form-group
-                                    id="input-group-1"
-                                    label="Email address:"
-                                    label-for="input-1"
-                                    description="We'll never share your email with anyone else."
-                                >
-                                    <b-form-input
-                                        id="input-1"
-                                        v-model="enrollSoloForm.email"
-                                        type="email"
-                                        :class="{'is-invalid': errors.email}"
-                                        required
-                                        placeholder="you@domain.com"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.email"
-                                    >{{ errors.email[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-2"
-                                    label="Your Name:"
-                                    label-for="input-2"
-                                >
-                                    <b-form-input
-                                        id="input-2"
-                                        v-model="enrollSoloForm.name"
-                                        :class="{'is-invalid': errors.name}"
-                                        required
-                                        placeholder="Enter name"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.name"
-                                    >{{ errors.name[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-3"
-                                    label="College name:"
-                                    label-for="input-3"
-                                >
-                                    <b-form-input
-                                        id="input-3"
-                                        v-model="enrollSoloForm.college"
-                                        :class="{'is-invalid': errors.college}"
-                                        required
-                                        placeholder="Guru Nanak Institute of Technology"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.college_name"
-                                    >{{ errors.college_name[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-4"
-                                    label="Department:"
-                                    label-for="input-4"
-                                >
-                                    <b-form-input
-                                        id="input-4"
-                                        v-model="enrollSoloForm.department"
-                                        :class="{'is-invalid': errors.department}"
-                                        required
-                                        placeholder="Computer Science"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.department"
-                                    >{{ errors.department[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-5"
-                                    label="Year:"
-                                    label-for="input-5"
-                                >
-                                    <b-form-select
-                                        id="input-5"
-                                        v-model="enrollSoloForm.year"
-                                        :class="{'is-invalid': errors.year}"
-                                        :options="years"
-                                        required
-                                    ></b-form-select>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.year"
-                                    >{{ errors.year[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-6"
-                                    label="Phone number:"
-                                    label-for="input-6"
-                                >
-                                    <b-form-input
-                                        id="input-6"
-                                        v-model="enrollSoloForm.phone"
-                                        :class="{'is-invalid': errors.phone}"
-                                        required
-                                        placeholder="9150656598"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.phone"
-                                    >{{ errors.phone[0] }}</div>
-                                </b-form-group>
-
-                                <b-button
-                                    type="submit"
-                                    variant="outline-success"
-                                    :disabled="isLoading"
-                                    pill
-                                    block
-                                >
-                                    <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
-                            </b-form>
+                                <thead>
+                                    <tr>
+                                        <th style="width:70%">Product</th>
+                                        <th style="width:20%">Price</th>
+                                        <th colspan="2"></th>
+                                        <th style="width:10%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        v-for="event in events"
+                                        :key="event.id"
+                                    >
+                                        <td data-th="Product">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <h6 class="nomargin">{{ event.name }}</h6>
+                                                    <p style="font-size: 13px;">{{ event.description }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Price">₹{{ event.price }}</td>
+                                        <td colspan="2"></td>
+                                        <td
+                                            class="actions"
+                                            data-th=""
+                                        >
+                                            <button
+                                                class="btn btn-danger btn-sm"
+                                                :disabled="isLoading"
+                                                @click.prevent="removeFromCart(event)"
+                                            ><i
+                                                    class="fa fa-spinner fa-spin"
+                                                    v-if="isLoading"
+                                                ></i><i
+                                                    class="fa fa-trash-o"
+                                                    v-else
+                                                ></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="visible-xs">
+                                        <td colspan="1"></td>
+                                        <td><strong>Total ₹{{ totalAmount }}</strong></td>
+                                        <td
+                                            colspan="3"
+                                            class="hidden-xs"
+                                        ></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="nav-menu">
+                                                <li
+                                                    class="buy-tickets"
+                                                    style="width: 100%;"
+                                                >
+                                                    <nuxt-link to="/#events"><i class="fa fa-angle-left"></i> Browse events</nuxt-link>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td
+                                            colspan="2"
+                                            class="hidden-xs"
+                                        ></td>
+                                        <td class="hidden-xs text-center"><strong>Total ₹{{ totalAmount }}</strong></td>
+                                        <td>
+                                            <ul class="nav-menu">
+                                                <li
+                                                    class="buy-tickets"
+                                                    style="width: 100%;"
+                                                >
+                                                    <nuxt-link
+                                                        to="/checkout"
+                                                        style="background-color: #28a745 !important; border-color: #28a745 !important;"
+                                                    >Checkout <i class="fa fa-angle-right"></i> </nuxt-link>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                         <div
                             v-else
@@ -380,44 +326,6 @@ export default {
                 phone: '',
                 year: null,
 
-            },
-            enrollTeamForm: {
-                teamName: '',
-                leaderName: '',
-                leaderEmail: '',
-                leaderCollege: '',
-                leaderPhone: '',
-                leaderYear: null,
-                members: [
-                    {
-                        name: '',
-                        email: '',
-                        college: '',
-                        phone: '',
-                        year: null,
-                    },
-                    {
-                        name: '',
-                        email: '',
-                        college: '',
-                        phone: '',
-                        year: null,
-                    },
-                    {
-                        name: '',
-                        email: '',
-                        college: '',
-                        phone: '',
-                        year: null,
-                    },
-                    {
-                        name: '',
-                        email: '',
-                        college: '',
-                        phone: '',
-                        year: null,
-                    }
-                ]
             },
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
 
