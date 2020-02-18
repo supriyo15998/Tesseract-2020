@@ -123,8 +123,7 @@
                                         class="actions"
                                         data-th=""
                                     >
-                                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                                        <button class="btn btn-danger btn-sm" :disabled="isLoading" @click.prevent="removeFromCart(event)"><i class="fa fa-spinner fa-spin" v-if="isLoading"></i><i class="fa fa-trash-o" v-else></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -299,11 +298,28 @@ export default {
     },
     computed: {
         totalAmount () {
-            let total = 0;
+            let total = 0, discount=0;
+
             this.events.forEach((e) => {
                 total += e.price
             })
-            return total
+
+            if (this.eventIds.includes(6) && this.eventIds.includes(7) && this.eventIds.includes(5) ) {
+                discount=100
+            }
+            
+            else if ((this.eventIds.includes(8) && this.eventIds.includes(9)) || (this.eventIds.includes(8) && this.eventIds.includes(10)) || (this.eventIds.includes(9) && this.eventIds.includes(10)) ){
+                if (this.events.length === 2)
+                    discount = 60
+                else if(this.events.length === 3)
+                    discount = 90
+            }
+
+            else if (this.eventIds.includes(8) && this.eventIds.includes(9) && this.eventIds.includes(10) ) {
+                discount = 40
+            }
+
+            return total-discount
         }
     },
     methods: {
@@ -316,6 +332,14 @@ export default {
                 this.isLoading = false
                 this.isSuccess = true
             }, 2000)
+        },
+        removeFromCart(event) {
+            this.isLoading = true
+            this.removeEvent(event)
+
+            window.setInterval(() => {
+                this.isLoading = false
+            }, 500)
         }
     }
 }

@@ -116,6 +116,7 @@
                                     <h5>Minimum Members : {{ event.min_member }}</h5>
                                     <h5>Maximum Members : {{ event.max_member }}</h5>
                                 </div>
+                                <p v-if="events.length > 0 && events[0].category.id !== event.category.id">You cannot enroll in this event as this category differs from an event already in your cart!</p>
                                 <ul class="nav-menu">
                                     <li class="buy-tickets">
                                         <a
@@ -123,21 +124,25 @@
                                             target="_blank"
                                         >View Rules</a>
                                     </li>
-                                    <li class="buy-tickets">
-                                        <a
-                                            v-b-modal='`enroll-${event.category.slug}-${event.slug}-solo`'
-                                            href="#"
-                                            style="text-decoration: none;"
-                                        >Enroll - Solo</a>
-                                    </li>
-                                    <li class="buy-tickets">
-                                        <a
-                                            v-if="event.is_team"
-                                            v-b-modal='`enroll-${event.category.slug}-${event.slug}-team`'
-                                            href="#"
-                                            style="text-decoration: none;"
-                                        >Enroll - Team</a>
-                                    </li>
+                                        <li class="buy-tickets" :class="{'is-hidden': events.length > 0 && events[0].category.id !== event.category.id}">
+                                            <button
+                                                @click.prevent="addToCart()"
+                                                href="#"
+                                                style="text-decoration: none;"
+                                                v-if="!eventIds.includes(event.id)"
+                                                :disabled="isLoading"
+                                            ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Enroll</span></button>
+                                            <button
+                                                @click.prevent="removeFromCart()"
+                                                href="#"
+                                                style="text-decoration: none;"
+                                                v-else
+                                                :disabled="isLoading"
+                                            ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Remove from Cart</span></button>
+                                        </li>
+                                        <li class="buy-tickets" v-if="events.length > 0">
+                                            <nuxt-link to="/checkout">Checkout</nuxt-link>
+                                        </li>
                                 </ul>
                             </div>
                         </div>
@@ -586,14 +591,22 @@ export default {
         }
     },
     methods: {
-        enrollSoloSubmit () {
+        addToCart () {
             this.isLoading = true
-            this.setUser(this.enrollSoloForm)
+            //this.setUser(this.enrollSoloForm)
             this.pushEvent(this.event)
 
             window.setInterval(() => {
                 this.isLoading = false
                 this.isSuccess = true
+            }, 2000)
+        },
+        removeFromCart() {
+            this.isLoading = true
+            this.removeEvent(this.event)
+
+            window.setInterval(() => {
+                this.isLoading = false
             }, 2000)
         }
     },
@@ -601,10 +614,38 @@ export default {
 </script>
 
 <style scoped>
+.is-hidden {
+    display: none;
+}
+
 .nav-menu li.buy-tickets a {
     text-decoration: none;
 }
 .nav-menu li.buy-tickets a:hover {
   background: rgba(6, 12, 34, 0.98);
 }
+
+.nav-menu li.buy-tickets button {
+  color: #fff;
+  background: #f82249;
+  padding: 7px 22px;
+  border-radius: 50px;
+  border: 2px solid #f82249;
+  transition: all ease-in-out 0.3s;
+  font-weight: 500;
+  margin-left: 8px;
+  margin-top: 2px;
+  line-height: 1;
+  font-size: 13px;
+}
+
+.nav-menu li.buy-tickets button:hover {
+  background: rgba(6, 12, 34, 0.98);
+}
+
+.nav-menu li.buy-tickets:hover button:before,
+.nav-menu li.buy-tickets.menu-active button:before {
+  visibility: hidden;
+}
+
 </style>

@@ -20,6 +20,17 @@ export const mutations = {
     CLEAR_EVENTS (state) {
         state.events = []
         state.eventIds = []
+    },
+    REMOVE_EVENT(state, event) {
+        state.events.forEach((e, i) => {
+            if (e.id === event.id)
+                state.events.splice(i, 1)
+        })
+
+        state.eventIds.forEach((e, i) => {
+            if (e === event.id)
+                state.eventIds.splice(i, 1)
+        })
     }
 }
 
@@ -29,5 +40,8 @@ export const actions = {
     },
     clearEvents ({ commit }) {
         commit('CLEAR_EVENTS')
+    },
+    removeEvent({ commit }, event) {
+        commit('REMOVE_EVENT', event)
     }
 }

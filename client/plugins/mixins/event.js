@@ -13,6 +13,7 @@ const Event = {
             methods: {
                 ...mapActions({
                     pushEvent: 'event/pushEvent',
+                    removeEvent: 'event/removeEvent',
                     clearEvents: 'event/clearEvents'
                 })
             }
