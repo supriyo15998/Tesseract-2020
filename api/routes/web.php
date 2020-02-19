@@ -28,6 +28,10 @@ Route::get('/', function() {
 	return redirect('/admin/login');
 });
 
+//test routing for pdf's
+Route::get('/teams', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
+Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
+
 Route::prefix('admin')->group(function () {
 	Auth::routes(['register' => false]);
 	Route::get('/home', 'HomeController@index')->name('home');
@@ -38,5 +42,4 @@ Route::prefix('admin')->group(function () {
 	Route::get('/event/list', 'HomeController@showEvent')->name('showEvent');
 	Route::get('/campuss-ambassador/list', 'HomeController@showCampussAmbassadors')->name('showCampussAmbassadors');
 });
-
 
