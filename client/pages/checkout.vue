@@ -99,11 +99,12 @@
                         <p>Checkout form</p>
                     </div>
                     <div class="row">
-                        {{ enrollTeamForm }}
                         <div
                             class="col-lg-12"
                             v-if="events && events.length > 0"
                         >
+                            <p>As per your event selection, your team must consist minimum {{ minMembers }} member(s) and can have a maximum of {{ maxMembers }} member(s). <b>{Inclusive of Team Leader}</b></p>
+
                             <b-form
                                 @submit.prevent="enrollTeamFormSubmit()"
                                 v-if="events[0].is_team"
@@ -239,10 +240,10 @@
                                 </b-form-group>
 
                                 <div
-                                    v-for="(n,i) in maxMembers"
+                                    v-for="(n,i) in maxMembers-1"
                                     :key="i"
                                 >
-                                    <h4>Member {{ n }} Details</h4>
+                                    <h4>Member {{ n }} Details <span v-if="n+1 > minMembers"><small>(Optional)</small></span></h4>
                                     <b-form-group
                                         :id="`input-group-email-${n}`"
                                         label="Email address:"
@@ -254,7 +255,7 @@
                                             v-model="enrollTeamForm.members[n-1].email"
                                             type="email"
                                             :class="{'is-invalid': errors.email}"
-                                            required
+                                            :required="n+1 < minMembers ? 'true' : 'false'"
                                             placeholder="you@domain.com"
                                         ></b-form-input>
                                         <div
@@ -272,7 +273,7 @@
                                             :id="`input-name-${n}`"
                                             v-model="enrollTeamForm.members[n-1].name"
                                             :class="{'is-invalid': errors.name}"
-                                            required
+                                            :required="n+1 < minMembers ? 'true' : 'false'"
                                             placeholder="Enter name"
                                         ></b-form-input>
                                         <div
@@ -290,7 +291,7 @@
                                             :id="`input-college-name-${n}`"
                                             v-model="enrollTeamForm.members[n-1].college"
                                             :class="{'is-invalid': errors.college}"
-                                            required
+                                            :required="n+1 < minMembers ? 'true' : 'false'"
                                             placeholder="Guru Nanak Institute of Technology"
                                         ></b-form-input>
                                         <div
@@ -308,7 +309,7 @@
                                             :id="`input-college-id-${n}`"
                                             v-model="enrollTeamForm.members[n-1].college_id"
                                             :class="{'is-invalid': errors.college_id}"
-                                            required
+                                            :required="n+1 < minMembers ? 'true' : 'false'"
                                             placeholder="GNIT/YYYY/XXXX"
                                         ></b-form-input>
                                         <p class="text-danger"><small>This ID needs to be produced at registration desk on event day</small></p>
@@ -328,7 +329,7 @@
                                             v-model="enrollTeamForm.members[n-1].year"
                                             :class="{'is-invalid': errors.year}"
                                             :options="years"
-                                            required
+                                            :required="n+1 < minMembers ? 'true' : 'false'"
                                         ></b-form-select>
                                         <div
                                             class="invalid-feedback"
@@ -345,7 +346,7 @@
                                             :id="`input-phobne-${n}`"
                                             v-model="enrollTeamForm.members[n-1].phone"
                                             :class="{'is-invalid': errors.phone}"
-                                            required
+                                            :required="n+1 < minMembers ? 'true' : 'false'"
                                             placeholder="9150656598"
                                         ></b-form-input>
                                         <div
@@ -582,7 +583,15 @@ export default {
                 if (e.max_member > maxMembers)
                     maxMembers = e.max_member
             })
-            return maxMembers - 1
+            return maxMembers
+        },
+        minMembers () {
+            let minMembers = 0
+            this.events.forEach((e) => {
+                if (e.min_member > minMembers)
+                    minMembers = e.min_member
+            })
+            return minMembers
         }
     },
     methods: {

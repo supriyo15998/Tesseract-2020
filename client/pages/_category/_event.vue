@@ -122,7 +122,15 @@
                                     <h5>Minimum Members : {{ event.min_member }}</h5>
                                     <h5>Maximum Members : {{ event.max_member }}</h5>
                                 </div>
-                                <p v-if="events.length > 0 && events[0].category.id !== event.category.id">You cannot enroll in this event as this category differs from an event already in your cart!</p>
+                                <p
+                                    v-if="events.length > 0 && events[0].category.id !== event.category.id"
+                                    class="text-danger"
+                                >You cannot enroll in this event as this category differs from an event already in your cart! Please checkout and re-enroll with events in this category!</p>
+
+                                <p
+                                    v-if="events.length > 0 && events[0].is_team !== event.is_team"
+                                    class="text-danger"
+                                >You cannot enroll in this event as you have an event in your cart which requires solo registration while this event requires team registration. Please checkout and re-enroll in this event as a team!</p>
                                 <ul class="nav-menu">
                                     <li class="buy-tickets">
                                         <a
@@ -132,7 +140,7 @@
                                     </li>
                                     <li
                                         class="buy-tickets"
-                                        :class="{'is-hidden': events.length > 0 && events[0].category.id !== event.category.id}"
+                                        :class="{'is-hidden': (events.length > 0 && events[0].category.id !== event.category.id) || (events.length > 0 && events[0].is_team !== event.is_team),}"
                                     >
                                         <button
                                             @click.prevent="addToCart()"
