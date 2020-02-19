@@ -85,6 +85,7 @@
                 {{ $volunteers->links() }}
               </div>
             </div>
+            <a href="{{ route('exportVolunteers') }}" class="btn btn-success">Export to excel</a>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->

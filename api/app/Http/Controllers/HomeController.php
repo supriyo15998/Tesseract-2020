@@ -9,7 +9,8 @@ use App\Event;
 use App\CampussAmbassador;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
-
+use App\Exports\VolunteersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -104,5 +105,8 @@ class HomeController extends Controller
         $cas = CampussAmbassador::all();
         return view('showCampussAmbassadors')->withTitle($title)->withCas($cas);
     }
-    
+    public function exportVolunteers()
+    {
+        return Excel::download(new VolunteersExport, 'volunteers.xlsx');
+    }   
 }
