@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Volunteer;
+use App\Participant;
+use App\Order;
+use App\Team;
 use App\CampussAmbassador;
 use App\Mail\VolunteerRegistered;
 
@@ -67,5 +70,30 @@ class RegisterController extends Controller
             'year' => 'required',
         ]);
 
+    }
+
+    public function enrollTeam(Request $request) {
+
+        // return response()->json([$request->all()], 500);
+
+        $leader = Participant::create($request->leader);
+        $team = Team::create(['name' => $request->team['name'], 'leader_id' => $leader->id]);
+
+        $leader->team()->associate($team);
+        $leader->save();
+
+        foreach($request->members as $member) {
+            if ($member['email'] != null) {
+                $teamMember = Participant::create($member);
+                $teamMember->team()->associate($team);
+                $teamMember->save();
+            }
+        }
+
+        $order = Order::create(['is_team' => 1, 'team_id' => $team->id]);
+
+        $order->events()->attach($request->events);
+
+        return response()->json(['error'], 500);
     }
 }

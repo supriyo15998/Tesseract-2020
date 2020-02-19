@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/registration/volunteer', 'Api\\RegisterController@registerV')->name('registerV');
 Route::post('/registration/campuss-ambassador', 'Api\\RegisterController@registerC')->name('registerC');
 Route::post('/registration/event/solo', 'Api\\RegisterController@enrollSolo');
+Route::post('/registration/event/team', 'Api\\RegisterController@enrollTeam');
 Route::get('/generic', 'Api\\GenericController@getGeneric');
 Route::get('/events/{slug}', 'Api\\GenericController@getEventsWithSlug')->name('getEventsWithSlug');
 // Route::get('/events', 'Api\\GenericController@getEvents');

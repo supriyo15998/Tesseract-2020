@@ -99,12 +99,13 @@
                         <p>Checkout form</p>
                     </div>
                     <div class="row">
+                        {{ enrollTeamForm }}
                         <div
                             class="col-lg-12"
                             v-if="events && events.length > 0"
                         >
                             <b-form
-                                @submit.prevent="campusAmbassadorSubmit"
+                                @submit.prevent="enrollTeamFormSubmit()"
                                 v-if="events[0].is_team"
                             >
                                 <b-form-group
@@ -114,7 +115,7 @@
                                 >
                                     <b-form-input
                                         id="team-name"
-                                        v-model="enrollSoloForm.name"
+                                        v-model="enrollTeamForm.team.name"
                                         :class="{'is-invalid': errors.name}"
                                         required
                                         placeholder="Enter Team name"
@@ -132,7 +133,7 @@
                                 >
                                     <b-form-input
                                         id="input-leader-name"
-                                        v-model="enrollSoloForm.name"
+                                        v-model="enrollTeamForm.leader.name"
                                         :class="{'is-invalid': errors.name}"
                                         required
                                         placeholder="Enter name"
@@ -151,7 +152,7 @@
                                 >
                                     <b-form-input
                                         id="input-leader-email"
-                                        v-model="enrollSoloForm.email"
+                                        v-model="enrollTeamForm.leader.email"
                                         type="email"
                                         :class="{'is-invalid': errors.email}"
                                         required
@@ -170,7 +171,7 @@
                                 >
                                     <b-form-input
                                         id="input-leader-phone"
-                                        v-model="enrollSoloForm.phone"
+                                        v-model="enrollTeamForm.leader.phone"
                                         :class="{'is-invalid': errors.phone}"
                                         required
                                         placeholder="9150656598"
@@ -188,7 +189,7 @@
                                 >
                                     <b-form-input
                                         id="input-leader-college"
-                                        v-model="enrollSoloForm.college"
+                                        v-model="enrollTeamForm.leader.college"
                                         :class="{'is-invalid': errors.college}"
                                         required
                                         placeholder="Guru Nanak Institute of Technology"
@@ -206,7 +207,7 @@
                                 >
                                     <b-form-select
                                         id="input-leader-year"
-                                        v-model="enrollSoloForm.year"
+                                        v-model="enrollTeamForm.leader.year"
                                         :class="{'is-invalid': errors.year}"
                                         :options="years"
                                         required
@@ -224,7 +225,7 @@
                                 >
                                     <b-form-input
                                         id="input-college-id"
-                                        v-model="enrollSoloForm.college_id"
+                                        v-model="enrollTeamForm.leader.college_id"
                                         :class="{'is-invalid': errors.college_id}"
                                         required
                                         :disabled="this.user ? true : false"
@@ -237,7 +238,10 @@
                                     >{{ errors.college_id[0] }}</div>
                                 </b-form-group>
 
-                                <div v-for="(n,i) in maxMembers" :key="i">
+                                <div
+                                    v-for="(n,i) in maxMembers"
+                                    :key="i"
+                                >
                                     <h4>Member {{ n }} Details</h4>
                                     <b-form-group
                                         :id="`input-group-email-${n}`"
@@ -247,7 +251,7 @@
                                     >
                                         <b-form-input
                                             :id="`input-email-${n}`"
-                                            v-model="enrollSoloForm.email"
+                                            v-model="enrollTeamForm.members[n-1].email"
                                             type="email"
                                             :class="{'is-invalid': errors.email}"
                                             required
@@ -266,7 +270,7 @@
                                     >
                                         <b-form-input
                                             :id="`input-name-${n}`"
-                                            v-model="enrollSoloForm.name"
+                                            v-model="enrollTeamForm.members[n-1].name"
                                             :class="{'is-invalid': errors.name}"
                                             required
                                             placeholder="Enter name"
@@ -284,7 +288,7 @@
                                     >
                                         <b-form-input
                                             :id="`input-college-name-${n}`"
-                                            v-model="enrollSoloForm.college"
+                                            v-model="enrollTeamForm.members[n-1].college"
                                             :class="{'is-invalid': errors.college}"
                                             required
                                             placeholder="Guru Nanak Institute of Technology"
@@ -302,7 +306,7 @@
                                     >
                                         <b-form-input
                                             :id="`input-college-id-${n}`"
-                                            v-model="enrollSoloForm.college_id"
+                                            v-model="enrollTeamForm.members[n-1].college_id"
                                             :class="{'is-invalid': errors.college_id}"
                                             required
                                             placeholder="GNIT/YYYY/XXXX"
@@ -321,7 +325,7 @@
                                     >
                                         <b-form-select
                                             :id="`input-year-${n}`"
-                                            v-model="enrollSoloForm.year"
+                                            v-model="enrollTeamForm.members[n-1].year"
                                             :class="{'is-invalid': errors.year}"
                                             :options="years"
                                             required
@@ -339,7 +343,7 @@
                                     >
                                         <b-form-input
                                             :id="`input-phobne-${n}`"
-                                            v-model="enrollSoloForm.phone"
+                                            v-model="enrollTeamForm.members[n-1].phone"
                                             :class="{'is-invalid': errors.phone}"
                                             required
                                             placeholder="9150656598"
@@ -499,12 +503,16 @@ export default {
 
             },
             enrollTeamForm: {
-                teamName: '',
-                leaderName: '',
-                leaderEmail: '',
-                leaderCollege: '',
-                leaderPhone: '',
-                leaderYear: null,
+                team: {
+                    name: ''
+                },
+                leader: {
+                    name: '',
+                    email: '',
+                    college: '',
+                    phone: '',
+                    year: null,
+                },
                 members: [
                     {
                         name: '',
@@ -534,7 +542,8 @@ export default {
                         phone: '',
                         year: null,
                     }
-                ]
+                ],
+                events: []
             },
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
 
@@ -567,16 +576,30 @@ export default {
         }
     },
     computed: {
-        maxMembers() {
+        maxMembers () {
             let maxMembers = 0
             this.events.forEach((e) => {
                 if (e.max_member > maxMembers)
                     maxMembers = e.max_member
             })
-            return maxMembers-1
+            return maxMembers - 1
         }
     },
     methods: {
+        async enrollTeamFormSubmit () {
+            this.isLoading = true
+            this.enrollTeamForm.events = this.eventIds
+            console.log(this.enrollTeamForm)
+            await this.$axios.$post('/registration/event/team', this.enrollTeamForm)
+                .then((res) => {
+                    this.isLoading = false
+                    console.log(res)
+                })
+                .catch((err) => {
+                    this.isLoading = false
+                    console.log(err)
+                })
+        },
         enrollSoloSubmit () {
             this.isLoading = true
             this.setUser(this.enrollSoloForm)
