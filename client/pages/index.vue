@@ -229,7 +229,7 @@
                         >
 
                             <div class="row schedule-item">
-                                <div class="col-md-2"><time>09:30 AM</time></div>
+                                <div class="col-md-2"><time>10:00 AM</time></div>
                                 <div class="col-md-10">
                                     <h4>Registration</h4>
                                     <p>Registration starts for various events.</p>
@@ -241,16 +241,16 @@
                                 v-for="event in schedule"
                                 :key="event.id"
                             >
-                                <div class="col-md-2"><time>10:00 AM</time></div>
+                                <div class="col-md-2"><time>{{ event.event_time.replace('Friday 13th of March 2020,', '') }}</time></div>
                                 <div class="col-md-10">
                                     <div class="speaker">
                                         <img
-                                            src="img/speakers/1.jpg"
+                                            :src="`https://downloads.tesseractgnit.com/img/events/${event.photo}`"
                                             alt="Brenden Legros"
                                         >
                                     </div>
                                     <h4>{{ event.name }}</h4>
-                                    <p>Facere provident incidunt quos voluptas.</p>
+                                    <p>{{ event.description }}</p>
                                 </div>
                             </div>
 
