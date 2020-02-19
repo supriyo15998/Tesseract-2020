@@ -104,4 +104,5 @@ class HomeController extends Controller
         $cas = CampussAmbassador::all();
         return view('showCampussAmbassadors')->withTitle($title)->withCas($cas);
     }
+    
 }
