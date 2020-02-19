@@ -190,11 +190,11 @@
                         <p>Here is our event schedule</p>
                     </div>
 
-                    <div class="col-lg-12 col-md-6 text-center">
+                    <!-- <div class="col-lg-12 col-md-6 text-center">
                         <h2>Coming Soon..</h2>
-                    </div>
+                    </div> -->
 
-                    <!-- <ul
+                    <ul
                         class="nav nav-tabs"
                         role="tablist"
                     >
@@ -216,45 +216,49 @@
                         </li>
                     </ul>
 
-                    <h3 class="sub-heading">Voluptatem nulla veniam soluta et corrupti consequatur neque eveniet officia. Eius
-                        necessitatibus voluptatem quis labore perspiciatis quia.</h3>
+                    <!-- <h3 class="sub-heading">Voluptatem nulla veniam soluta et corrupti consequatur neque eveniet officia. Eius
+                        necessitatibus voluptatem quis labore perspiciatis quia.</h3> -->
 
-                    <div class="tab-content row justify-content-center"> -->
+                    <div class="tab-content row justify-content-center">
 
-                    <!-- Schdule Day 1 -->
-                    <!-- <div
+                        <!-- Schdule Day 1 -->
+                        <div
                             role="tabpanel"
                             class="col-lg-9 tab-pane fade show active"
                             id="day-1"
                         >
 
                             <div class="row schedule-item">
-                                <div class="col-md-2"><time>09:30 AM</time></div>
+                                <div class="col-md-2"><time>10:00 AM</time></div>
                                 <div class="col-md-10">
                                     <h4>Registration</h4>
-                                    <p>Fugit voluptas iusto maiores temporibus autem numquam magnam.</p>
+                                    <p>Registration starts for various events.</p>
                                 </div>
                             </div>
 
-                            <div class="row schedule-item">
-                                <div class="col-md-2"><time>10:00 AM</time></div>
+                            <div
+                                class="row schedule-item"
+                                v-for="event in schedule"
+                                :key="event.id"
+                            >
+                                <div class="col-md-2"><time>{{ event.event_time.replace('Friday 13th of March 2020,', '') }}</time></div>
                                 <div class="col-md-10">
                                     <div class="speaker">
                                         <img
-                                            src="img/speakers/1.jpg"
+                                            :src="`https://downloads.tesseractgnit.com/img/events/${event.photo}`"
                                             alt="Brenden Legros"
                                         >
                                     </div>
-                                    <h4>Keynote <span>Brenden Legros</span></h4>
-                                    <p>Facere provident incidunt quos voluptas.</p>
+                                    <h4>{{ event.name }}</h4>
+                                    <p>{{ event.description }}</p>
                                 </div>
                             </div>
 
-                        </div> -->
-                    <!-- End Schdule Day 1 -->
+                        </div>
+                        <!-- End Schdule Day 1 -->
 
-                    <!-- Schdule Day 2 -->
-                    <!-- <div
+                        <!-- Schdule Day 2 -->
+                        <div
                             role="tabpanel"
                             class="col-lg-9  tab-pane fade"
                             id="day-2"
@@ -273,10 +277,10 @@
                                     <p>Facere provident incidunt quos voluptas.</p>
                                 </div>
                             </div>
-                        </div> -->
-                    <!-- End Schdule Day 2 -->
+                        </div>
+                        <!-- End Schdule Day 2 -->
 
-                    <!--</div> -->
+                    </div>
 
                 </div>
 
@@ -1005,7 +1009,14 @@
             </template>
             <div class="d-block">
 
-                <b-alert variant="warning" show class="text-center"><h4>Volunteer Registration is Over!</h4><p>Thank you for showing your interest, but we are at capacity!</p></b-alert>
+                <b-alert
+                    variant="warning"
+                    show
+                    class="text-center"
+                >
+                    <h4>Volunteer Registration is Over!</h4>
+                    <p>Thank you for showing your interest, but we are at capacity!</p>
+                </b-alert>
 
                 <!-- <b-alert
                     variant="success"
@@ -1456,6 +1467,7 @@ export default {
             },
             departments: [],
             categories: [],
+            schedule: [],
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
         }
     },
@@ -1479,7 +1491,8 @@ export default {
         const response = await app.$axios.$get('/generic')
         return {
             departments: response.departments,
-            categories: response.categories
+            categories: response.categories,
+            schedule: response.schedule
         }
     }
 }

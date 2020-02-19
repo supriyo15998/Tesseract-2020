@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4">
-				<img src="img/logo.png">
+				<img src="img/logo_dark.png">
 			</div>
 			<div class="col-lg-4">
 

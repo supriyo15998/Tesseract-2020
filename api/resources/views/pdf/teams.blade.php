@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4">
-				<img src="img/logo.png">
+				<img src="img/logo_dark.png">
 			</div>
 			<div class="col-lg-4">
 
@@ -41,7 +41,7 @@
 					<td>3rd</td>
 				</tr>
 				<tr>
-					<td>Participant #1</td>
+					<td>Member #1</td>
 					<td>Faraz Ali</td>
 					<td>farazappy@esportsindia.in</td>
 					<td>GNIT/2017/XXXX</td>
@@ -50,7 +50,7 @@
 					<td>3rd</td>
 				</tr>
 				<tr>
-					<td>Participant #2</td>
+					<td>Member #2</td>
 					<td>Supriyo Das</td>
 					<td>supriyo15998@gmail.com</td>
 					<td>GNIT/2017/0502</td>

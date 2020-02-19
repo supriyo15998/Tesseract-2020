@@ -9,7 +9,7 @@ class GenericController extends Controller
 {
     //
     public function getGeneric() {
-        return response()->json(['departments' => \App\Department::all(), 'categories' => \App\Category::with('events')->get()]);
+        return response()->json(['departments' => \App\Department::all(), 'categories' => \App\Category::with('events')->get(), 'schedule' => \App\Event::orderBy('event_time', 'ASC')->get()]);
     }
     public function getEventsWithSlug($slug)
     {
