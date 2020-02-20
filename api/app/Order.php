@@ -11,4 +11,12 @@ class Order extends Model
     public function events() {
         return $this->belongsToMany('App\Event')->withPivot('paid')->withPivot('played');
     }
+
+    public function team() {
+        return $this->belongsTo('App\Team');
+    }
+
+    public function participant() {
+        return $this->belongsTo('App\Participant');
+    }
 }

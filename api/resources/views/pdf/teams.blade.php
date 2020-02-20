@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
 	<div class="container">
@@ -14,10 +15,10 @@
 
 			</div>
 			<div class="col-lg-4">
-				<img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150">
+				{!! QrCode::size(150)->generate('{"order" : ' . $order->id . '}'); !!}
 			</div>
 		</div>
-		<h3 style="text-align: center;">Team Name: {{ $data['team_name'] }}</h3>
+		<h3 style="text-align: center;">Team Name: {{ $order->team->name }}</h3>
 		<table class="table">
 			<thead style="background-color: #1b03a3; color: white;">
 				<tr>
@@ -31,33 +32,17 @@
 				</tr>
 			</thead>
 			<tbody>
+				@foreach($order->team->members as $member)
 				<tr>
-					<td>Leader</td>
-					<td>Saswata Mukhopadhyay</td>
-					<td>saswata032@gmail.com</td>
-					<td>GNIT/2017/XXXX</td>
-					<td>7890512123</td>
-					<td>Guru Nanak Institute of Technology</td>
-					<td>3rd</td>
+					<td>{{ $order->team->leader_id == $member->id ? 'Leader' : 'Member' }}</td>
+					<td>{{ $member->name }}</td>
+					<td>{{ $member->email }}</td>
+					<td>{{ $member->college_id }}</td>
+					<td>{{ $member->phone }}</td>
+					<td>{{ $member->college }}</td>
+					<td>{{ $member->year }}</td>
 				</tr>
-				<tr>
-					<td>Member #1</td>
-					<td>Faraz Ali</td>
-					<td>farazappy@esportsindia.in</td>
-					<td>GNIT/2017/XXXX</td>
-					<td>7890512123</td>
-					<td>Guru Nanak Institute of Technology</td>
-					<td>3rd</td>
-				</tr>
-				<tr>
-					<td>Member #2</td>
-					<td>Supriyo Das</td>
-					<td>supriyo15998@gmail.com</td>
-					<td>GNIT/2017/0502</td>
-					<td>7890512123</td>
-					<td>Guru Nanak Institute of Technology</td>
-					<td>3rd</td>
-				</tr>
+				@endforeach
 			</tbody>
 		</table>
 		<table style="width: 100%">
@@ -69,21 +54,13 @@
 				</tr>
 			</thead>
 			<tbody>
+				@foreach($order->events as $key => $event)
 				<tr>
-					<td>1</td>
-					<td>Line Follower</td>
-					<td style="text-align: center;">Rs. 200</td>
+					<td>{{ $key+1 }}</td>
+					<td>{{ $event->name }}</td>
+					<td style="text-align: center;">₹{{ $event->price }}</td>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>Robowar</td>
-					<td style="text-align: center;">Rs. 200</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Terranova</td>
-					<td style="text-align: center;">Rs. 200</td>
-				</tr>
+				@endforeach
 				<tr style="border-bottom: 1px solid #1b03a3;">
 					<td></td>
 					<td></td>
@@ -92,12 +69,12 @@
 				<tr>
 					<td></td>
 					<td style="font-weight: bold;">Subtotal</td>
-					<td style="font-weight: bold; text-align: center;">Rs. 600</td>
+					<td style="font-weight: bold; text-align: center;">₹{{ $order->calculations->subtotal }}</td>
 				</tr>
 				<tr style="background-color: #1b03a3; color: white">
 					<td></td>
-					<td style="font-weight: bold;">Discount</td>
-					<td style="font-weight: bold; text-align: center;">Rs. -100</td>
+					<td style="font-weight: bold;">Combo Discount</td>
+					<td style="font-weight: bold; text-align: center;">₹{{ $order->calculations->discount }}</td>
 				</tr>
 				<tr style="border-bottom: 1px solid black;">
 					<td></td>
@@ -107,10 +84,13 @@
 				<tr style="background-color: #1b03a3; color: white">
 					<td></td>
 					<td style="font-weight: bold;">Amount to be paid</td>
-					<td style="font-weight: bold; text-align: center;">Rs. 500</td>
+					<td style="font-weight: bold; text-align: center;">₹{{ $order->calculations->subtotal - $order->calculations->discount }}</td>
 				</tr>
+				@php
+					$digit = new NumberFormatter("en", NumberFormatter::SPELLOUT)
+				@endphp
 				<tr>
-					<td style="font-weight: bold;" colspan="6">Total Amount in Words : Five Hundred only</td>
+					<td style="font-weight: bold;" colspan="6">Total Amount in Words : {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }}</td>
 				</tr>
 			</tbody>
 		</table>
