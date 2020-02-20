@@ -10,9 +10,9 @@ class PDFController extends Controller
 {
     public function generatePdfForTeam()
     {
-    	$data = [
-    		'team_name' => "Byte Me Up"
-        ];
+    	// $data = [
+    	// 	'team_name' => "Byte Me Up"
+     //    ];
 
         $order = \App\Order::firstOrFail();
         $discount = 0;
@@ -44,6 +44,7 @@ class PDFController extends Controller
         $pdf = PDF::loadView('pdf.teams', ['order' => $order]);
         return $pdf->stream();
         return view('pdf.teams')->withOrder($order);
+        //return view('pdf.test')->withOrder($order);
     }
     public function generatePdfSolo()
     {
