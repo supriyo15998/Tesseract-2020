@@ -32,6 +32,10 @@ Route::get('/', function() {
 Route::get('/teams', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
 Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
+Route::get('qr-code', function () {
+  return QRCode::text('QR Code Generator for Laravel!')->url();    
+});
+
 Route::prefix('admin')->group(function () {
 	Auth::routes(['register' => false]);
 	Route::get('/home', 'HomeController@index')->name('home');
