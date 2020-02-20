@@ -578,93 +578,38 @@
                         <h2>Sponsors</h2>
                     </div>
 
-                    <div class="col-lg-12 col-md-6 text-center">
-                        <h2>Coming Soon..</h2>
+                    <div class="row no-gutters supporters-wrap clearfix">
+
+                        <div class="col-lg-3 col-md-4 col-xs-6">
+                            <div class="supporter-logo">
+                                <img
+                                    src="sponsors/hackerearth_logo.png"
+                                    class="img-fluid"
+                                    alt=""
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-4 col-xs-6">
+                            <div class="supporter-logo">
+                                <img
+                                    src="sponsors/buglabs_logo.jpg"
+                                    class="img-fluid"
+                                    alt=""
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-xs-6">
+                            <div class="supporter-logo">
+                                <img
+                                    src="sponsors/desirovation_logo.jpg"
+                                    class="img-fluid"
+                                    alt=""
+                                >
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- <div class="row no-gutters supporters-wrap clearfix">
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/1.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/2.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/3.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/4.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/5.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/6.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/7.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-xs-6">
-                            <div class="supporter-logo">
-                                <img
-                                    src="img/supporters/8.png"
-                                    class="img-fluid"
-                                    alt=""
-                                >
-                            </div>
-                        </div>
-
-                    </div> -->
 
                 </div>
 
