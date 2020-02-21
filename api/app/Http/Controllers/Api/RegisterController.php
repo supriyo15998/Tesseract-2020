@@ -61,7 +61,7 @@ class RegisterController extends Controller
 
     public function enrollSolo(Request $request) {
 
-        return response()->json([$request->all()], 500);
+        // return response()->json([$request->all()], 500);
 
         $partcipant = Participant::create($request->participant);
 
