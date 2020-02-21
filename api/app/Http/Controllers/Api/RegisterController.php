@@ -13,6 +13,8 @@ use App\Order;
 use App\Team;
 use App\CampussAmbassador;
 use App\Mail\VolunteerRegistered;
+use App\Mail\TeamRegistered;
+use App\Mail\ParticipantRegistered;
 
 class RegisterController extends Controller
 {
@@ -44,7 +46,7 @@ class RegisterController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-        'phone' => 'required|digits:10',
+             'phone' => 'required|digits:10',
             'college_name' => 'required',
             'email' => 'required|email|unique:campuss_ambassadors',
             'year' => 'required',
@@ -59,17 +61,14 @@ class RegisterController extends Controller
 
     public function enrollSolo(Request $request) {
 
-        return response()->json([$request->all()], 500);
+        $partcipant = Participant::create($request->participant);
 
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'phone' => 'required|digits:10',
-            'college_name' => 'required',
-            'college_id' => 'required',
-            'email' => 'required|email',
-            'year' => 'required',
-        ]);
+        $order = Order::create(['is_team' => 0, 'participant_id' => $partcipant->id]);
+        $order->events()->attach($request->events);
 
+        Mail::to($partcipant->email)->send(new ParticipantRegistered($order));
+
+        return response()->json(['message' => 'Success'], 201);
     }
 
     public function enrollTeam(Request $request) {
@@ -94,6 +93,8 @@ class RegisterController extends Controller
 
         $order->events()->attach($request->events);
 
-        return response()->json(['error'], 500);
+        Mail::to($leader->email)->send(new TeamRegistered($order));
+
+        return response()->json(['message' => 'Success'], 201);
     }
 }

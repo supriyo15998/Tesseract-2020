@@ -100,180 +100,68 @@
                     </div>
                     <div class="row">
                         <div
+                            v-if="isSuccess || isError"
                             class="col-lg-12"
-                            v-if="events && events.length > 0"
                         >
-                            <p>As per your event selection, your team must consist minimum {{ minMembers }} member(s) and can have a maximum of {{ maxMembers }} member(s). <b>{Inclusive of Team Leader}</b></p>
-
-                            <b-form
-                                @submit.prevent="enrollTeamFormSubmit()"
-                                v-if="events[0].is_team"
+                            <b-alert
+                                variant="success"
+                                show
+                                class="text-center"
+                                v-if="isSuccess"
                             >
-                                <b-form-group
-                                    id="input-group-team-name"
-                                    label="Team Name:"
-                                    label-for="team-name"
-                                >
-                                    <b-form-input
-                                        id="team-name"
-                                        v-model="enrollTeamForm.team.name"
-                                        :class="{'is-invalid': errors.name}"
-                                        required
-                                        placeholder="Enter Team name"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.name"
-                                    >{{ errors.name[0] }}</div>
-                                </b-form-group>
-                                <h4>Team Leader Details</h4>
-                                <b-form-group
-                                    id="input-group-leader-name"
-                                    label="Team Leader Name:"
-                                    label-for="input-leader-name"
-                                >
-                                    <b-form-input
-                                        id="input-leader-name"
-                                        v-model="enrollTeamForm.leader.name"
-                                        :class="{'is-invalid': errors.name}"
-                                        required
-                                        placeholder="Enter name"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.name"
-                                    >{{ errors.name[0] }}</div>
-                                </b-form-group>
+                                <h4>Registration successful!</h4>
+                                <p>Thank you for registering! An order receipt will be sent via email, please refer to the email for further details!</p>
+                            </b-alert>
 
-                                <b-form-group
-                                    id="input-group-leader-email"
-                                    label="Team Leader Email address:"
-                                    label-for="input-leader-email"
-                                    description="We'll never share your email with anyone else."
-                                >
-                                    <b-form-input
-                                        id="input-leader-email"
-                                        v-model="enrollTeamForm.leader.email"
-                                        type="email"
-                                        :class="{'is-invalid': errors.email}"
-                                        required
-                                        placeholder="you@domain.com"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.email"
-                                    >{{ errors.email[0] }}</div>
-                                </b-form-group>
+                            <b-alert
+                                variant="danger"
+                                show
+                                class="text-center"
+                                v-if="isError"
+                            >
+                                <h4>Error!</h4>
+                                <p>Something went wrong! Please try again, if you see this message again, please try again later!</p>
+                            </b-alert>
+                        </div>
+                        <div v-else>
+                            <div
+                                class="col-lg-12"
+                                v-if="events && events.length > 0"
+                            >
+                                <p>As per your event selection, your team must consist minimum {{ minMembers }} member(s) and can have a maximum of {{ maxMembers }} member(s). <b>{Inclusive of Team Leader}</b></p>
 
-                                <b-form-group
-                                    id="input-group-leader-phone"
-                                    label="Team Leader Phone number:"
-                                    label-for="input-leader-phone"
+                                <b-form
+                                    @submit.prevent="enrollTeamFormSubmit()"
+                                    v-if="events[0].is_team"
                                 >
-                                    <b-form-input
-                                        id="input-leader-phone"
-                                        v-model="enrollTeamForm.leader.phone"
-                                        :class="{'is-invalid': errors.phone}"
-                                        required
-                                        placeholder="9150656598"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.phone"
-                                    >{{ errors.phone[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-leader-college"
-                                    label="Team College name:"
-                                    label-for="input-leader-college"
-                                >
-                                    <b-form-input
-                                        id="input-leader-college"
-                                        v-model="enrollTeamForm.leader.college"
-                                        :class="{'is-invalid': errors.college}"
-                                        required
-                                        placeholder="Guru Nanak Institute of Technology"
-                                    ></b-form-input>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.college_name"
-                                    >{{ errors.college_name[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-leader-year"
-                                    label="Team Leader Year:"
-                                    label-for="input-leader-year"
-                                >
-                                    <b-form-select
-                                        id="input-leader-year"
-                                        v-model="enrollTeamForm.leader.year"
-                                        :class="{'is-invalid': errors.year}"
-                                        :options="years"
-                                        required
-                                    ></b-form-select>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.year"
-                                    >{{ errors.year[0] }}</div>
-                                </b-form-group>
-
-                                <b-form-group
-                                    id="input-group-college-id"
-                                    label="Team Leader College ID Number:"
-                                    label-for="input-college-id"
-                                >
-                                    <b-form-input
-                                        id="input-college-id"
-                                        v-model="enrollTeamForm.leader.college_id"
-                                        :class="{'is-invalid': errors.college_id}"
-                                        required
-                                        :disabled="this.user ? true : false"
-                                        placeholder="GNIT/YYYY/XXXX"
-                                    ></b-form-input>
-                                    <p class="text-danger"><small>This ID needs to be produced at registration desk on event day</small></p>
-                                    <div
-                                        class="invalid-feedback"
-                                        v-if="errors.college_id"
-                                    >{{ errors.college_id[0] }}</div>
-                                </b-form-group>
-
-                                <div
-                                    v-for="(n,i) in maxMembers-1"
-                                    :key="i"
-                                >
-                                    <h4>Member {{ n }} Details <span v-if="n+1 > minMembers"><small>(Optional)</small></span></h4>
                                     <b-form-group
-                                        :id="`input-group-email-${n}`"
-                                        label="Email address:"
-                                        :label-for="`input-email-${n}`"
-                                        description="We'll never share your email with anyone else."
+                                        id="input-group-team-name"
+                                        label="Team Name:"
+                                        label-for="team-name"
                                     >
                                         <b-form-input
-                                            :id="`input-email-${n}`"
-                                            v-model="enrollTeamForm.members[n-1].email"
-                                            type="email"
-                                            :class="{'is-invalid': errors.email}"
-                                            :required="n+1 < minMembers ? 'true' : 'false'"
-                                            placeholder="you@domain.com"
+                                            id="team-name"
+                                            v-model="enrollTeamForm.team.name"
+                                            :class="{'is-invalid': errors.name}"
+                                            required
+                                            placeholder="Enter Team name"
                                         ></b-form-input>
                                         <div
                                             class="invalid-feedback"
-                                            v-if="errors.email"
-                                        >{{ errors.email[0] }}</div>
+                                            v-if="errors.name"
+                                        >{{ errors.name[0] }}</div>
                                     </b-form-group>
-
+                                    <h4>Team Leader Details</h4>
                                     <b-form-group
-                                        :id="`input-group-name-${n}`"
-                                        label="Your Name:"
-                                        :label-for="`input-name-${n}`"
+                                        id="input-group-leader-name"
+                                        label="Team Leader Name:"
+                                        label-for="input-leader-name"
                                     >
                                         <b-form-input
-                                            :id="`input-name-${n}`"
-                                            v-model="enrollTeamForm.members[n-1].name"
+                                            id="input-leader-name"
+                                            v-model="enrollTeamForm.leader.name"
                                             :class="{'is-invalid': errors.name}"
-                                            :required="n+1 < minMembers ? 'true' : 'false'"
+                                            required
                                             placeholder="Enter name"
                                         ></b-form-input>
                                         <div
@@ -283,15 +171,280 @@
                                     </b-form-group>
 
                                     <b-form-group
-                                        :id="`input-group-college-name-${n}`"
-                                        label="College name:"
-                                        :label-for="`input-college-name-${n}`"
+                                        id="input-group-leader-email"
+                                        label="Team Leader Email address:"
+                                        label-for="input-leader-email"
+                                        description="We'll never share your email with anyone else."
                                     >
                                         <b-form-input
-                                            :id="`input-college-name-${n}`"
-                                            v-model="enrollTeamForm.members[n-1].college"
+                                            id="input-leader-email"
+                                            v-model="enrollTeamForm.leader.email"
+                                            type="email"
+                                            :class="{'is-invalid': errors.email}"
+                                            required
+                                            placeholder="you@domain.com"
+                                        ></b-form-input>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.email"
+                                        >{{ errors.email[0] }}</div>
+                                    </b-form-group>
+
+                                    <b-form-group
+                                        id="input-group-leader-phone"
+                                        label="Team Leader Phone number:"
+                                        label-for="input-leader-phone"
+                                    >
+                                        <b-form-input
+                                            id="input-leader-phone"
+                                            v-model="enrollTeamForm.leader.phone"
+                                            :class="{'is-invalid': errors.phone}"
+                                            required
+                                            placeholder="9150656598"
+                                        ></b-form-input>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.phone"
+                                        >{{ errors.phone[0] }}</div>
+                                    </b-form-group>
+
+                                    <b-form-group
+                                        id="input-group-leader-college"
+                                        label="Team College name:"
+                                        label-for="input-leader-college"
+                                    >
+                                        <b-form-input
+                                            id="input-leader-college"
+                                            v-model="enrollTeamForm.leader.college"
                                             :class="{'is-invalid': errors.college}"
-                                            :required="n+1 < minMembers ? 'true' : 'false'"
+                                            required
+                                            placeholder="Guru Nanak Institute of Technology"
+                                        ></b-form-input>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.college_name"
+                                        >{{ errors.college_name[0] }}</div>
+                                    </b-form-group>
+
+                                    <b-form-group
+                                        id="input-group-leader-year"
+                                        label="Team Leader Year:"
+                                        label-for="input-leader-year"
+                                    >
+                                        <b-form-select
+                                            id="input-leader-year"
+                                            v-model="enrollTeamForm.leader.year"
+                                            :class="{'is-invalid': errors.year}"
+                                            :options="years"
+                                            required
+                                        ></b-form-select>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.year"
+                                        >{{ errors.year[0] }}</div>
+                                    </b-form-group>
+
+                                    <b-form-group
+                                        id="input-group-college-id"
+                                        label="Team Leader College ID Number:"
+                                        label-for="input-college-id"
+                                    >
+                                        <b-form-input
+                                            id="input-college-id"
+                                            v-model="enrollTeamForm.leader.college_id"
+                                            :class="{'is-invalid': errors.college_id}"
+                                            required
+                                            :disabled="this.user ? true : false"
+                                            placeholder="GNIT/YYYY/XXXX"
+                                        ></b-form-input>
+                                        <p class="text-danger"><small>This ID needs to be produced at registration desk on event day</small></p>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.college_id"
+                                        >{{ errors.college_id[0] }}</div>
+                                    </b-form-group>
+
+                                    <div
+                                        v-for="(n,i) in maxMembers-1"
+                                        :key="i"
+                                    >
+                                        <h4>Member {{ n }} Details <span v-if="n+1 > minMembers"><small>(Optional)</small></span></h4>
+                                        <b-form-group
+                                            :id="`input-group-email-${n}`"
+                                            label="Email address:"
+                                            :label-for="`input-email-${n}`"
+                                            description="We'll never share your email with anyone else."
+                                        >
+                                            <b-form-input
+                                                :id="`input-email-${n}`"
+                                                v-model="enrollTeamForm.members[n-1].email"
+                                                type="email"
+                                                :class="{'is-invalid': errors.email}"
+                                                :required="n+1 < minMembers"
+                                                placeholder="you@domain.com"
+                                            ></b-form-input>
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="errors.email"
+                                            >{{ errors.email[0] }}</div>
+                                        </b-form-group>
+
+                                        <b-form-group
+                                            :id="`input-group-name-${n}`"
+                                            label="Your Name:"
+                                            :label-for="`input-name-${n}`"
+                                        >
+                                            <b-form-input
+                                                :id="`input-name-${n}`"
+                                                v-model="enrollTeamForm.members[n-1].name"
+                                                :class="{'is-invalid': errors.name}"
+                                                :required="n+1 < minMembers"
+                                                placeholder="Enter name"
+                                            ></b-form-input>
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="errors.name"
+                                            >{{ errors.name[0] }}</div>
+                                        </b-form-group>
+
+                                        <b-form-group
+                                            :id="`input-group-college-name-${n}`"
+                                            label="College name:"
+                                            :label-for="`input-college-name-${n}`"
+                                        >
+                                            <b-form-input
+                                                :id="`input-college-name-${n}`"
+                                                v-model="enrollTeamForm.members[n-1].college"
+                                                :class="{'is-invalid': errors.college}"
+                                                :required="n+1 < minMembers"
+                                                placeholder="Guru Nanak Institute of Technology"
+                                            ></b-form-input>
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="errors.college"
+                                            >{{ errors.college[0] }}</div>
+                                        </b-form-group>
+
+                                        <b-form-group
+                                            :id="`input-group-college-id-${n}`"
+                                            label="College ID Number:"
+                                            :label-for="`input-college-id-${n}`"
+                                        >
+                                            <b-form-input
+                                                :id="`input-college-id-${n}`"
+                                                v-model="enrollTeamForm.members[n-1].college_id"
+                                                :class="{'is-invalid': errors.college_id}"
+                                                :required="n+1 < minMembers"
+                                                placeholder="GNIT/YYYY/XXXX"
+                                            ></b-form-input>
+                                            <p class="text-danger"><small>This ID needs to be produced at registration desk on event day</small></p>
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="errors.college_id"
+                                            >{{ errors.college_id[0] }}</div>
+                                        </b-form-group>
+
+                                        <b-form-group
+                                            :id="`input-group-year-${n}`"
+                                            label="Year:"
+                                            :label-for="`input-year-${n}`"
+                                        >
+                                            <b-form-select
+                                                :id="`input-year-${n}`"
+                                                v-model="enrollTeamForm.members[n-1].year"
+                                                :class="{'is-invalid': errors.year}"
+                                                :options="years"
+                                                :required="n+1 < minMembers"
+                                            ></b-form-select>
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="errors.year"
+                                            >{{ errors.year[0] }}</div>
+                                        </b-form-group>
+
+                                        <b-form-group
+                                            :id="`input-group-phone-${n}`"
+                                            label="Phone number:"
+                                            :label-for="`input-phone-${n}`"
+                                        >
+                                            <b-form-input
+                                                :id="`input-phobne-${n}`"
+                                                v-model="enrollTeamForm.members[n-1].phone"
+                                                :class="{'is-invalid': errors.phone}"
+                                                :required="n+1 < minMembers"
+                                                placeholder="9150656598"
+                                            ></b-form-input>
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="errors.phone"
+                                            >{{ errors.phone[0] }}</div>
+                                        </b-form-group>
+                                    </div>
+
+                                    <b-button
+                                        type="submit"
+                                        variant="outline-success"
+                                        :disabled="isLoading"
+                                        pill
+                                        block
+                                    >
+                                        <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
+                                </b-form>
+                                <b-form
+                                    @submit.prevent="enrollSoloFormSubmit()"
+                                    v-else
+                                >
+                                    <b-form-group
+                                        id="input-group-1"
+                                        label="Email address:"
+                                        label-for="input-1"
+                                        description="We'll never share your email with anyone else."
+                                    >
+                                        <b-form-input
+                                            id="input-1"
+                                            v-model="enrollSoloForm.email"
+                                            type="email"
+                                            :class="{'is-invalid': errors.email}"
+                                            required
+                                            :disabled="user ? true : false"
+                                            placeholder="you@domain.com"
+                                        ></b-form-input>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.email"
+                                        >{{ errors.email[0] }}</div>
+                                    </b-form-group>
+
+                                    <b-form-group
+                                        id="input-group-2"
+                                        label="Your Name:"
+                                        label-for="input-2"
+                                    >
+                                        <b-form-input
+                                            id="input-2"
+                                            v-model="enrollSoloForm.name"
+                                            :class="{'is-invalid': errors.name}"
+                                            required
+                                            :disabled="this.user ? true : false"
+                                            placeholder="Enter name"
+                                        ></b-form-input>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.name"
+                                        >{{ errors.name[0] }}</div>
+                                    </b-form-group>
+
+                                    <b-form-group
+                                        id="input-group-3"
+                                        label="College name:"
+                                        label-for="input-3"
+                                    >
+                                        <b-form-input
+                                            id="input-3"
+                                            v-model="enrollSoloForm.college"
+                                            :class="{'is-invalid': errors.college}"
+                                            required
+                                            :disabled="this.user ? true : false"
                                             placeholder="Guru Nanak Institute of Technology"
                                         ></b-form-input>
                                         <div
@@ -301,15 +454,16 @@
                                     </b-form-group>
 
                                     <b-form-group
-                                        :id="`input-group-college-id-${n}`"
+                                        id="input-group-3"
                                         label="College ID Number:"
-                                        :label-for="`input-college-id-${n}`"
+                                        label-for="input-3"
                                     >
                                         <b-form-input
-                                            :id="`input-college-id-${n}`"
-                                            v-model="enrollTeamForm.members[n-1].college_id"
+                                            id="input-3"
+                                            v-model="enrollSoloForm.college_id"
                                             :class="{'is-invalid': errors.college_id}"
-                                            :required="n+1 < minMembers ? 'true' : 'false'"
+                                            required
+                                            :disabled="this.user ? true : false"
                                             placeholder="GNIT/YYYY/XXXX"
                                         ></b-form-input>
                                         <p class="text-danger"><small>This ID needs to be produced at registration desk on event day</small></p>
@@ -320,16 +474,17 @@
                                     </b-form-group>
 
                                     <b-form-group
-                                        :id="`input-group-year-${n}`"
+                                        id="input-group-5"
                                         label="Year:"
-                                        :label-for="`input-year-${n}`"
+                                        label-for="input-5"
                                     >
                                         <b-form-select
-                                            :id="`input-year-${n}`"
-                                            v-model="enrollTeamForm.members[n-1].year"
+                                            id="input-5"
+                                            v-model="enrollSoloForm.year"
                                             :class="{'is-invalid': errors.year}"
                                             :options="years"
-                                            :required="n+1 < minMembers ? 'true' : 'false'"
+                                            required
+                                            :disabled="this.user ? true : false"
                                         ></b-form-select>
                                         <div
                                             class="invalid-feedback"
@@ -338,15 +493,16 @@
                                     </b-form-group>
 
                                     <b-form-group
-                                        :id="`input-group-phone-${n}`"
+                                        id="input-group-6"
                                         label="Phone number:"
-                                        :label-for="`input-phone-${n}`"
+                                        label-for="input-6"
                                     >
                                         <b-form-input
-                                            :id="`input-phobne-${n}`"
-                                            v-model="enrollTeamForm.members[n-1].phone"
+                                            id="input-6"
+                                            v-model="enrollSoloForm.phone"
                                             :class="{'is-invalid': errors.phone}"
-                                            :required="n+1 < minMembers ? 'true' : 'false'"
+                                            required
+                                            :disabled="this.user ? true : false"
                                             placeholder="9150656598"
                                         ></b-form-input>
                                         <div
@@ -354,31 +510,31 @@
                                             v-if="errors.phone"
                                         >{{ errors.phone[0] }}</div>
                                     </b-form-group>
-                                </div>
 
-                                <b-button
-                                    type="submit"
-                                    variant="outline-success"
-                                    :disabled="isLoading"
-                                    pill
-                                    block
-                                >
-                                    <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
-                            </b-form>
-                        </div>
-                        <div
-                            v-else
-                            class="text-center col-lg-12"
-                        >
-                            <h3>Your cart is empty!</h3>
-                            <ul class="nav-menu">
-                                <li
-                                    class="buy-tickets"
-                                    style="width: 100%;"
-                                >
-                                    <nuxt-link to="/#events">Browse events</nuxt-link>
-                                </li>
-                            </ul>
+                                    <b-button
+                                        type="submit"
+                                        variant="outline-success"
+                                        :disabled="isLoading"
+                                        pill
+                                        block
+                                    >
+                                        <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
+                                </b-form>
+                            </div>
+                            <div
+                                v-else
+                                class="text-center col-lg-12"
+                            >
+                                <h3>Your cart is empty!</h3>
+                                <ul class="nav-menu">
+                                    <li
+                                        class="buy-tickets"
+                                        style="width: 100%;"
+                                    >
+                                        <nuxt-link to="/#events">Browse events</nuxt-link>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -495,13 +651,16 @@ export default {
             event: null,
             isLoading: false,
             isSuccess: false,
+            isError: false,
             enrollSoloForm: {
-                name: '',
-                email: '',
-                college: '',
-                phone: '',
-                year: null,
-
+                participant: {
+                    name: '',
+                    email: '',
+                    college: '',
+                    phone: '',
+                    year: null,
+                },
+                events: []
             },
             enrollTeamForm: {
                 team: {
@@ -598,26 +757,30 @@ export default {
         async enrollTeamFormSubmit () {
             this.isLoading = true
             this.enrollTeamForm.events = this.eventIds
-            console.log(this.enrollTeamForm)
             await this.$axios.$post('/registration/event/team', this.enrollTeamForm)
                 .then((res) => {
                     this.isLoading = false
-                    console.log(res)
+                    this.isSuccess = true
+                    this.clearEvents()
                 })
                 .catch((err) => {
                     this.isLoading = false
-                    console.log(err)
+                    this.isError = true
                 })
         },
-        enrollSoloSubmit () {
+        async enrollSoloFormSubmit () {
             this.isLoading = true
-            this.setUser(this.enrollSoloForm)
-            this.pushEvent(this.event.id)
-
-            window.setInterval(() => {
-                this.isLoading = false
-                this.isSuccess = true
-            }, 2000)
+            this.enrollSoloForm.events = this.eventIds
+            await this.$axios.$post('/registration/event/solo', this.enrollSoloForm)
+                .then((res) => {
+                    this.isLoading = false
+                    this.isSuccess = true
+                    this.clearEvents()
+                })
+                .catch((err) => {
+                    this.isLoading = false
+                    this.isError = true
+                })
         },
         removeFromCart (event) {
             this.isLoading = true

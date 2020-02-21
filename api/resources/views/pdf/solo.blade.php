@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Order Receipt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<style type="text/css">
+	#watermark { position: fixed; bottom: 80%; right: 500px; height: 25px; opacity: .3; }
+</style>
 <body>
+	<div id="watermark">
+		<img src="img/tesseract_cube_small.png">
+	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-4">
-				<img src="img/logo_dark.png">
-			</div>
-			<div class="col-lg-4">
+		<div class="logo" style="float: right;">
+			<!-- <img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150"> -->
+			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate(md5($order->id))) !!} ">
 
-			</div>
-			<div class="col-lg-4">
-				<img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150">
-			</div>
 		</div>
-		<table class="table">
-			<thead style="background-color: #1b03a3; color: white;">
+		<div class="row">
+			<div class="col-md-6">
+				<img src="img/logo_dark.jpg">
+			</div>
+		</div><br><br>
+		<table style="width: 100%">
+			<thead style="background-color: #1b03a3; color: white">
 				<tr>
 					<th>Name</th>
-					<th>Email</th>
 					<th>College ID</th>
 					<th>Phone</th>
 					<th>College</th>
@@ -30,68 +36,72 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Saswata Mukhopadhyay</td>
-					<td>saswata032@gmail.com</td>
-					<td>GNIT/2017/XXXX</td>
-					<td>7890512123</td>
-					<td>Guru Nanak Institute of Technology</td>
-					<td>3rd</td>
+					<td>{{ $order->participant->name }}</td>
+					<td>{{ $order->participant->college_id }}</td>
+					<td>{{ $order->participant->phone }}</td>
+					<td>{{ $order->participant->college }}</td>
+					<td>{{ $order->participant->year }}</td>
 				</tr>
-				
 			</tbody>
 		</table>
-		<table style="width: 100%">
-			<thead style="background-color: #1b03a3; color: white;">
+		<hr>
+		<table style="width: 100%;">
+			<thead style="background-color: #1b03a3; color: white">
 				<tr>
+					<th></th>
 					<th>#</th>
-					<th>Events Registered</th>
-					<th style="text-align: center;">Price</th>
+					<th colspan="4">Events Registered</th>
+					<th colspan="2">Price</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Tech Quiz</td>
-					<td style="text-align: center;">Rs. 200</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Debate</td>
-					<td style="text-align: center;">Rs. 200</td>
-				</tr>
-				<tr style="border-bottom: 1px solid #1b03a3;">
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+				@foreach($order->events as $key => $event)
+					<tr>
+						<td></td>
+						<td>{{ $key+1 }}</td>
+						<td colspan="4">{{ $event->name }}</td>
+						<td colspan="2">Rs. {{ $event->price }}</td>
+					</tr>
+				@endforeach
 				<tr>
 					<td></td>
-					<td style="font-weight: bold;">Subtotal</td>
-					<td style="font-weight: bold; text-align: center;">Rs. 600</td>
-				</tr>
-				<tr style="background-color: #1b03a3; color: white">
 					<td></td>
-					<td style="font-weight: bold;">Discount</td>
-					<td style="font-weight: bold; text-align: center;">Rs. -100</td>
-				</tr>
-				<tr style="border-bottom: 1px solid black;">
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr>				
-				<tr style="background-color: #1b03a3; color: white">
-					<td></td>
-					<td style="font-weight: bold;">Amount to be paid</td>
-					<td style="font-weight: bold; text-align: center;">Rs. 500</td>
+					<td style="font-weight: bold;" colspan="4">Subtotal</td>
+					<td style="font-weight: bold;" colspan="2">Rs. {{ $order->calculations->subtotal }}</td>
 				</tr>
 				<tr>
-					<td style="font-weight: bold;" colspan="6">Total Amount in Words : Five Hundred only</td>
+					<td></td>
+					<td style="background-color: #1b03a3;"></td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="4">Combo Discount</td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="2">Rs. {{ $order->calculations->discount }}</td>
+				</tr>				
+				<tr>
+					<td></td>
+					<td style="background-color: #1b03a3;"></td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="4">Amount to be paid</td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="2">Rs. {{ $order->calculations->subtotal - $order->calculations->discount }}</td>
+				</tr>
+				@php
+					$digit = new NumberFormatter("en", NumberFormatter::SPELLOUT)
+				@endphp
+				<tr>
+					<td></td>
+					<td></td>
+					<td style="font-weight: bold;" colspan="6">Total Amount in Words : {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }} only</td>
 				</tr>
 			</tbody>
+			</tbody>
 		</table>
+		<div style="font-size: 20px;">
+			<h3>Important points to note:</h3>
+			<ul>
+				<li>Event rules are subject to change.</li>
+				<li>You need to bring in your specified college id on the day of event.</li>
+				<li>You may be disqualified for any nuisance created on the campus.</li>
+				<li>You'll be given a window of 45 minutes after the event starts to arrive, if you're late, you'll be disqualified.</li>
+				<li>No refund will be provided for any event.</li>
+			</ul>
+		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
