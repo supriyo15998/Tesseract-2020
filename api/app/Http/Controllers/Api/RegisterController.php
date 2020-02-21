@@ -61,6 +61,8 @@ class RegisterController extends Controller
 
     public function enrollSolo(Request $request) {
 
+        return response()->json([$request->all()], 500);
+
         $partcipant = Participant::create($request->participant);
 
         $order = Order::create(['is_team' => 0, 'participant_id' => $partcipant->id]);

@@ -100,7 +100,7 @@
                     </div>
                     <div class="row">
                         <div
-                            v-if="isSuccess || isError"
+                            v-if="isSuccess"
                             class="col-lg-12"
                         >
                             <b-alert
@@ -112,7 +112,11 @@
                                 <h4>Registration successful!</h4>
                                 <p>Thank you for registering! An order receipt will be sent via email, please refer to the email for further details!</p>
                             </b-alert>
-
+                        </div>
+                        <div
+                            v-else
+                            class="col-lg-12"
+                        >
                             <b-alert
                                 variant="danger"
                                 show
@@ -122,13 +126,11 @@
                                 <h4>Error!</h4>
                                 <p>Something went wrong! Please try again, if you see this message again, please try again later!</p>
                             </b-alert>
-                        </div>
-                        <div v-else>
                             <div
                                 class="col-lg-12"
                                 v-if="events && events.length > 0"
                             >
-                                <p>As per your event selection, your team must consist minimum {{ minMembers }} member(s) and can have a maximum of {{ maxMembers }} member(s). <b>{Inclusive of Team Leader}</b></p>
+                                <p v-if="events[0].is_team">As per your event selection, your team must consist minimum {{ minMembers }} member(s) and can have a maximum of {{ maxMembers }} member(s). <b>{Inclusive of Team Leader}</b></p>
 
                                 <b-form
                                     @submit.prevent="enrollTeamFormSubmit()"
@@ -402,7 +404,7 @@
                                     >
                                         <b-form-input
                                             id="input-1"
-                                            v-model="enrollSoloForm.email"
+                                            v-model="enrollSoloForm.participant.email"
                                             type="email"
                                             :class="{'is-invalid': errors.email}"
                                             required
@@ -422,7 +424,7 @@
                                     >
                                         <b-form-input
                                             id="input-2"
-                                            v-model="enrollSoloForm.name"
+                                            v-model="enrollSoloForm.participant.name"
                                             :class="{'is-invalid': errors.name}"
                                             required
                                             :disabled="this.user ? true : false"
@@ -441,7 +443,7 @@
                                     >
                                         <b-form-input
                                             id="input-3"
-                                            v-model="enrollSoloForm.college"
+                                            v-model="enrollSoloForm.participant.college"
                                             :class="{'is-invalid': errors.college}"
                                             required
                                             :disabled="this.user ? true : false"
@@ -460,7 +462,7 @@
                                     >
                                         <b-form-input
                                             id="input-3"
-                                            v-model="enrollSoloForm.college_id"
+                                            v-model="enrollSoloForm.participant.college_id"
                                             :class="{'is-invalid': errors.college_id}"
                                             required
                                             :disabled="this.user ? true : false"
@@ -480,7 +482,7 @@
                                     >
                                         <b-form-select
                                             id="input-5"
-                                            v-model="enrollSoloForm.year"
+                                            v-model="enrollSoloForm.participant.year"
                                             :class="{'is-invalid': errors.year}"
                                             :options="years"
                                             required
@@ -499,7 +501,7 @@
                                     >
                                         <b-form-input
                                             id="input-6"
-                                            v-model="enrollSoloForm.phone"
+                                            v-model="enrollSoloForm.participant.phone"
                                             :class="{'is-invalid': errors.phone}"
                                             required
                                             :disabled="this.user ? true : false"
