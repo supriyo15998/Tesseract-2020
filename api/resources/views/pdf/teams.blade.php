@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <style type="text/css">
-	*{
-		background-image: url("img/bill_back.jpg");
-	}
+	#watermark { position: fixed; bottom: 80%; right: 500px; height: 25px; opacity: .5; }
 </style>
 <body>
+	<div id="watermark">
+		<img src="img/bill_back.jpg">
+	</div>
 	<div class="container">
-		<br><br><br><br>
 		<div class="logo" style="float: right;">
 			<img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150">
 		</div>
@@ -24,14 +24,12 @@
 				<img src="img/logo_dark.jpg">
 			</div>
 		</div><br><br>
-		<h2 style="text-align: center; color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold;">Team Name: {{ $order->team->name }}</h2>
-				<br>
+		<h2 style="text-align: center; color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold; margin-left: 20%">Team Name: {{ $order->team->name }}</h2>
 		<table style="width: 100%">
 			<thead style="background-color: #1b03a3; color: white">
 				<tr>
 					<th>Role</th>
 					<th>Name</th>
-					<th>Email</th>
 					<th>College ID</th>
 					<th>Phone</th>
 					<th>College</th>
@@ -43,7 +41,6 @@
 				<tr>
 					<td>{{ $order->team->leader_id == $member->id ? 'Leader' : 'Member' }}</td>
 					<td>{{ $member->name }}</td>
-					<td>{{ $member->email }}</td>
 					<td>{{ $member->college_id }}</td>
 					<td>{{ $member->phone }}</td>
 					<td>{{ $member->college }}</td>
@@ -56,44 +53,60 @@
 		<table style="width: 100%;">
 			<thead style="background-color: #1b03a3; color: white">
 				<tr>
+					<th></th>
 					<th>#</th>
-					<th>Events Registered</th>
-					<th>Price</th>
+					<th colspan="4">Events Registered</th>
+					<th colspan="2">Price</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($order->events as $key => $event)
 					<tr>
+						<td></td>
 						<td>{{ $key+1 }}</td>
-						<td>{{ $event->name }}</td>
-						<td>Rs. {{ $event->price }}</td>
+						<td colspan="4">{{ $event->name }}</td>
+						<td colspan="2">Rs. {{ $event->price }}</td>
 					</tr>
 				@endforeach
 				<tr>
 					<td></td>
-					<td style="font-weight: bold;">Subtotal</td>
-					<td style="font-weight: bold;">Rs. {{ $order->calculations->subtotal }}</td>
+					<td></td>
+					<td style="font-weight: bold;" colspan="4">Subtotal</td>
+					<td style="font-weight: bold;" colspan="2">Rs. {{ $order->calculations->subtotal }}</td>
 				</tr>
 				<tr>
 					<td></td>
-					<td style="font-weight: bold;background-color: #1b03a3; color: white">Combo Discount</td>
-					<td style="font-weight: bold;background-color: #1b03a3; color: white">Rs. {{ $order->calculations->discount }}</td>
+					<td style="background-color: #1b03a3;"></td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="4">Combo Discount</td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="2">Rs. {{ $order->calculations->discount }}</td>
 				</tr>				
 				<tr>
 					<td></td>
-					<td style="font-weight: bold;background-color: #1b03a3; color: white">Amount to be paid</td>
-					<td style="font-weight: bold;background-color: #1b03a3; color: white">Rs. {{ $order->calculations->subtotal - $order->calculations->discount }}</td>
+					<td style="background-color: #1b03a3;"></td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="4">Amount to be paid</td>
+					<td style="font-weight: bold;background-color: #1b03a3; color: white" colspan="2">Rs. {{ $order->calculations->subtotal - $order->calculations->discount }}</td>
 				</tr>
 				@php
 					$digit = new NumberFormatter("en", NumberFormatter::SPELLOUT)
 				@endphp
 				<tr>
 					<td></td>
+					<td></td>
 					<td style="font-weight: bold;" colspan="6">Total Amount in Words : {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }} only</td>
 				</tr>
 			</tbody>
 			</tbody>
 		</table>
+		<div style="font-size: 20px;">
+			<h3>Important points to note:</h3>
+			<ul>
+				<li>Event rules are subject to change</li>
+				<li>You need to bring in your specified college id on th day of event</li>
+				<li>You may be disqualified for a nuisance created on the campus</li>
+				<li>You'll be given a window of 45 minutes after the event starts to arrive, if you're late, you'll be disqualified</li>
+				<li>No refund will be provided for any event</li>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>
