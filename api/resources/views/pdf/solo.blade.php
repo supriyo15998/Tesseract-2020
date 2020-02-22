@@ -23,7 +23,7 @@
 			<div class="col-md-6">
 				<img src="img/logo_dark.jpg">
 			</div>
-		</div><br><br>
+		</div><br><br><br><br><br>
 		<table style="width: 100%">
 			<thead style="background-color: #1b03a3; color: white">
 				<tr>

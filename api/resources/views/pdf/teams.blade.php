@@ -8,6 +8,15 @@
 </head>
 <style type="text/css">
 	#watermark { position: fixed; bottom: 80%; right: 500px; height: 25px; opacity: .3; }
+	/*@font-face {
+	    font-family: 'protos';
+	    src: url("{{ storage_path('fontsprotosnew.otf') }}") format("truetype");
+	    font-weight: 400;
+	    font-style: normal;
+	}
+      .tesseract {
+         font-family: protos
+      }*/
 </style>
 <body>
 	<div id="watermark">
@@ -24,7 +33,9 @@
 				<img src="img/logo_dark.jpg">
 			</div>
 		</div><br><br>
-		<h2 style="text-align: center; color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold; margin-left: 20%">Team Name: {{ $order->team->name }}</h2>
+		<h1 class="tesseract" style="text-align: center;color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold; margin-left: 20%;">Tesseract 2k20</h1>
+		<h2 style="text-align: center;color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold;">Registration Slip</h2>
+		<h2 style="text-align: center; color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold;">Team Name: {{ $order->team->name }}</h2>
 		<table style="width: 100%">
 			<thead style="background-color: #1b03a3; color: white">
 				<tr>
