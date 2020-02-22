@@ -159,7 +159,7 @@
                                     </li>
                                     <li
                                         class="buy-tickets"
-                                        v-if="events.length > 0"
+                                        v-if="eventIds.includes(event.id)"
                                         :class="{'is-hidden': isLoading}"
                                     >
                                         <nuxt-link to="/#events">More events</nuxt-link>
