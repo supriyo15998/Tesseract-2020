@@ -72,27 +72,30 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Reason</th>
+                  <th>Order ID</th>
+                  <th>Team Name
+                  <th>Event Name</th>
+                  <th>Event Category</th>
+                  <th>Paid Status</th>
+                  <th>Played Status</th>
                 </tr>
                 <tr>
                   <td>183</td>
                   <td>John Doe</td>
-                  <td>11-7-2014</td>
+                  <td>Robowar</td>
+                  <td>Robotics</td>
                   <td><span class="label label-success">Paid</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td><span class="label label-success">Paid</span></td>
                 </tr>
                 
                 
                 <tr>
                   <td>175</td>
                   <td>Mike Doe</td>
-                  <td>11-7-2014</td>
+                  <td>Web Art</td>
+                  <td>Coding</td>
                   <td><span class="label label-danger">Not Paid</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td><span class="label label-danger">Not Paid</span></td>
                 </tr>
               </table>
             </div>
