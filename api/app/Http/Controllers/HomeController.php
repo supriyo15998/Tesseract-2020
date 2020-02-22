@@ -54,7 +54,7 @@ class HomeController extends Controller
     }
     public function viewParticipants()
     {
-        return view('participants');
+        return view('participants')->withOrders(\App\Order::all());
     }
     public function registerEvent(Request $request)
     {
