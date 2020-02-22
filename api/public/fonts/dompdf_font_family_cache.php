@@ -78,9 +78,9 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'protos' => array(
-    'normal' => $fontDir . '/Protos',
-    'bold' => $fontDir . '/Protos',
-    'italic' => $fontDir . '/Protos',
-    'bold_italic' => $fontDir . '/Protos',
+    'normal' => $fontDir . '/protos-normal_8bf109912aca0f4d425d26d3b4d6a718',
+    'bold' => $fontDir . '/protosnew',
+    'italic' => $fontDir . '/protosnew',
+    'bold_italic' => $fontDir . '/protosnew',
   ),
 ) ?>

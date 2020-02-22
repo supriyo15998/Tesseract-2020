@@ -5,27 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Order Receipt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style media="screen" type="text/css">/*<![CDATA[*/@import 'stylesheet.css';/*]]>*/</style>
 </head>
 <style type="text/css">
-	#watermark { position: fixed; bottom: 80%; right: 500px; height: 25px; opacity: .3; }
-	/*@font-face {
-	    font-family: 'protos';
-	    src: url("{{ storage_path('fontsprotosnew.otf') }}") format("truetype");
-	    font-weight: 400;
-	    font-style: normal;
+	#watermark { position: fixed; bottom: 65%; left: 175px; opacity: .1; }
+	.tesseract { 
+		font-family: "Protos"
 	}
-      .tesseract {
-         font-family: protos
-      }*/
 </style>
 <body>
 	<div id="watermark">
-		<img src="img/tesseract_cube_small.png">
+		<img src="img/tesseract_transparent_small.png">
 	</div>
 	<div class="container">
+		<small>Registered on {{ \Carbon\Carbon::createFromTimeStamp(strtotime($order->created_at))->format('l jS \\of F Y, h:i A') }}</small>
 		<div class="logo" style="float: right;">
 			<!-- <img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150"> -->
-			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate(md5($order->id))) !!} ">
+			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(180)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate(md5($order->id))) !!} ">
 
 		</div>
 		<div class="row">
@@ -33,9 +29,9 @@
 				<img src="img/logo_dark.jpg">
 			</div>
 		</div><br><br>
-		<h1 class="tesseract" style="text-align: center;color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold; margin-left: 20%;">Tesseract 2k20</h1>
-		<h2 style="text-align: center;color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold;">Registration Slip</h2>
-		<h2 style="text-align: center; color: #1b03a3;font-family: 'Merriweather', serif; font-weight: bold;">Team Name: {{ $order->team->name }}</h2>
+		<h1 class="tesseract" style="text-align: center;color: #1b03a3;margin-left: 175px;">Tesseract 2k20</h1>
+		<h2 class="tesseract" style="text-align: center;color: #1b03a3;">Registration Slip</h2>
+		<h2 style="text-align: center; color: #1b03a3;">Team Name: {{ $order->team->name }}</h2>
 		<table style="width: 100%">
 			<thead style="background-color: #1b03a3; color: white">
 				<tr>
@@ -103,7 +99,7 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td style="font-weight: bold;" colspan="6">Total Amount in Words : {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }} only</td>
+					<td style="font-weight: bold;" colspan="6">Total Amount in Words : Rupees {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }} Only</td>
 				</tr>
 			</tbody>
 			</tbody>

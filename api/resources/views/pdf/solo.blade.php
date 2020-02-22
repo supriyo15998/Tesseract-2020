@@ -5,15 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Order Receipt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style media="screen" type="text/css">/*<![CDATA[*/@import 'stylesheet.css';/*]]>*/</style>
 </head>
 <style type="text/css">
-	#watermark { position: fixed; bottom: 80%; right: 500px; height: 25px; opacity: .3; }
+	#watermark { position: fixed; bottom: 65%; left: 175px; opacity: .1; }
+	.tesseract { 
+		font-family: "Protos"
+	}
 </style>
 <body>
 	<div id="watermark">
-		<img src="img/tesseract_cube_small.png">
+		<img src="img/tesseract_transparent_small.png">
 	</div>
 	<div class="container">
+		<small>Registered on {{ \Carbon\Carbon::createFromTimeStamp(strtotime($order->created_at))->format('l jS \\of F Y, h:i A') }}</small>
 		<div class="logo" style="float: right;">
 			<!-- <img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150"> -->
 			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate(md5($order->id))) !!} ">
@@ -23,7 +28,9 @@
 			<div class="col-md-6">
 				<img src="img/logo_dark.jpg">
 			</div>
-		</div><br><br><br><br><br>
+		</div><br><br>
+		<h1 class="tesseract" style="text-align: center;color: #1b03a3;margin-left: 20%;">Tesseract 2k20</h1>
+		<h2 class="tesseract" style="text-align: center;color: #1b03a3;">Registration Slip</h2>
 		<table style="width: 100%">
 			<thead style="background-color: #1b03a3; color: white">
 				<tr>
@@ -87,7 +94,7 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td style="font-weight: bold;" colspan="6">Total Amount in Words : {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }} only</td>
+					<td style="font-weight: bold;" colspan="6">Total Amount in Words : Rupees {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }} Only</td>
 				</tr>
 			</tbody>
 			</tbody>

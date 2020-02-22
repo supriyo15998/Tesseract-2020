@@ -43,8 +43,8 @@ class PDFController extends Controller
         $order->calculations = $calculations;
         $pdf = PDF::loadView('pdf.teams', ['order' => $order]);
         return $pdf->stream();
-        return view('pdf.teams')->withOrder($order);
-        //return view('pdf.test')->withOrder($order);
+        // return view('pdf.teams')->withOrder($order);
+        // return view('pdf.test')->withOrder($order);
     }
     public function generatePdfSolo()
     {
