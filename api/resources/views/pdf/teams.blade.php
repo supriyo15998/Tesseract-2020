@@ -21,16 +21,19 @@
 		<small>Registered on {{ \Carbon\Carbon::createFromTimeStamp(strtotime($order->created_at))->format('l jS \\of F Y, h:i A') }}</small>
 		<div class="logo" style="float: right;">
 			<!-- <img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150"> -->
-			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(180)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate(md5($order->id))) !!} ">
+			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(170)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate(md5($order->id))) !!} ">
 
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<img src="img/logo_dark.jpg">
 			</div>
-		</div><br><br>
-		<h1 class="tesseract" style="text-align: center;color: #1b03a3;margin-left: 175px;">Tesseract 2k20</h1>
-		<h2 class="tesseract" style="text-align: center;color: #1b03a3;">Registration Slip</h2>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<h1 class="tesseract" style="text-align: center;color: #1b03a3;">Tesseract 2k20</h1>
+		<h2 class="tesseract" style="text-align: center;color: #1b03a3;line-height: 3px;">Registration Slip</h2>
 		<h2 style="text-align: center; color: #1b03a3;">Team Name: {{ $order->team->name }}</h2>
 		<table style="width: 100%">
 			<thead style="background-color: #1b03a3; color: white">

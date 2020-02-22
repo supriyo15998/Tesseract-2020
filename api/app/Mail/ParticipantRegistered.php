@@ -61,6 +61,6 @@ class ParticipantRegistered extends Mailable
         $this->order->calculations = $calculations;
         $pdf = PDF::loadView('pdf.solo', ['order' => $this->order]);
 
-        return $this->markdown('emails.participants.registered')->attachData($pdf->output(), 'order_receipt.pdf');
+        return $this->markdown('emails.participants.registered')->attachData($pdf->output(), 'order_' . md5($this->order->id) . '_receipt.pdf');
     }
 }

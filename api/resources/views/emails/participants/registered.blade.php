@@ -16,6 +16,6 @@ You have been successfully registered to participate in the following events:
 You will find an attachment in this mail, please make sure you follow the guidelines in mentioned in the same, also make sure to carry a hard copy of the same on the event day!
 
 Thanks,<br>
-With love,<br>
+With Love,<br>
 {{ config('app.name') }} Team
 @endcomponent
