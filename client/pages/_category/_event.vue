@@ -99,14 +99,14 @@
                         <p>{{ event.category.name }}.</p>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <img
                                 :src="`https://downloads.tesseractgnit.com/img/events/${event.photo}`"
                                 alt="Speaker 1"
                                 class="img-fluid"
                             >
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="details">
                                 <h2>{{ event.name }}</h2>
                                 <!-- <div class="social">
@@ -156,6 +156,13 @@
                                             v-else
                                             :disabled="isLoading"
                                         ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Remove from Cart</span></button>
+                                    </li>
+                                    <li
+                                        class="buy-tickets"
+                                        v-if="events.length > 0"
+                                        :class="{'is-hidden': isLoading}"
+                                    >
+                                        <nuxt-link to="/#events">More events</nuxt-link>
                                     </li>
                                     <li
                                         class="buy-tickets"
