@@ -712,12 +712,8 @@ export default {
         }
     },
     computed: {
-        totalAmount () {
-            let total = 0, discount = 0;
-
-            this.events.forEach((e) => {
-                total += e.price
-            })
+        discount () {
+            let discount = 0
 
             if (this.eventIds.includes(6) && this.eventIds.includes(7) && this.eventIds.includes(5)) {
                 discount = 100
@@ -734,10 +730,17 @@ export default {
                 discount = 40
             }
 
-            return total - discount
-        }
-    },
-    computed: {
+            return discount
+        },
+        totalAmount () {
+            let total = 0
+
+            this.events.forEach((e) => {
+                total += e.price
+            })
+
+            return total
+        },
         maxMembers () {
             let maxMembers = 0
             this.events.forEach((e) => {

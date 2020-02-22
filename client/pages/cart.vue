@@ -157,6 +157,14 @@
                                             class="hidden-xs"
                                         ></td>
                                     </tr>
+                                    <tr class="visible-xs">
+                                        <td colspan="1"></td>
+                                        <td><strong>Combo Discount ₹{{ discount }}</strong></td>
+                                        <td
+                                            colspan="3"
+                                            class="hidden-xs"
+                                        ></td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <ul class="nav-menu">
@@ -169,10 +177,9 @@
                                             </ul>
                                         </td>
                                         <td
-                                            colspan="2"
+                                            colspan="3"
                                             class="hidden-xs"
-                                        ></td>
-                                        <td class="hidden-xs text-center"><strong>Total ₹{{ totalAmount }}</strong></td>
+                                        ><strong>Sub Total ₹{{ totalAmount - discount }}</strong></td>
                                         <td>
                                             <ul class="nav-menu">
                                                 <li
@@ -332,12 +339,8 @@ export default {
         }
     },
     computed: {
-        totalAmount () {
-            let total = 0, discount = 0;
-
-            this.events.forEach((e) => {
-                total += e.price
-            })
+        discount () {
+            let discount = 0
 
             if (this.eventIds.includes(6) && this.eventIds.includes(7) && this.eventIds.includes(5)) {
                 discount = 100
@@ -354,7 +357,16 @@ export default {
                 discount = 40
             }
 
-            return total - discount
+            return discount
+        },
+        totalAmount () {
+            let total = 0
+
+            this.events.forEach((e) => {
+                total += e.price
+            })
+
+            return total
         }
     },
     methods: {
