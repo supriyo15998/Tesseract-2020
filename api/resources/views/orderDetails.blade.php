@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Simple Tables</title>
+  <title>Order Details</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -18,35 +18,19 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   @include('layouts.navbar')
-  <!-- Left side column. contains the logo and sidebar -->
   @include('layouts.sidebar')
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Simple Tables
-        <small>preview of simple tables</small>
+        Details for order id : {{ $orderDetails->id }}
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Simple</li>
-      </ol>
+      
     </section>
 
     <!-- Main content -->
@@ -68,30 +52,100 @@
                 </div>
               </div>
             </div>
-            <!-- /.box-header -->
+
+            <!-- IF SOLO -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <thead>
                   <tr>
                     <th>Order ID</th>
-                    <th>Team/Solo Participant Name</th>
-                    <th>Action</th>
+                    <th>Participant Name</th>
+                    <th>College ID</th>
+                    <th>College</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Year</th>
+                    <th>Event </th>
+                    <th>Play Status</th>
+                    <th>Paid Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($orders as $order)
                   <tr>
-                    <td>{{ $order->id }}</td>
-                    <td>{{ $order->is_team ? 'Team ' . $order->team->name : 'Player ' . $order->participant->name }}</td>
-                    <td><a href="{{ route('orderDetails',$order->id) }}" class="btn btn-success">View</a></td>
+                    <td>Order id</td>
+                    <td>lorem ipsume</td>
+                    <td>lorem ipsume 2</td>
+                    <td>lorem ipsume</td>
+                    <td>lorem ipsume 2</td>
+                    <td>lorem ipsume</td>
+                    <td>lorem ipsume 2</td>
+                    <td>
+                      @for($event = 1; $event<=3 ; $event ++)
+                        Each event name here<br>
+                      @endfor
+                    </td>
+                    <td>
+                      @for($event = 1; $event<=3 ; $event ++)
+                        Each event play status here<br>
+                      @endfor
+                    </td>
+                    <td>
+                      @for($event = 1; $event<=3 ; $event ++)
+                        Each event pay status here<br>
+                      @endfor
+                    </td>
                   </tr>
-                  @endforeach
                 </tbody>
               </table>
             </div>
-            <!-- /.box-body -->
+            <!-- IF TEAM -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Participant Name</th>
+                    <th>College ID</th>
+                    <th>College</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Year</th>
+                    <th>Event </th>
+                    <th>Play Status</th>
+                    <th>Paid Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Order id</td>
+                    <td>lorem ipsume</td>
+                    <td>lorem ipsume 2</td>
+                    <td>lorem ipsume</td>
+                    <td>lorem ipsume 2</td>
+                    <td>lorem ipsume</td>
+                    <td>lorem ipsume 2</td>
+                    <td>
+                      @for($event = 1; $event<=3 ; $event ++)
+                        Each event name here<br>
+                      @endfor
+                    </td>
+                    <td>
+                      @for($event = 1; $event<=3 ; $event ++)
+                        Each event play status here<br>
+                      @endfor
+                    </td>
+                    <td>
+                      @for($event = 1; $event<=3 ; $event ++)
+                        Each event pay status here<br>
+                      @endfor
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
           </div>
-          <!-- /.box -->
+
         </div>
       </div>
     </section>
@@ -105,27 +159,13 @@
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
   </footer>
-
-  <!-- Control Sidebar -->
- 
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
 <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- Slimscroll -->
 <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-<!-- FastClick -->
 <script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 </body>
 </html>

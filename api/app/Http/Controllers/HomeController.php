@@ -54,7 +54,9 @@ class HomeController extends Controller
     }
     public function viewParticipants()
     {
-        return view('participants')->withOrders(\App\Order::all());
+        $orders = \App\Order::all();
+        //dd($orders);
+        return view('participants')->withOrders($orders);
     }
     public function registerEvent(Request $request)
     {
@@ -108,5 +110,10 @@ class HomeController extends Controller
     public function exportVolunteers()
     {
         return Excel::download(new VolunteersExport, 'volunteers.xlsx');
+    }
+    public function orderDetails($orderId)
+    {
+        $orderDetails = \App\Order::findOrFail($orderId);
+        return view('orderDetails')->withOrderDetails($orderDetails);
     }   
 }
