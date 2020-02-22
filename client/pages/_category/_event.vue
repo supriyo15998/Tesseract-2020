@@ -167,12 +167,48 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <br>
                 <br>
                 <br>
+            </section>
+            <section
+                id="events"
+                class="wow fadeInUp"
+                v-if="similar.length > 0"
+            >
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Similar Events</h2>
+                        <p>Similar events of the same category</p>
+                    </div>
+                    <div class="row">
+                        <div
+                            class="col-lg-4 col-md-6"
+                            v-for="event in similar"
+                            :key="event.id"
+                        >
+                            <div class="speaker">
+                                <img
+                                    :src="`https://downloads.tesseractgnit.com/img/events/${event.photo}`"
+                                    alt="Speaker 1"
+                                    class="img-fluid"
+                                >
+                                <div class="details">
+                                    <h3>
+                                        <nuxt-link
+                                            :to="`/${event.category.slug}/${event.slug}`"
+                                            style="text-decoration: none"
+                                        >{{ event.name }}</nuxt-link>
+                                    </h3>
+                                    <p>{{ event.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </section>
 
         </main>
@@ -591,6 +627,7 @@ export default {
     data () {
         return {
             event: null,
+            similar: [],
             isLoading: false,
             isSuccess: false,
             enrollSoloForm: {
@@ -608,7 +645,8 @@ export default {
     async asyncData ({ app, params }) {
         const resp = await app.$axios.$get(`/events/${params.event}`)
         return {
-            event: resp.event
+            event: resp.event,
+            similar: resp.similar
         }
     },
     methods: {

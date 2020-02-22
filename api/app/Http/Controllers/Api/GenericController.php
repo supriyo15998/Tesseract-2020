@@ -14,8 +14,9 @@ class GenericController extends Controller
     public function getEventsWithSlug($slug)
     {
     	$event = \App\Event::with('category')->where('slug', $slug)->firstOrFail();
-    	// $similar = \App\Event::where('');
-    	return response()->json(['event' => $event]);
+        // $similar = \App\Event::where('');
+        $similar = \App\Event::with('category')->where('slug', '!=', $slug)->where('category_id', $event->category_id)->limit(4)->get();
+    	return response()->json(['event' => $event, 'similar' => $similar]);
     }
 //     public function getEvents() {
 //     	return response()->json([]);
