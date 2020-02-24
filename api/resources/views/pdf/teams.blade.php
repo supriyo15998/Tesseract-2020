@@ -74,7 +74,7 @@
 					<tr>
 						<td></td>
 						<td>{{ $key+1 }}</td>
-						<td colspan="4">{{ $event->name }} @if($event->id == 18) {{ $order->team->subject }} @endif </td>
+						<td colspan="4">{{ $event->name }} @if($event->id == 18) ({{ $order->team->subject }}) @endif </td>
 						<td colspan="2">Rs. {{ $event->price }}</td>
 					</tr>
 				@endforeach

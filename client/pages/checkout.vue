@@ -311,7 +311,7 @@
 
                                         <b-form-group
                                             :id="`input-group-name-${n}`"
-                                            label="Your Name:"
+                                            label="Name:"
                                             :label-for="`input-name-${n}`"
                                         >
                                             <b-form-input

@@ -9,11 +9,11 @@ Your team <b>{{ $order->team->name }}</b> has been successfully registered to pa
 | Name       | Category         | Price  |
 | ------------- |:-------------:| --------:|
 @foreach($order->events as $event)
-| {{ $event->name }}      | {{ $event->category->name }}      | ₹{{ $event->price }}      |
+| {{ $event->name }} @if($event->id == 18) ({{ $order->team->subject }}) @endif      | {{ $event->category->name }}      | ₹{{ $event->price }}      |
 @endforeach
 @endcomponent
 
-You will find an attachment in this mail, please make sure you follow the guidelines in mentioned in the same, also make sure to carry a hard copy of the same on the event day!
+You will find an attachment in this mail, please make sure you follow the guidelines specified in the same, also make sure to carry a hard copy of the same on the event day!
 
 Thanks,<br>
 With Love,<br>

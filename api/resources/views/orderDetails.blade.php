@@ -28,7 +28,7 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Details for order id : {{ $orderDetails->id }}
+        Details for order id : {{ $order->id }}
       </h1>
       
     </section>
@@ -40,112 +40,64 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
-
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
+              @if(!$order->is_team)
+              <h3 class="box-title">Participant name - {{ $order->participant->name }}</h3>
+              <h3 class="box-title">E-Mail - {{ $order->participant->email }}</h3>
+              <h3 class="box-title">Phone -  {{ $order->participant->phone }}</h3>
+              <h3 class="box-title">College Name -  {{ $order->participant->college }}</h3>
+              <h3 class="box-title">College ID - {{ $order->participant->colleg_id }}</h3>
+              @endif
             </div>
-
-            <!-- IF SOLO -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Order ID</th>
-                    <th>Participant Name</th>
+                    <th>Role</th>
+                    <th>Name</th>
                     <th>College ID</th>
-                    <th>College</th>
                     <th>Phone</th>
-                    <th>Email</th>
+                    <th>College</th>
                     <th>Year</th>
-                    <th>Event </th>
-                    <th>Play Status</th>
-                    <th>Paid Status</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($order->team->members as $member)
                   <tr>
-                    <td>Order id</td>
-                    <td>lorem ipsume</td>
-                    <td>lorem ipsume 2</td>
-                    <td>lorem ipsume</td>
-                    <td>lorem ipsume 2</td>
-                    <td>lorem ipsume</td>
-                    <td>lorem ipsume 2</td>
-                    <td>
-                      @for($event = 1; $event<=3 ; $event ++)
-                        Each event name here<br>
-                      @endfor
-                    </td>
-                    <td>
-                      @for($event = 1; $event<=3 ; $event ++)
-                        Each event play status here<br>
-                      @endfor
-                    </td>
-                    <td>
-                      @for($event = 1; $event<=3 ; $event ++)
-                        Each event pay status here<br>
-                      @endfor
-                    </td>
+                    <td>{{ $order->team->leader_id == $member->id ? 'Leader' : 'Member' }}</td>
+                    <td>{{ $member->name }}</td>
+                    <td>{{ $member->college_id }}</td>
+                    <td>{{ $member->phone }}</td>
+                    <td>{{ $member->college }}</td>
+                    <td>{{ $member->year }}</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- IF TEAM -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Participant Name</th>
-                    <th>College ID</th>
-                    <th>College</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Year</th>
-                    <th>Event </th>
-                    <th>Play Status</th>
-                    <th>Paid Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Order id</td>
-                    <td>lorem ipsume</td>
-                    <td>lorem ipsume 2</td>
-                    <td>lorem ipsume</td>
-                    <td>lorem ipsume 2</td>
-                    <td>lorem ipsume</td>
-                    <td>lorem ipsume 2</td>
-                    <td>
-                      @for($event = 1; $event<=3 ; $event ++)
-                        Each event name here<br>
-                      @endfor
-                    </td>
-                    <td>
-                      @for($event = 1; $event<=3 ; $event ++)
-                        Each event play status here<br>
-                      @endfor
-                    </td>
-                    <td>
-                      @for($event = 1; $event<=3 ; $event ++)
-                        Each event pay status here<br>
-                      @endfor
-                    </td>
-                  </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
 
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Event </th>
+                    <th>Price </th>
+                    <th>Paid Status</th>
+                    <th>Played Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($order->events as $event)
+                    <tr>
+                      <td>{{ $event->name }}</td>
+                      <td>{{ $event->price }}</td>
+                      <td><span class="label label-{{ $event->pivot->paid == 0 ? 'danger' : 'success'}}">{{ $event->pivot->paid == 0 ? 'Not Paid' : 'Paid'}}"</span></td>
+                      <td><span class="label label-{{ $event->pivot->played == 0 ? 'danger' : 'success'}}">{{ $event->pivot->played == 0 ? 'Not Played' : 'Played'}}"</span></td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
-
         </div>
       </div>
     </section>

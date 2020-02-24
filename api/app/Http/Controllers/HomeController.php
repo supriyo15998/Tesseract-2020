@@ -114,6 +114,6 @@ class HomeController extends Controller
     public function orderDetails($orderId)
     {
         $orderDetails = \App\Order::findOrFail($orderId);
-        return view('orderDetails')->withOrderDetails($orderDetails);
+        return view('orderDetails')->withOrder(\App\Order::findOrFail($orderId));
     }   
 }

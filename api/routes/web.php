@@ -28,10 +28,10 @@ Route::get('/', function() {
 	return redirect('/admin/login');
 });
 
-//test routing for pdf's
- Route::get('/teams', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
-//Route::get('/test', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
-Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
+// test routing for pdf's
+// Route::get('/teams', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
+// Route::get('/test', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
+// Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
 Route::get('qr-code', function () {
   return QRCode::text('QR Code Generator for Laravel!')->url();    
