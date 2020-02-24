@@ -40,12 +40,10 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              @if(!$order->is_team)
-              <h3 class="box-title">Participant name - {{ $order->participant->name }}</h3>
-              <h3 class="box-title">E-Mail - {{ $order->participant->email }}</h3>
-              <h3 class="box-title">Phone -  {{ $order->participant->phone }}</h3>
-              <h3 class="box-title">College Name -  {{ $order->participant->college }}</h3>
-              <h3 class="box-title">College ID - {{ $order->participant->colleg_id }}</h3>
+              @if($order->is_team)
+              <h3 class="box-title">Team Details</h3>
+              @else
+              <h3 class="box-title">Participant Details</h3>
               @endif
             </div>
             @if($order->is_team)
@@ -72,6 +70,30 @@
                     <td>{{ $member->year }}</td>
                   </tr>
                   @endforeach
+                </tbody>
+              </table>
+            </div>
+            @else
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th>Name</th>
+                    <th>College ID</th>
+                    <th>Phone</th>
+                    <th>College</th>
+                    <th>Year</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ $order->participant->name }}</td>
+                    <td>{{ $order->participant->college_id }}</td>
+                    <td>{{ $order->participant->phone }}</td>
+                    <td>{{ $order->participant->college }}</td>
+                    <td>{{ $order->participant->year }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
