@@ -153,6 +153,24 @@
                                             v-if="errors.name"
                                         >{{ errors.name[0] }}</div>
                                     </b-form-group>
+                                    <b-form-group
+                                        id="input-group-subject"
+                                        label="Model Display Domain/Subject:"
+                                        label-for="subject"
+                                        v-if="eventIds.includes(18)"
+                                    >
+                                        <b-form-select
+                                            id="subject"
+                                            v-model="enrollTeamForm.team.subject"
+                                            :class="{'is-invalid': errors.year}"
+                                            :options="subjects"
+                                            required
+                                        ></b-form-select>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.name"
+                                        >{{ errors.name[0] }}</div>
+                                    </b-form-group>
                                     <h4>Team Leader Details</h4>
                                     <b-form-group
                                         id="input-group-leader-name"
@@ -666,7 +684,8 @@ export default {
             },
             enrollTeamForm: {
                 team: {
-                    name: ''
+                    name: '',
+                    subject: null
                 },
                 leader: {
                     name: '',
@@ -708,6 +727,7 @@ export default {
                 events: []
             },
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
+            subjects: [{ text: 'Select One', value: null }, { text: 'Healthcare and Bio Medical Instruments', value: 'Healthcare and Bio Medical Instruments' }, { text: 'Renewable Energy and Sustainable Environment', value: 'Renewable Energy and Sustainable Environment' }, { text: 'Food Technology', value: 'Food Technology' }],
 
         }
     },
@@ -720,11 +740,11 @@ export default {
             }
 
             else if ((this.eventIds.includes(8) && this.eventIds.includes(9)) || (this.eventIds.includes(8) && this.eventIds.includes(10)) || (this.eventIds.includes(9) && this.eventIds.includes(10))) {
-                 if (this.events.length === 2)
-                     discount = 30
+                if (this.events.length === 2)
+                    discount = 30
 
-                 else if (this.events.length === 3)
-                     discount = 50
+                else if (this.events.length === 3)
+                    discount = 50
             }
 
             else if (this.eventIds.includes(8) && this.eventIds.includes(9) && this.eventIds.includes(10)) {
