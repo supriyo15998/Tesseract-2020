@@ -720,16 +720,16 @@ export default {
             }
 
             else if ((this.eventIds.includes(8) && this.eventIds.includes(9)) || (this.eventIds.includes(8) && this.eventIds.includes(10)) || (this.eventIds.includes(9) && this.eventIds.includes(10))) {
-                if (this.events.length === 2)
-                    discount = 60
-                else if (this.events.length === 3)
-                    discount = 90
+                 if (this.events.length === 2)
+                     discount = 30
+
+                 else if (this.events.length === 3)
+                     discount = 50
             }
 
             else if (this.eventIds.includes(8) && this.eventIds.includes(9) && this.eventIds.includes(10)) {
-                discount = 40
+                discount = 50
             }
-
             return discount
         },
         totalAmount () {

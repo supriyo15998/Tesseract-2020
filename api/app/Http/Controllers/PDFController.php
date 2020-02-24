@@ -29,13 +29,13 @@ class PDFController extends Controller
 
         else if ((in_array(8, $events) && in_array(9, $events)) || (in_array(8, $events) && in_array(10, $events)) || (in_array(9, $events) && in_array(10, $events))) {
             if (sizeof($events) === 2)
-                $discount = 60;
+                $discount = 30;
             else if (sizeof($events) === 3)
-                $discount = 90;
+                $discount = 50;
         }
 
         else if (in_array(8, $events) && in_array(9, $events) && in_array(10, $events)) {
-            $discount = 40;
+            $discount = 50;
         }
 
         $calculations = (object) ['subtotal' => $subtotal, 'discount' => $discount];
