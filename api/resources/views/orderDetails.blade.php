@@ -98,6 +98,7 @@
             </div>
             @endif
             <hr>
+            <h3 class="box-title">Event Details</h3>
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <thead>
