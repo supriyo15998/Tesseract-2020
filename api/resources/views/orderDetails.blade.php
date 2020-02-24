@@ -121,6 +121,15 @@
                 </tbody>
               </table>
             </div>
+            <hr>
+            
+            <h3 class="box-title">Sub total = Rs. {{ $order->calculations->subtotal }}</h3><br>
+            <h3 class="box-title">Combo Discount = Rs. {{ $order->calculations->discount }}</h3><br>
+            <h3 class="box-title">Amount To Be Paid = Rs. {{ $order->calculations->subtotal - $order->calculations->discount }}</h3><br>
+            @php
+              $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT)
+            @endphp
+            <h3 class="box-title">Total Amount in Words : Rupees {{ ucwords($digit->format($order->calculations->subtotal - $order->calculations->discount)) }} Only</h3>
           </div>
         </div>
       </div>
