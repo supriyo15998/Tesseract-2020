@@ -48,6 +48,7 @@
               <h3 class="box-title">College ID - {{ $order->participant->colleg_id }}</h3>
               @endif
             </div>
+            @if($order->is_team)
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <thead>
@@ -74,7 +75,7 @@
                 </tbody>
               </table>
             </div>
-
+            @endif
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <thead>
@@ -90,8 +91,8 @@
                     <tr>
                       <td>{{ $event->name }}</td>
                       <td>{{ $event->price }}</td>
-                      <td><span class="label label-{{ $event->pivot->paid == 0 ? 'danger' : 'success'}}">{{ $event->pivot->paid == 0 ? 'Not Paid' : 'Paid'}}"</span></td>
-                      <td><span class="label label-{{ $event->pivot->played == 0 ? 'danger' : 'success'}}">{{ $event->pivot->played == 0 ? 'Not Played' : 'Played'}}"</span></td>
+                      <td><span class="label label-{{ $event->pivot->paid == 0 ? 'danger' : 'success'}}">{{ $event->pivot->paid == 0 ? 'Not Paid' : 'Paid'}}</span></td>
+                      <td><span class="label label-{{ $event->pivot->played == 0 ? 'danger' : 'success'}}">{{ $event->pivot->played == 0 ? 'Not Played' : 'Played'}}</span></td>
                     </tr>
                   @endforeach
                 </tbody>
