@@ -78,7 +78,6 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Role</th>
                     <th>Name</th>
                     <th>College ID</th>
                     <th>Phone</th>
@@ -98,6 +97,7 @@
               </table>
             </div>
             @endif
+            <hr>
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <thead>
