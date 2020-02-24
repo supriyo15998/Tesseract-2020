@@ -78,7 +78,7 @@ class RegisterController extends Controller
         // return response()->json([$request->all()], 500);
 
         $leader = Participant::create($request->leader);
-        $team = Team::create(['name' => $request->team['name'], 'leader_id' => $leader->id]);
+        $team = Team::create(['name' => $request->team['name'], 'leader_id' => $leader->id, 'subject' => $request->team['subject']]);
 
         $leader->team()->associate($team);
         $leader->save();
