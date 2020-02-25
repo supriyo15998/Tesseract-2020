@@ -21,7 +21,10 @@
 		<small>Registered on {{ \Carbon\Carbon::createFromTimeStamp(strtotime($order->created_at))->format('l jS \\of F Y, h:i A') }}</small>
 		<div class="logo" style="float: right;">
 			<!-- <img src="https://www.foundit.ie/images/qr_code_sample.jpg" height="150" width="150"> -->
-			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(170)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate($order->id)) !!} ">
+			@php
+				$gen = '{"order": ' . $order->id . '}';
+			@endphp
+			<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(170)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate($gen)) !!} ">
 
 		</div>
 		<div class="row">
