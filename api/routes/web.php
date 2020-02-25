@@ -19,7 +19,10 @@ Route::domain('downloads.tesseractgnit.com')->group(function() {
 	});
 
 	Route::get('/events/{event}/rules', function($event) {
-		return response()->download(public_path() . '/storage/rules/' . \App\Event::where('slug', $event)->firstOrFail()->rules);
+		if($event == 'naveen-vidyarthi')
+			return response()->download(public_path() . '/storage/rules/Tesseract_2k20_Naveen_Vidyarthi_Award.pdf');
+		else
+			return response()->download(public_path() . '/storage/rules/' . \App\Event::where('slug', $event)->firstOrFail()->rules);
 	});
 
 });
