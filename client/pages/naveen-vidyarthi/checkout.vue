@@ -141,9 +141,9 @@
                                     >
                                         <b-form-select
                                             id="subject"
-                                            v-model="enrollTeamForm.team.subject"
+                                            v-model="enrollTeamForm.selectedEvents[0]"
                                             :class="{'is-invalid': errors.year}"
-                                            :options="eventList"
+                                            :options="computedEvents"
                                             required
                                             disabled
                                         ></b-form-select>
@@ -160,9 +160,28 @@
                                     >
                                         <b-form-select
                                             id="subject"
-                                            v-model="enrollTeamForm.team.subject"
+                                            v-model="enrollTeamForm.selectedEvents[1]"
                                             :class="{'is-invalid': errors.year}"
-                                            :options="subjects"
+                                            :options="computedEvents"
+                                            required
+                                            disabled
+                                        ></b-form-select>
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="errors.name"
+                                        >{{ errors.name[0] }}</div>
+                                    </b-form-group>
+
+                                      <b-form-group
+                                        id="input-group-subject"
+                                        label="Model Display Domain/Subject:"
+                                        label-for="subject"
+                                    >
+                                        <b-form-select
+                                            id="subject"
+                                            v-model="enrollTeamForm.selectedEvents[2]"
+                                            :class="{'is-invalid': errors.year}"
+                                            :options="filteredComputedEvents"
                                             required
                                         ></b-form-select>
                                         <div
@@ -178,27 +197,9 @@
                                     >
                                         <b-form-select
                                             id="subject"
-                                            v-model="enrollTeamForm.team.subject"
+                                            v-model="enrollTeamForm.selectedEvents[3]"
                                             :class="{'is-invalid': errors.year}"
-                                            :options="subjects"
-                                            required
-                                        ></b-form-select>
-                                        <div
-                                            class="invalid-feedback"
-                                            v-if="errors.name"
-                                        >{{ errors.name[0] }}</div>
-                                    </b-form-group>
-
-                                      <b-form-group
-                                        id="input-group-subject"
-                                        label="Model Display Domain/Subject:"
-                                        label-for="subject"
-                                    >
-                                        <b-form-select
-                                            id="subject"
-                                            v-model="enrollTeamForm.team.subject"
-                                            :class="{'is-invalid': errors.year}"
-                                            :options="subjects"
+                                            :options="filteredComputedEvents"
                                             required
                                         ></b-form-select>
                                         <div
@@ -657,7 +658,14 @@ export default {
                         year: null
                     }
                 ],
-                events: []
+                events: [],
+                selectedEvents: [
+                    18,
+                    17,
+                    null,
+                    null,
+                    null
+                ],
             },
             events: [],
             maxMembers: 6,
@@ -668,6 +676,22 @@ export default {
         }
     },
     computed: {
+        computedEvents () {
+            const events = [{ text: 'Select One', value: null}]
+            this.events.forEach((e) => {
+                events.push({text: e.name, value: e.id})
+            })
+            return events
+        },
+        filteredComputedEvents() {
+            const events = [{ text: 'Select One', value: null}]
+            this.events.forEach((e) => {
+                if (e.id !== 18 && e.id !== 17) {
+                    events.push({text: e.name, value: e.id})
+                }
+            })
+            return events
+        },
         discount () {
             let discount = 0
 
