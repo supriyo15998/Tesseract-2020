@@ -29,7 +29,7 @@ Route::get('/', function() {
 });
 
 // test routing for pdf's
-Route::get('/teams', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
+// Route::get('/teams', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
 // Route::get('/test', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
