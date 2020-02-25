@@ -35,6 +35,9 @@
 		<h1 class="tesseract" style="text-align: center;color: #1b03a3;">Tesseract 2k20</h1>
 		<h2 class="tesseract" style="text-align: center;color: #1b03a3;line-height: 3px;">Registration Slip</h2>
 		<h2 style="text-align: center; color: #1b03a3;">Team Name: {{ $order->team->name }}</h2>
+		@if($order->team->is_naveen)
+			<h2 style="text-align: center; color: #1b03a3;">Naveen Vidyarthi</h2>
+		@endif
 		<table style="width: 100%">
 			<thead style="background-color: #1b03a3; color: white">
 				<tr>
