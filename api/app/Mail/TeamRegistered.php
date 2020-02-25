@@ -8,7 +8,6 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 use App\Order;
-
 use PDF;
 
 class TeamRegistered extends Mailable
