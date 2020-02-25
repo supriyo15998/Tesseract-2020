@@ -115,7 +115,7 @@
                 <a href=""><i class="fa fa-google-plus"></i></a>
                 <a href=""><i class="fa fa-linkedin"></i></a>
               </div> -->
-                                <p>Each participating team must participate in two mandatory events (<b>Model Display</b> and <b>Poster Presentation</b>), and minimum <b>two</b> optional events and maximum <b>three</b> optional events. Each event holds some points (refer the table below). Highest point earning team will win the award.</p>
+                                <p>Each participating team must participate in two mandatory events (<b>Model Display</b> and <b>Poster Presentation</b>), and maximum <b>three</b> optional events. Each event holds some points (refer the table below). Highest point earning team will win the award.</p>
                                 <h2 class="text-center">Point Table</h2>
                                 <table class="table table-hover table-condensed">
                                     <thead>
@@ -264,7 +264,6 @@
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li> -->
                             </ul>
                         </div>
-
 
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contact Us</h4>
