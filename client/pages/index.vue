@@ -141,6 +141,33 @@
                         <h2>Event List</h2>
                         <p>Here are some of our events</p>
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 text-center">
+                            <h2>Naveen Vidyarthi Award</h2>
+                        </div>
+                        <div
+                            class="col-lg-4"
+                        >   <center>
+                            <div class="speaker">
+                                <img
+                                    src="/img/posters/naveen_vidyarthi_compressed.jpg"
+                                    alt="Speaker 1"
+                                    class="img-fluid"
+                                >
+                                <div class="details">
+                                    <h3>
+                                        <nuxt-link
+                                            to="/naveen-vidyarthi"
+                                            style="text-decoration: none"
+                                        >Naveen Vidyarthi Award</nuxt-link>
+                                    </h3>
+                                    <p>Naveen Vidyarthi</p>
+                                </div>
+                            </div>
+                            </center>
+                        </div>
+                    </div>
                     <div
                         class="row"
                         v-for="category in computedCategories"

@@ -32,7 +32,7 @@
                                 style="text-decoration: none;"
                             >About</nuxt-link>
                         </li>
-                        <li>
+                        <li class="menu-active">
                             <nuxt-link
                                 to="/#events"
                                 style="text-decoration: none;"
@@ -68,7 +68,7 @@
                                 style="text-decoration: none;"
                             >Contact</nuxt-link>
                         </li>
-                        <li class="menu-active">
+                        <li>
                             <nuxt-link
                                 to="/cart"
                                 style="text-decoration: none;"
@@ -95,121 +95,120 @@
             >
                 <div class="container">
                     <div class="section-header">
-                        <h2>Checkout</h2>
-                        <p>Cart Details</p>
+                        <h2>Naveen Vidyarthi Award</h2>
+                        <p>The GNIT In-House event for First Year Students! </p>
                     </div>
                     <div class="row">
-                        <div
-                            v-if="events && events.length > 0"
-                            style="width: 100%;"
-                        >
-                            <table
-                                id="cart"
-                                class="table table-hover table-condensed"
+                        <div class="col-md-5">
+                            <img
+                                src="img/posters/naveen_vidyarthi_compressed.jpg"
+                                alt="Speaker 1"
+                                class="img-fluid"
                             >
-                                <thead>
-                                    <tr>
-                                        <th style="width:70%">Product</th>
-                                        <th style="width:20%">Price</th>
-                                        <th colspan="2"></th>
-                                        <th style="width:10%">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        v-for="event in events"
-                                        :key="event.id"
-                                    >
-                                        <td data-th="Product">
-                                            <div class="row">
-                                                <div class="col-sm-10">
-                                                    <h6 class="nomargin">{{ event.name }}</h6>
-                                                    <p style="font-size: 13px;">{{ event.description }}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Price">₹{{ event.price }}</td>
-                                        <td colspan="2"></td>
-                                        <td
-                                            class="actions"
-                                            data-th=""
-                                        >
-                                            <button
-                                                class="btn btn-danger btn-sm"
-                                                :disabled="isLoading"
-                                                @click.prevent="removeFromCart(event)"
-                                            ><i
-                                                    class="fa fa-spinner fa-spin"
-                                                    v-if="isLoading"
-                                                ></i><i
-                                                    class="fa fa-trash-o"
-                                                    v-else
-                                                ></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class="visible-xs">
-                                        <td colspan="1"></td>
-                                        <td><strong>Total ₹{{ totalAmount }}</strong></td>
-                                        <td
-                                            colspan="3"
-                                            class="hidden-xs"
-                                        ></td>
-                                    </tr>
-                                    <tr class="visible-xs">
-                                        <td colspan="1"></td>
-                                        <td><strong>Combo Discount ₹{{ discount }}</strong></td>
-                                        <td
-                                            colspan="3"
-                                            class="hidden-xs"
-                                        ></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <ul class="nav-menu">
-                                                <li
-                                                    class="buy-tickets"
-                                                    style="width: 100%;"
-                                                >
-                                                    <nuxt-link to="/#events"><i class="fa fa-angle-left"></i> Browse events</nuxt-link>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td
-                                            colspan="3"
-                                            class="hidden-xs"
-                                        ><strong>Sub Total ₹{{ totalAmount - discount }}</strong></td>
-                                        <td>
-                                            <ul class="nav-menu">
-                                                <li
-                                                    class="buy-tickets"
-                                                    style="width: 100%;"
-                                                >
-                                                    <nuxt-link
-                                                        to="/checkout"
-                                                        style="background-color: #28a745 !important; border-color: #28a745 !important;"
-                                                    >Checkout <i class="fa fa-angle-right"></i> </nuxt-link>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
                         </div>
-                        <div
-                            v-else
-                            class="text-center col-lg-12"
-                        >
-                            <h3>Your cart is empty!</h3>
-                            <ul class="nav-menu">
-                                <li
-                                    class="buy-tickets"
-                                    style="width: 100%;"
-                                >
-                                    <nuxt-link to="/#events">Browse events</nuxt-link>
-                                </li>
-                            </ul>
+                        <div class="col-md-7">
+                            <div class="details">
+                                <h2>Naveen Vidyarthi Award</h2>
+                                <!-- <div class="social">
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-google-plus"></i></a>
+                <a href=""><i class="fa fa-linkedin"></i></a>
+              </div> -->
+                                <p>Each participating team must participate in two mandatory events (<b>Model Display</b> and <b>Poster Presentation</b>), and minimum <b>two</b> optional events and maximum <b>three</b> optional events. Each event holds some points (refer the table below). Highest point earning team will win the award.</p>
+                                <h2 class="text-center">Point Table</h2>
+                                <table class="table table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Event</th>
+                                            <th>Points</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Model Display <b>(Mandatory)</b></td>
+                                            <td>550</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Poster Presentation <b>(Mandatory)</b></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Photography <b>(Optional)</b></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tech quiz + Debate <b>(Optional)</b></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chess <b>(Optional)</b></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Any Gaming <b>(Optional)</b></td>
+                                            <td>150</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Any Coding Event <b>(Optional)</b></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Any Robotics Event <b>(Optional)</b></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Short Film <b>(Optional)</b></td>
+                                            <td>100</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <h5>Minimum Members : 4</h5>
+                                    <h5>Maximum Members : 6</h5>
+                                </div>
+                                <p
+                                    v-if="events.length > 0 && events[0].category.id !== 'naveen-vidyarthi'"
+                                    class="text-danger"
+                                >You cannot enroll in this event as this category differs from an event already in your cart! Please checkout and re-enroll with events in this category!</p>
+
+                                <p
+                                    v-if="events.length > 0 && events[0].is_team !== 1"
+                                    class="text-danger"
+                                >You cannot enroll in this event as you have an event in your cart which requires solo registration while this event requires team registration. Please checkout and re-enroll in this event as a team!</p>
+                                <ul class="nav-menu">
+                                    <li class="buy-tickets">
+                                        <a
+                                            :href="`https://downloads.tesseractgnit.com/events/naveen-vidyarthi/rules`"
+                                            target="_blank"
+                                        >View Rules</a>
+                                    </li>
+                                    <li
+                                        class="buy-tickets"
+                                        :class="{'is-hidden': (events.length > 0 && events[0].category.id !== 'naveen-vidyarthi') || (events.length > 0 && events[0].is_team !== 1),}"
+                                    >
+                                        <nuxt-link
+                                            to="/naveen-vidyarthi/checkout"
+                                            style="text-decoration: none;"
+                                            :disabled="isLoading"
+                                        ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Enroll</span></nuxt-link>
+                                    </li>
+                                    <li
+                                        class="buy-tickets"
+                                        v-if="eventIds.includes(0)"
+                                        :class="{'is-hidden': isLoading}"
+                                    >
+                                        <nuxt-link to="/#events">More events</nuxt-link>
+                                    </li>
+                                    <li
+                                        class="buy-tickets"
+                                        v-if="events.length > 0"
+                                        :class="{'is-hidden': isLoading}"
+                                    >
+                                        <nuxt-link to="/cart">Checkout</nuxt-link>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -217,7 +216,6 @@
                 <br>
                 <br>
             </section>
-
         </main>
 
         <!--==========================
@@ -235,7 +233,6 @@
                             >
                             <p>Tesseract 2020 is here being bigger and better with a lot of newer events than the previous year. Get you hands dirty and start building your skills to showboat them in the celebration of technology at Guru Nanak Institute of Technology.</p>
                         </div>
-
 
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
@@ -267,6 +264,7 @@
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li> -->
                             </ul>
                         </div>
+
 
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contact Us</h4>
@@ -333,10 +331,11 @@ export default {
     data () {
         return {
             event: null,
+            similar: [],
             isLoading: false,
             isSuccess: false,
             enrollSoloForm: {
-                name: '',
+                name: this.user ? this.user.email : 'ABCD1234',
                 email: '',
                 college: '',
                 phone: '',
@@ -347,62 +346,34 @@ export default {
 
         }
     },
-    computed: {
-        discount () {
-            let discount = 0
-
-            if (this.eventIds.includes(6) && this.eventIds.includes(7) && this.eventIds.includes(5)) {
-                discount = 100
-            }
-
-            else if ((this.eventIds.includes(8) && this.eventIds.includes(9)) || (this.eventIds.includes(8) && this.eventIds.includes(10)) || (this.eventIds.includes(9) && this.eventIds.includes(10))) {
-                 if (this.events.length === 2)
-                     discount = 30
-
-                 else if (this.events.length === 3)
-                     discount = 50
-            }
-
-            else if (this.eventIds.includes(8) && this.eventIds.includes(9) && this.eventIds.includes(10)) {
-                discount = 50
-            }
-            //console.log(discount)
-            return discount
-        },
-        totalAmount () {
-            let total = 0
-
-            this.events.forEach((e) => {
-                total += e.price
-            })
-
-            return total
-        }
-    },
     methods: {
-        enrollSoloSubmit () {
+        addToCart () {
             this.isLoading = true
-            this.setUser(this.enrollSoloForm)
-            this.pushEvent(this.event.id)
+            //this.setUser(this.enrollSoloForm)
+            this.pushEvent(this.event)
 
             window.setInterval(() => {
                 this.isLoading = false
                 this.isSuccess = true
             }, 2000)
         },
-        removeFromCart (event) {
+        removeFromCart () {
             this.isLoading = true
-            this.removeEvent(event)
+            this.removeEvent(this.event)
 
             window.setInterval(() => {
                 this.isLoading = false
-            }, 500)
+            }, 2000)
         }
-    }
+    },
 }
 </script>
 
 <style scoped>
+.is-hidden {
+    display: none;
+}
+
 .nav-menu li.buy-tickets a {
     text-decoration: none;
 }
@@ -410,38 +381,27 @@ export default {
   background: rgba(6, 12, 34, 0.98);
 }
 
-.table>tbody>tr>td, .table>tfoot>tr>td{
-    vertical-align: middle;
+.nav-menu li.buy-tickets button {
+  color: #fff;
+  background: #f82249;
+  padding: 7px 22px;
+  border-radius: 50px;
+  border: 2px solid #f82249;
+  transition: all ease-in-out 0.3s;
+  font-weight: 500;
+  margin-left: 8px;
+  margin-top: 2px;
+  line-height: 1;
+  font-size: 13px;
 }
-@media screen and (max-width: 600px) {
-    table#cart tbody td .form-control{
-		width:20%;
-		display: inline !important;
-	}
-	.actions .btn{
-		width:36%;
-		margin:1.5em 0;
-	}
-	
-	.actions .btn-info{
-		float:left;
-	}
-	.actions .btn-danger{
-		float:right;
-	}
-	
-	table#cart thead { display: none; }
-	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
-	table#cart tbody tr td:first-child { background: #333; color: #fff; }
-	table#cart tbody td:before {
-		content: attr(data-th); font-weight: bold;
-		display: inline-block; width: 8rem;
-	}
-	
-	
-	
-	table#cart tfoot td{display:block; }
-	table#cart tfoot td .btn{display:block;}
-	
+
+.nav-menu li.buy-tickets button:hover {
+  background: rgba(6, 12, 34, 0.98);
 }
+
+.nav-menu li.buy-tickets:hover button:before,
+.nav-menu li.buy-tickets.menu-active button:before {
+  visibility: hidden;
+}
+
 </style>
