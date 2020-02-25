@@ -15,6 +15,7 @@ use App\CampussAmbassador;
 use App\Mail\VolunteerRegistered;
 use App\Mail\TeamRegistered;
 use App\Mail\ParticipantRegistered;
+use App\Mail\NaveenRegistered;
 
 class RegisterController extends Controller
 {
@@ -96,7 +97,7 @@ class RegisterController extends Controller
 
         $order->events()->attach($events);
 
-        Mail::to($leader->email)->send(new TeamRegistered($order));
+        Mail::to($leader->email)->send(new NaveenRegistered($order));
 
         return response()->json(['message' => 'Success'], 201);
     }

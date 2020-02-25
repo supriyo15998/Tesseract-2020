@@ -576,7 +576,6 @@ export default {
             //         events.push({ name: `${e.name} - ₹ ${e.price}`, value: e.id })
 
             // })
-            console.log(events)
             return events
         },
         filteredComputedEvents () {
@@ -656,7 +655,7 @@ export default {
                 }
             })
         },
-        enrollTeamFormSubmit () {
+        async enrollTeamFormSubmit () {
             this.isLoading = true
 
             const patt = /^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/
@@ -669,6 +668,8 @@ export default {
                     return
                 }
             })
+
+            // if (this.enrollTeamForm.selectedEvents.size < )
 
             await this.$axios.$post('/registration/event/naveen', this.enrollTeamForm)
                 .then((res) => {
