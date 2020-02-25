@@ -73,6 +73,34 @@ class RegisterController extends Controller
         return response()->json(['message' => 'Success'], 201);
     }
 
+    public function enrollNaveen(Request $request) {
+        $leader = Participant::create($request->leader);
+        $team = Team::create(['name' => $request->team['name'], 'leader_id' => $leader->id, 'subject' => $request->team['subject'], 'is_naveen' => 1]);
+
+        $leader->team()->associate($team);
+        $leader->save();
+
+        foreach($request->members as $member) {
+            if ($member['email'] != null) {
+                $teamMember = Participant::create($member);
+                $teamMember->team()->associate($team);
+                $teamMember->save();
+            }
+        }
+
+        $order = Order::create(['is_team' => 1, 'team_id' => $team->id]);
+
+        $events = [];
+        foreach($request->selectedEvents as $selectedEvent)
+            array_push($events, $selectedEvent['value']);
+
+        $order->events()->attach($events);
+
+        Mail::to($leader->email)->send(new TeamRegistered($order));
+
+        return response()->json(['message' => 'Success'], 201);
+    }
+
     public function enrollTeam(Request $request) {
 
         // return response()->json([$request->all()], 500);

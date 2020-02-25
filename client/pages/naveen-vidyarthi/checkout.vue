@@ -126,88 +126,39 @@
                                 <h4>Error!</h4>
                                 <p>Something went wrong! Please try again, if you see this message again, please try again later!</p>
                             </b-alert>
-                            <div
-                                class="col-lg-12"
-                            >
+                            <div class="col-lg-12">
                                 <p>As per your event selection, your team must consist minimum {{ minMembers }} member(s) and can have a maximum of {{ maxMembers }} member(s). <b>{Inclusive of Team Leader}</b></p>
 
-                                <b-form
-                                >
-
-                                  <b-form-group
-                                        id="input-group-subject"
-                                        label="Model Display Domain/Subject:"
+                                <b-form @submit.prevent="enrollTeamFormSubmit">
+                                    <b-form-group
+                                        id="input-group-events"
+                                        label="Select the events you are interested in:"
                                         label-for="subject"
                                     >
-                                        <b-form-select
-                                            id="subject"
-                                            v-model="enrollTeamForm.selectedEvents[0]"
-                                            :class="{'is-invalid': errors.year}"
+                                        <multiselect
+                                            v-model="enrollTeamForm.selectedEvents"
                                             :options="computedEvents"
-                                            required
-                                            disabled
-                                        ></b-form-select>
+                                            :multiple="true"
+                                            :preserve-search="true"
+                                            group-values="options"
+                                            group-label="category"
+                                            placeholder="Pick some"
+                                            label="name"
+                                            @select="onSelected"
+                                            :max="5"
+                                            trackBy="value"
+                                        >
+                                            <template
+                                                slot="tag"
+                                                slot-scope="{ option }"
+                                            ><span class="multiselect__tag"><span>{{ option.name }}</span> <span @click="customRemove(option)">❌</span></span></template>
+                                        </multiselect>
                                         <div
                                             class="invalid-feedback"
                                             v-if="errors.name"
                                         >{{ errors.name[0] }}</div>
                                     </b-form-group>
 
-                                      <b-form-group
-                                        id="input-group-subject"
-                                        label="Model Display Domain/Subject:"
-                                        label-for="subject"
-                                    >
-                                        <b-form-select
-                                            id="subject"
-                                            v-model="enrollTeamForm.selectedEvents[1]"
-                                            :class="{'is-invalid': errors.year}"
-                                            :options="computedEvents"
-                                            required
-                                            disabled
-                                        ></b-form-select>
-                                        <div
-                                            class="invalid-feedback"
-                                            v-if="errors.name"
-                                        >{{ errors.name[0] }}</div>
-                                    </b-form-group>
-
-                                      <b-form-group
-                                        id="input-group-subject"
-                                        label="Model Display Domain/Subject:"
-                                        label-for="subject"
-                                    >
-                                        <b-form-select
-                                            id="subject"
-                                            v-model="enrollTeamForm.selectedEvents[2]"
-                                            :class="{'is-invalid': errors.year}"
-                                            :options="filteredComputedEvents"
-                                            required
-                                        ></b-form-select>
-                                        <div
-                                            class="invalid-feedback"
-                                            v-if="errors.name"
-                                        >{{ errors.name[0] }}</div>
-                                    </b-form-group>
-
-                                      <b-form-group
-                                        id="input-group-subject"
-                                        label="Model Display Domain/Subject:"
-                                        label-for="subject"
-                                    >
-                                        <b-form-select
-                                            id="subject"
-                                            v-model="enrollTeamForm.selectedEvents[3]"
-                                            :class="{'is-invalid': errors.year}"
-                                            :options="filteredComputedEvents"
-                                            required
-                                        ></b-form-select>
-                                        <div
-                                            class="invalid-feedback"
-                                            v-if="errors.name"
-                                        >{{ errors.name[0] }}</div>
-                                    </b-form-group>
-                                
                                     <b-form-group
                                         id="input-group-team-name"
                                         label="Team Name:"
@@ -300,42 +251,6 @@
                                     </b-form-group>
 
                                     <b-form-group
-                                        id="input-group-leader-college"
-                                        label="Team College name:"
-                                        label-for="input-leader-college"
-                                    >
-                                        <b-form-input
-                                            id="input-leader-college"
-                                            v-model="enrollTeamForm.leader.college"
-                                            :class="{'is-invalid': errors.college}"
-                                            required
-                                            placeholder="Guru Nanak Institute of Technology"
-                                        ></b-form-input>
-                                        <div
-                                            class="invalid-feedback"
-                                            v-if="errors.college_name"
-                                        >{{ errors.college_name[0] }}</div>
-                                    </b-form-group>
-
-                                    <b-form-group
-                                        id="input-group-leader-year"
-                                        label="Team Leader Year:"
-                                        label-for="input-leader-year"
-                                    >
-                                        <b-form-select
-                                            id="input-leader-year"
-                                            v-model="enrollTeamForm.leader.year"
-                                            :class="{'is-invalid': errors.year}"
-                                            :options="years"
-                                            required
-                                        ></b-form-select>
-                                        <div
-                                            class="invalid-feedback"
-                                            v-if="errors.year"
-                                        >{{ errors.year[0] }}</div>
-                                    </b-form-group>
-
-                                    <b-form-group
                                         id="input-group-college-id"
                                         label="Team Leader College ID Number:"
                                         label-for="input-college-id"
@@ -399,24 +314,6 @@
                                         </b-form-group>
 
                                         <b-form-group
-                                            :id="`input-group-college-name-${n}`"
-                                            label="College name:"
-                                            :label-for="`input-college-name-${n}`"
-                                        >
-                                            <b-form-input
-                                                :id="`input-college-name-${n}`"
-                                                v-model="enrollTeamForm.members[n-1].college"
-                                                :class="{'is-invalid': errors.college}"
-                                                :required="n+1 < minMembers"
-                                                placeholder="Guru Nanak Institute of Technology"
-                                            ></b-form-input>
-                                            <div
-                                                class="invalid-feedback"
-                                                v-if="errors.college"
-                                            >{{ errors.college[0] }}</div>
-                                        </b-form-group>
-
-                                        <b-form-group
                                             :id="`input-group-college-id-${n}`"
                                             label="College ID Number:"
                                             :label-for="`input-college-id-${n}`"
@@ -433,24 +330,6 @@
                                                 class="invalid-feedback"
                                                 v-if="errors.college_id"
                                             >{{ errors.college_id[0] }}</div>
-                                        </b-form-group>
-
-                                        <b-form-group
-                                            :id="`input-group-year-${n}`"
-                                            label="Year:"
-                                            :label-for="`input-year-${n}`"
-                                        >
-                                            <b-form-select
-                                                :id="`input-year-${n}`"
-                                                v-model="enrollTeamForm.members[n-1].year"
-                                                :class="{'is-invalid': errors.year}"
-                                                :options="years"
-                                                :required="n+1 < minMembers"
-                                            ></b-form-select>
-                                            <div
-                                                class="invalid-feedback"
-                                                v-if="errors.year"
-                                            >{{ errors.year[0] }}</div>
                                         </b-form-group>
 
                                         <b-form-group
@@ -508,7 +387,6 @@
                             <p>Tesseract 2020 is here being bigger and better with a lot of newer events than the previous year. Get you hands dirty and start building your skills to showboat them in the celebration of technology at Guru Nanak Institute of Technology.</p>
                         </div>
 
-
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
@@ -539,7 +417,6 @@
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li> -->
                             </ul>
                         </div>
-
 
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contact Us</h4>
@@ -601,8 +478,12 @@
 
 <script>
 import axios from 'axios'
+import Multiselect from 'vue-multiselect'
 
 export default {
+    components: {
+        Multiselect
+    },
     data () {
         return {
             event: null,
@@ -617,78 +498,97 @@ export default {
                 leader: {
                     name: '',
                     email: '',
-                    college: '',
+                    college: 'GNIT',
                     phone: '',
-                    year: null,
+                    year: '1st',
                 },
                 members: [
                     {
                         name: '',
                         email: '',
-                        college: '',
+                        college: 'GNIT',
                         phone: '',
-                        year: null,
+                        year: '1st',
                     },
                     {
                         name: '',
                         email: '',
-                        college: '',
+                        college: 'GNIT',
                         phone: '',
-                        year: null,
+                        year: '1st',
                     },
                     {
                         name: '',
                         email: '',
-                        college: '',
+                        college: 'GNIT',
                         phone: '',
-                        year: null,
+                        year: '1st',
                     },
                     {
                         name: '',
                         email: '',
-                        college: '',
+                        college: 'GNIT',
                         phone: '',
-                        year: null,
+                        year: '1st',
                     },
                     {
                         name: '',
                         email: '',
-                        college: '',
+                        college: 'GNIT',
                         phone: '',
-                        year: null
+                        year: '1st'
                     }
                 ],
                 events: [],
-                selectedEvents: [
-                    18,
-                    17,
-                    null,
-                    null,
-                    null
-                ],
+                selectedEvents: [{ name: 'Model Display - ₹ 0', value: 18 }, { name: 'Poster Presentation - ₹ 0', value: 17 }],
             },
+            categories: [],
             events: [],
             maxMembers: 6,
             minMembers: 4,
-            years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
-            subjects: [{ text: 'Select One', value: null }, { text: 'Healthcare and Bio Medical Instruments', value: 'Healthcare and Bio Medical Instruments' }, { text: 'Renewable Energy and Sustainable Environment', value: 'Renewable Energy and Sustainable Environment' }, { text: 'Food Technology', value: 'Food Technology' }],
+            years: [{ text: 'Select One', value: null, disabled: true }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
+            subjects: [{ text: 'Select One', value: null, disabled: true }, { text: 'Healthcare and Bio Medical Instruments', value: 'Healthcare and Bio Medical Instruments' }, { text: 'Renewable Energy and Sustainable Environment', value: 'Renewable Energy and Sustainable Environment' }, { text: 'Food Technology', value: 'Food Technology' }],
 
         }
     },
     computed: {
         computedEvents () {
-            const events = [{ text: 'Select One', value: null}]
-            this.events.forEach((e) => {
-                events.push({text: e.name, value: e.id})
+            const events = []
+            this.categories.forEach((c) => {
+                let catEvents = []
+                c.events.forEach((e) => {
+                    if (e.id === 17 || e.id === 18)
+                        catEvents.push({ name: `${e.name} - ₹ ${e.price}`, value: e.id, $isDisabled: true, category: c.id })
+                    else if (e.id === 15)
+                        catEvents.push({ name: `${e.name} + Debate - ₹ ${e.price}`, value: e.id, category: c.id })
+                    else if (e.id === 16)
+                        return;
+                    else
+                        catEvents.push({ name: `${e.name} - ₹ ${e.price}`, value: e.id, category: c.id })
+                })
+                events.push({ category: c.name, options: catEvents, id: c.id })
             })
+            // const events = []
+            // this.events.forEach((e) => {
+            //     if (e.id === 17 || e.id === 18)
+            //         events.push({ name: `${e.name} - ₹ ${e.price}`, value: e.id, $isDisabled: true })
+            //     else
+            //         events.push({ name: `${e.name} - ₹ ${e.price}`, value: e.id })
+
+            // })
+            console.log(events)
             return events
         },
-        filteredComputedEvents() {
-            const events = [{ text: 'Select One', value: null}]
-            this.events.forEach((e) => {
-                if (e.id !== 18 && e.id !== 17) {
-                    events.push({text: e.name, value: e.id})
-                }
+        filteredComputedEvents () {
+            const events = [{ text: 'Select One', value: null, disabled: true }]
+            this.categories.forEach((c) => {
+                let catEvents = []
+                c.events.forEach((e) => {
+                    if (e.id !== 18 && e.id !== 17) {
+                        catEvents.push({ text: `${e.name} - ₹ ${e.price}`, value: e.id, category: e.category.id })
+                    }
+                })
+                events.push({ label: c.name, options: catEvents })
             })
             return events
         },
@@ -722,26 +622,64 @@ export default {
             return total
         }
     },
-    async asyncData({ app, params}) {
+    async asyncData ({ app, params }) {
         const response = await app.$axios.$get('/generic')
         return {
-            events: response.events
+            categories: response.categories
         }
     },
     methods: {
-        async enrollTeamFormSubmit () {
-            this.isLoading = true
-            this.enrollTeamForm.events = this.eventIds
-            await this.$axios.$post('/registration/event/team', this.enrollTeamForm)
-                .then((res) => {
-                    this.isLoading = false
-                    this.isSuccess = true
-                    this.clearEvents()
+        customRemove (option) {
+            if (option.value === 17 || option.value === 18)
+                return
+            else {
+                this.enrollTeamForm.selectedEvents.forEach((s, i) => {
+                    if (s.value === option.value) {
+                        this.enrollTeamForm.selectedEvents.splice(i, 1)
+                        this.computedEvents.forEach((c) => {
+                            if ((c.id === 2 || c.id === 3 || c.id === 4) && (c.id === option.category)) {
+                                c.options.forEach((e) => {
+                                    e.$isDisabled = false
+                                })
+                            }
+                        })
+                    }
                 })
-                .catch((err) => {
+            }
+        },
+        onSelected (selectedOption) {
+            this.computedEvents.forEach((c) => {
+                if ((c.id === 2 || c.id === 3 || c.id === 4) && (c.id === selectedOption.category)) {
+                    c.options.forEach((e) => {
+                        e.$isDisabled = true
+                    })
+                }
+            })
+        },
+        enrollTeamFormSubmit () {
+            this.isLoading = true
+
+            const patt = /^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/
+
+            this.enrollTeamForm.members.forEach((m) => {
+                if (m.college_id && !m.college_id.match(patt)) {
                     this.isLoading = false
                     this.isError = true
-                })
+                    alert(`This event is only for first year students! Invalid College Student ID Given : ${m.college_id}`)
+                    return
+                }
+            })
+
+            // await this.$axios.$post('/registration/event/team', this.enrollTeamForm)
+            //     .then((res) => {
+            //         this.isLoading = false
+            //         this.isSuccess = true
+            //         this.clearEvents()
+            //     })
+            //     .catch((err) => {
+            //         this.isLoading = false
+            //         this.isError = true
+            //     })
         },
         async enrollSoloFormSubmit () {
             this.isLoading = true
@@ -768,6 +706,8 @@ export default {
     }
 }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style scoped>
 .nav-menu li.buy-tickets a {

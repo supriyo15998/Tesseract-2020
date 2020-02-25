@@ -230,7 +230,7 @@
 
                                     <b-form-group
                                         id="input-group-leader-college"
-                                        label="Team College name:"
+                                        label="Team Leader College name:"
                                         label-for="input-leader-college"
                                     >
                                         <b-form-input
@@ -581,7 +581,6 @@
                             <p>Tesseract 2020 is here being bigger and better with a lot of newer events than the previous year. Get you hands dirty and start building your skills to showboat them in the celebration of technology at Guru Nanak Institute of Technology.</p>
                         </div>
 
-
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
@@ -612,7 +611,6 @@
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li> -->
                             </ul>
                         </div>
-
 
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contact Us</h4>
@@ -736,8 +734,8 @@ export default {
                 ],
                 events: []
             },
-            years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
-            subjects: [{ text: 'Select One', value: null }, { text: 'Healthcare and Bio Medical Instruments', value: 'Healthcare and Bio Medical Instruments' }, { text: 'Renewable Energy and Sustainable Environment', value: 'Renewable Energy and Sustainable Environment' }, { text: 'Food Technology', value: 'Food Technology' }],
+            years: [{ text: 'Select One', value: null, disabled: true }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
+            subjects: [{ text: 'Select One', value: null, disabled: true }, { text: 'Healthcare and Bio Medical Instruments', value: 'Healthcare and Bio Medical Instruments' }, { text: 'Renewable Energy and Sustainable Environment', value: 'Renewable Energy and Sustainable Environment' }, { text: 'Food Technology', value: 'Food Technology' }],
 
         }
     },
