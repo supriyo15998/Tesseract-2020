@@ -854,7 +854,7 @@
                             <div class="contact-phone">
                                 <i class="ion-ios-telephone-outline"></i>
                                 <h3>Phone Number</h3>
-                                <p><a href="#">+91-79807-27708 / +91-79807-63840</a></p>
+                                <p><a href="callto:+91-79807-27708">+91-79807-27708</a> / <a href="callto:+91-79807-63840">+91-79807-63840</a></p>
                             </div>
                         </div>
 
@@ -862,7 +862,7 @@
                             <div class="contact-email">
                                 <i class="ion-ios-email-outline"></i>
                                 <h3>Email</h3>
-                                <p><a href="mailto:info@example.com">info@tesseractgnit.com</a></p>
+                                <p><a href="mailto:info@tesseractgnit.com">info@tesseractgnit.com</a></p>
                             </div>
                         </div>
 
