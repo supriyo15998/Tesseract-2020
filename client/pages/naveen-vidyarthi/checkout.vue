@@ -671,16 +671,18 @@ export default {
 
             // if (this.enrollTeamForm.selectedEvents.size < )
 
-            await this.$axios.$post('/registration/event/naveen', this.enrollTeamForm)
-                .then((res) => {
-                    this.isLoading = false
-                    this.isSuccess = true
-                    this.clearEvents()
-                })
-                .catch((err) => {
-                    this.isLoading = false
-                    this.isError = true
-                })
+            if (!this.isError) {
+                await this.$axios.$post('/registration/event/naveen', this.enrollTeamForm)
+                    .then((res) => {
+                        this.isLoading = false
+                        this.isSuccess = true
+                        this.clearEvents()
+                    })
+                    .catch((err) => {
+                        this.isLoading = false
+                        this.isError = true
+                    })
+            }
         },
         async enrollSoloFormSubmit () {
             this.isLoading = true
