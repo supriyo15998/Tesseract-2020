@@ -146,6 +146,8 @@
                         <div class="col-lg-12 col-md-6 text-center">
                             <h2>Naveen Vidyarthi Award</h2>
                         </div>
+                        <div class="col-lg-4">
+                        </div>
                         <div
                             class="col-lg-4"
                         >   <center>
@@ -175,6 +177,9 @@
                     >
                         <div class="col-lg-12 col-md-6 text-center">
                             <h2>{{ category.name }}</h2>
+                        </div>
+
+                        <div class="col-lg-4" v-if="category.events.length < 2">
                         </div>
 
                         <div
