@@ -50,6 +50,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('/volunteers-list', 'HomeController@getVolunteers')->name('getVolunteers');
 	Route::get('/add-event', 'HomeController@viewEventForm')->name('viewEventForm');
 	Route::get('/show-participants', 'HomeController@viewParticipants')->name('viewParticipants');
+	Route::get('/show-naveen', 'HomeController@viewNaveen')->name('viewNaveen');
 	Route::get('/orders/{orderId}/details', 'HomeController@orderDetails')->name('orderDetails');
 	Route::post('/event', 'HomeController@registerEvent')->name('registerEvent');
 	Route::get('/event/list', 'HomeController@showEvent')->name('showEvent');

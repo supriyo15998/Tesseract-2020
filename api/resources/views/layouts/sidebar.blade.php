@@ -61,7 +61,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('viewParticipants') }}"><i class="fa fa-circle-o"></i> View Participants List</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="{{ route('viewNaveen') }}"><i class="fa fa-circle-o"></i> View Naveen Vidyarthi</a></li>
           </ul>
         </li>
       </ul>
