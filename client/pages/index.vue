@@ -854,7 +854,7 @@
                             <div class="contact-phone">
                                 <i class="ion-ios-telephone-outline"></i>
                                 <h3>Phone Number</h3>
-                                <p><a href="callto:+91-79807-27708">+91-79807-27708</a> / <a href="callto:+91-79807-63840">+91-79807-63840</a></p>
+                                <p><a href="tel:+91-79807-27708">+91-79807-27708</a> / <a href="tel:+91-79807-63840">+91-79807-63840</a></p>
                             </div>
                         </div>
 
