@@ -813,6 +813,7 @@ export default {
                 .catch((err) => {
                     this.isLoading = false
                     this.isError = true
+                    $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
                 })
         },
         async enrollSoloFormSubmit () {
@@ -827,6 +828,7 @@ export default {
                 .catch((err) => {
                     this.isLoading = false
                     this.isError = true
+                    $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
                 })
         },
         removeFromCart (event) {
