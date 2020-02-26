@@ -730,6 +730,20 @@ export default {
                         college: '',
                         phone: '',
                         year: null,
+                    },
+                    {
+                        name: '',
+                        email: '',
+                        college: '',
+                        phone: '',
+                        year: null,
+                    },
+                    {
+                        name: '',
+                        email: '',
+                        college: '',
+                        phone: '',
+                        year: null,
                     }
                 ],
                 events: []
