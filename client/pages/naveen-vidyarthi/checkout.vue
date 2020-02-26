@@ -560,7 +560,7 @@ export default {
                     if (e.id === 17 || e.id === 18)
                         catEvents.push({ name: `${e.name} - ₹ ${e.price}`, value: e.id, $isDisabled: true, category: c.id })
                     else if (e.id === 15)
-                        catEvents.push({ name: `${e.name} + Debate - ₹ ${e.price}`, value: e.id, category: c.id })
+                        catEvents.push({ name: `${e.name} + Debate - ₹ 60`, value: e.id, category: c.id })
                     else if (e.id === 16)
                         return;
                     else

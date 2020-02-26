@@ -36,9 +36,10 @@ Route::get('/', function() {
 // Route::get('/test', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
-// Route::get('test', function() {
-// 	return \Carbon\Carbon::now();
-// });
+Route::get('test', function() {
+	Mail::to('farazappy@gmail.com')->send(new \App\Mail\NaveenVidyarthi(\App\Order::findOrFail(12)));
+	return 'Done';
+});
 
 Route::get('qr-code', function () {
   return QRCode::text('QR Code Generator for Laravel!')->url();    

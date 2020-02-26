@@ -92,8 +92,11 @@ class RegisterController extends Controller
         $order = Order::create(['is_team' => 1, 'team_id' => $team->id]);
 
         $events = [];
-        foreach($request->selectedEvents as $selectedEvent)
+        foreach($request->selectedEvents as $selectedEvent) {
             array_push($events, $selectedEvent['value']);
+            if($selectedEvent['value'] == 15)
+                array_push($events, 16);
+        }
 
         $order->events()->attach($events);
 
