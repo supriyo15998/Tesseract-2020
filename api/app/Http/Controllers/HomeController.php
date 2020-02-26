@@ -142,5 +142,9 @@ class HomeController extends Controller
         $order->calculations = $calculations;
 
         return view('orderDetails')->withOrder($order);
+    }
+    public function viewNaveen()
+    {
+        return view('naveen');
     }   
 }
