@@ -38,7 +38,7 @@ Route::get('/', function() {
 
 Route::get('test', function() {
 	$order = \App\Order::findOrFail(12);
-	Mail::to($order->leader->email)->send(new \App\Mail\NaveenRegistered($order));
+	Mail::to($order->team->leader->email)->send(new \App\Mail\NaveenRegistered($order));
 	return 'Done';
 });
 
