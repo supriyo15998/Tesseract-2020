@@ -141,7 +141,54 @@
                         <h2>Event List</h2>
                         <p>Here are some of our events</p>
                     </div>
-
+                    <div class="row animated infinite pulse fast">
+                        <div class="col-lg-12 col-md-6 text-center">
+                            <h2>Highlighted Events</h2>
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div
+                            class="col-lg-4"
+                        >   <center>
+                            <div class="speaker">
+                                <img
+                                    src="https://downloads.tesseractgnit.com/img/events/1581534529_138ee21e4aa71f61.jpg"
+                                    alt="Speaker 1"
+                                    class="img-fluid"
+                                >
+                                <div class="details">
+                                    <h3>
+                                        <nuxt-link
+                                            to="/robotics/robo-war"
+                                            style="text-decoration: none"
+                                        >Robo War</nuxt-link>
+                                    </h3>
+                                    <p>The ultimate battle of two bots.</p>
+                                </div>
+                            </div>
+                            </center>
+                        </div>
+                        <div
+                            class="col-lg-4"
+                        >   <center>
+                            <div class="speaker">
+                                <img
+                                    src="https://downloads.tesseractgnit.com/img/events/1582639374_8f736f632d3a003e.jpg"
+                                    alt="Speaker 1"
+                                    class="img-fluid"
+                                >
+                                <div class="details">
+                                    <h3>
+                                        <nuxt-link
+                                            to="/gaming/pubg-mobile"
+                                            style="text-decoration: none"
+                                        >PUBG Mobile</nuxt-link>
+                                    </h3>
+                                    <p>PLAYERUNKNOWN'S BATTLEGROUNDS (PUBG) is a competitive survival shooting game.</p>
+                                </div>
+                            </div>
+                            </center>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-6 text-center">
                             <h2>Naveen Vidyarthi Award</h2>
@@ -1474,6 +1521,8 @@ export default {
     }
 }
 </script>
+
+<style src="@/static/css/animate.css"></style>
 
 <style>
 #intro h2 {
