@@ -54,15 +54,11 @@ class HomeController extends Controller
     }
     public function viewParticipants()
     {
-        $orders = \App\Order::where('is_team', 0)->where('teams' => function($q) { $q->where('is_naveen', 0); })->get();
+        $orders = \App\Order::all();
         //dd($orders);
         return view('participants')->withOrders($orders);
     }
-    public function viewNaveen()
-    {
-        $orders = \App\Order::where('is_team', 0)->where('teams' => function($q) { $q->where('is_naveen', 1); })->get();
-        return view('naveen');
-    }  
+    
     public function registerEvent(Request $request)
     {
         $validatedData = $request->validate([
