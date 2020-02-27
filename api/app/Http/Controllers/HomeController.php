@@ -56,11 +56,11 @@ class HomeController extends Controller
     {
         // $orders = ;
         //dd($orders);
-        return view('participants')->withOrders(\App\Order::with(array('teams' => function($q) { $q->where('is_naveen', 0); }))->get());
+        return view('participants')->withOrders(\App\Order::with(array('team' => function($q) { $q->where('is_naveen', 0); }))->get());
     }
     public function viewNaveen()
     {
-        return view('participants')->withOrders(\App\Order::with(array('teams' => function($q) { $q->where('is_naveen', 1); }))->get());
+        return view('participants')->withOrders(\App\Order::with(array('team' => function($q) { $q->where('is_naveen', 1); }))->get());
     } 
     public function registerEvent(Request $request)
     {
