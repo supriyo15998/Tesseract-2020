@@ -56,7 +56,8 @@ class HomeController extends Controller
     {
         // $orders = ;
         //dd($orders);
-        return view('participants')->withOrders(\App\Order::with(array('team' => function($q) { $q->where('is_naveen', 0); }))->get());
+        dd(\App\Order::with(array('team' => function($q) { $q->where('is_naveen', 0); }))->get());
+        return view('participants')->withOrders();
     }
     public function viewNaveen()
     {
