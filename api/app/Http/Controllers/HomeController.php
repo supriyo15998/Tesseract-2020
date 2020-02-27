@@ -54,11 +54,14 @@ class HomeController extends Controller
     }
     public function viewParticipants()
     {
-        $orders = \App\Order::all();
+        // $orders = ;
         //dd($orders);
-        return view('participants')->withOrders($orders);
+        return view('participants')->withOrders(\App\Order::with(array('teams' => function($q) { $q->where('is_naveen', 0); }))->get());
     }
-    
+    public function viewNaveen()
+    {
+        return view('participants')->withOrders(\App\Order::with(array('teams' => function($q) { $q->where('is_naveen', 1); }))->get());
+    } 
     public function registerEvent(Request $request)
     {
         $validatedData = $request->validate([
@@ -144,8 +147,5 @@ class HomeController extends Controller
 
         return view('orderDetails')->withOrder($order);
     }
-    public function viewNaveen()
-    {
-        return view('naveen');
-    }   
+  
 }
