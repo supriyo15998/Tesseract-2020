@@ -51,7 +51,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/volunteers-list', 'HomeController@getVolunteers')->name('getVolunteers');
 	Route::get('/add-event', 'HomeController@viewEventForm')->name('viewEventForm');
-	Route::get('/show-participants', 'HomeController@viewParticipants')->name('viewParticipants');
+	Route::get('/show-participants', 'HomeController@viewTeams')->name('viewParticipants');
 	Route::get('/show-naveen', 'HomeController@viewNaveen')->name('viewNaveen');
 	Route::get('/show-solo', 'HomeController@viewSolo')->name('viewSolo');
 	Route::get('/orders/{orderId}/details', 'HomeController@orderDetails')->name('orderDetails');
