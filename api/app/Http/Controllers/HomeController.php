@@ -52,7 +52,10 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('eventForm')->withTitle($title)->withCategories($categories);
     }
-    public function viewParticipants()
+    public function viewSolo() {
+        return view('participants')->withOrders(\App\Order::where('is_team', 0)->get());
+    }
+    public function viewTeams()
     {
         // $orders = ;
         //dd($orders);
