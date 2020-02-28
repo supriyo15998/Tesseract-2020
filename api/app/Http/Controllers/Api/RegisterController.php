@@ -115,7 +115,7 @@ class RegisterController extends Controller
         if(in_array(18, $request->events)) {
             $request->validate([
                 'leader.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/',
-                'members.*.college_id' => 'sometimes:regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
+                'members.*.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
             ]);
         }
 
