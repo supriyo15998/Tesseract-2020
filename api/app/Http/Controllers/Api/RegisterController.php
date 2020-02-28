@@ -111,7 +111,7 @@ class RegisterController extends Controller
 
     public function enrollTeam(Request $request) {
 
-        return response()->json([$request->events], 500);
+        return response()->json([in_array(18, $request->events)], 500);
 
         if(in_array(18, $request->events)) {
             $request->validate([
