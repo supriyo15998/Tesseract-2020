@@ -76,7 +76,7 @@ class RegisterController extends Controller
 
     public function enrollNaveen(Request $request) {
     	$validatedData = $request->validate([
-    		'members.*.college_id' => 'somtimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/|unique:volunteers',
+    		'members.*.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/|unique:volunteers',
 		]);
 
         $leader = Participant::create($request->leader);
