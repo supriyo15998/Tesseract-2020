@@ -113,6 +113,12 @@ class RegisterController extends Controller
 
         // return response()->json([$request->all()], 500);
 
+        if(in_array(18, $request->events)) {
+            $request->validate([
+                'members.*.college_id' => 'regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
+            ]);
+        }
+
         $leader = Participant::create($request->leader);
         $team = Team::create(['name' => $request->team['name'], 'leader_id' => $leader->id, 'subject' => $request->team['subject']]);
 
