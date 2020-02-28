@@ -113,6 +113,8 @@ class RegisterController extends Controller
 
         // return response()->json([$request->all()], 500);
 
+        dd($request->events);
+
         if(in_array(18, $request->events)) {
             $request->validate([
                 'members.*.college_id' => 'regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
