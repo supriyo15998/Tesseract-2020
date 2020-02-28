@@ -76,6 +76,7 @@ class RegisterController extends Controller
 
     public function enrollNaveen(Request $request) {
     	$validatedData = $request->validate([
+            'leader.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/',
     		'members.*.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/',
 		]);
 
@@ -113,7 +114,8 @@ class RegisterController extends Controller
 
         if(in_array(18, $request->events)) {
             $request->validate([
-                'members.*.college_id' => 'regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
+                'leader.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/',
+                'members.*.college_id' => 'sometimes:regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
             ]);
         }
 
