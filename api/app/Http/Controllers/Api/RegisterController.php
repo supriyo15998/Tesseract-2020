@@ -112,13 +112,10 @@ class RegisterController extends Controller
     public function enrollTeam(Request $request) {
 
         if(in_array(18, $request->events)) {
-            return response()->json(['reached here'], 500);
             $request->validate([
                 'members.*.college_id' => 'regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
             ]);
         }
-            return response()->json(['reached outside'], 500);
-
 
         $leader = Participant::create($request->leader);
         $team = Team::create(['name' => $request->team['name'], 'leader_id' => $leader->id, 'subject' => $request->team['subject']]);
