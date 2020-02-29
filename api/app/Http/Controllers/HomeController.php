@@ -36,7 +36,7 @@ class HomeController extends Controller
         $eventsCount = Event::count();
         $campusAmbassadorCount = CampussAmbassador::count();
         $title = "TesseractAdmin | Home";
-        return view('home')->withTitle($title)->withVolunteersCount($volunteersCount)->withEventsCount($eventsCount)->withCampusAmbassadorCount($campusAmbassadorCount);
+        return view('home')->withTitle($title)->withVolunteersCount($volunteersCount)->withEventsCount($eventsCount)->withCampusAmbassadorCount($campusAmbassadorCount)->withNaveenCount(\App\Order::whereHas('team', function($q) { $q->where('is_naveen', 1);})->count());
     }
     public function getVolunteers()
     {
