@@ -66,7 +66,7 @@
             <div class="inner">
               <h3>0</h3>
 
-              <p>Participants Registered</p>
+              <p>Naveen Vidyarthis Registered</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
