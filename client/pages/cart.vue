@@ -236,7 +236,6 @@
                             <p>Tesseract 2020 is here being bigger and better with a lot of newer events than the previous year. Get you hands dirty and start building your skills to showboat them in the celebration of technology at Guru Nanak Institute of Technology.</p>
                         </div>
 
-
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
@@ -356,11 +355,11 @@ export default {
             }
 
             else if ((this.eventIds.includes(8) && this.eventIds.includes(9)) || (this.eventIds.includes(8) && this.eventIds.includes(10)) || (this.eventIds.includes(9) && this.eventIds.includes(10))) {
-                 if (this.events.length === 2)
-                     discount = 30
+                if (this.events.length === 2)
+                    discount = 30
 
-                 else if (this.events.length === 3)
-                     discount = 50
+                else if (this.events.length === 3)
+                    discount = 50
             }
 
             else if (this.eventIds.includes(8) && this.eventIds.includes(9) && this.eventIds.includes(10)) {
