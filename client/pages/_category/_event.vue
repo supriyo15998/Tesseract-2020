@@ -116,6 +116,15 @@
                 <a href=""><i class="fa fa-linkedin"></i></a>
               </div> -->
                                 <p>{{ event.description }}</p>
+                                <b-alert
+                                    variant="warning"
+                                    show
+                                    class="text-center"
+                                    v-if="event.id === 18"
+                                >
+                                    <h6>Note:</h6>
+                                    <p>This event is exclusively for Guru Nanak Institute of Technology Students.</p>
+                                </b-alert>
                                 <h3 style="font-weight: bold;">Price : ₹ {{ event.price }} <span v-if="event.is_price_per_head">Per member</span></h3>
                                 <h4 style="font-weight: bold;">Timing : {{ event.event_time }}</h4>
                                 <div v-if="event.is_team">
@@ -236,7 +245,6 @@
                             <p>Tesseract 2020 is here being bigger and better with a lot of newer events than the previous year. Get you hands dirty and start building your skills to showboat them in the celebration of technology at Guru Nanak Institute of Technology.</p>
                         </div>
 
-
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
@@ -267,7 +275,6 @@
                                 <li><i class="fa fa-angle-right"></i> <a href="#">Contact</a></li> -->
                             </ul>
                         </div>
-
 
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contact Us</h4>
