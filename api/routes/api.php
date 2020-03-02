@@ -24,3 +24,7 @@ Route::post('/registration/event/naveen', 'Api\\RegisterController@enrollNaveen'
 Route::get('/generic', 'Api\\GenericController@getGeneric');
 Route::get('/events/{slug}', 'Api\\GenericController@getEventsWithSlug')->name('getEventsWithSlug');
 // Route::get('/events', 'Api\\GenericController@getEvents');
+
+// Android App Routes
+
+Route::get('/orders/{orderId}/details', 'Api\\HomeController@getOrderDetails');

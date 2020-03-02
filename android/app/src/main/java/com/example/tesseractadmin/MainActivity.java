@@ -1,6 +1,7 @@
 package com.example.tesseractadmin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -15,10 +16,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+
 public class MainActivity extends AppCompatActivity {
     Button button;
-    public static TextView textView;
+    public TextView textView;
     private int REQUEST_CAMERA_PERMISSION = 101;
+    private int REQUEST_SCAN_CODE = 1001;
     boolean isGranted = false;
 
     @Override
@@ -47,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!isGranted)
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                 else
-                    startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
+                    startActivityForResult(new Intent(getApplicationContext(), ScanCodeActivity.class), REQUEST_SCAN_CODE);
             }
         });
     }
@@ -64,6 +71,20 @@ public class MainActivity extends AppCompatActivity {
         } else {
             textView.setText("Please grant camera permission!");
             button.setText("Grant Permission");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_SCAN_CODE) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    JSONObject jsonObject = new JSONObject(data.getDataString());
+                    textView.setText(jsonObject.getString("order"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

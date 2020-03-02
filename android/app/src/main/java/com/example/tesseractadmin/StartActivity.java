@@ -24,10 +24,11 @@ public class StartActivity extends AppCompatActivity {
         EditText userID = findViewById(R.id.userId);
         EditText password = findViewById(R.id.password);
         Button btn = findViewById(R.id.btn);
-        if (((userID.getText().toString().equals("admin@tesseractgnit.com")) || (userID.getText().toString().equals("admin@tesseractgnit.com "))) && (password.getText().toString().equals("admin@1234") ))
+        if ((userID.getText().toString().trim().equalsIgnoreCase("admin@tesseractgnit.com")) && (password.getText().toString().equals("admin@1234") ))
         {
             Log.d("correct","correct");
             startActivity(new Intent(StartActivity.this, MainActivity.class));
+            finish();
         }
         else
         {
