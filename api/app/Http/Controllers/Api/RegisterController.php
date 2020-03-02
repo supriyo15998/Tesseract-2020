@@ -76,7 +76,8 @@ class RegisterController extends Controller
 
     public function enrollNaveen(Request $request) {
     	$validatedData = $request->validate([
-    		'members.*.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/|unique:volunteers',
+            'leader.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/',
+    		'members.*.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[2][0][1][9]\/+[0-9]{4}$/',
 		]);
 
         $leader = Participant::create($request->leader);
@@ -111,7 +112,12 @@ class RegisterController extends Controller
 
     public function enrollTeam(Request $request) {
 
-        // return response()->json([$request->all()], 500);
+        if(in_array(18, $request->events)) {
+            $request->validate([
+                'leader.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/',
+                'members.*.college_id' => 'sometimes|regex:/^[Gg][Nn][Ii][Tt]+\/+[0-9]{4}\/+[0-9]{4}$/'
+            ]);
+        }
 
         $leader = Participant::create($request->leader);
         $team = Team::create(['name' => $request->team['name'], 'leader_id' => $leader->id, 'subject' => $request->team['subject']]);

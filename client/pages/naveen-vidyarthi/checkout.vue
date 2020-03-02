@@ -128,7 +128,6 @@
                             </b-alert>
                             <div class="col-lg-12">
                                 <p>As per your event selection, your team must consist minimum {{ minMembers }} member(s) and can have a maximum of {{ maxMembers }} member(s). <b>{Inclusive of Team Leader}</b></p>
-
                                 <b-form @submit.prevent="enrollTeamFormSubmit">
                                     <b-form-group
                                         id="input-group-events"
@@ -269,6 +268,103 @@
                                             v-if="errors.college_id"
                                         >{{ errors.college_id[0] }}</div>
                                     </b-form-group>
+
+                                    <b-form-group
+                                        label="Does your PUBG Squad contains members from outside Naveen Vidyarthi Team?"
+                                        v-if="includesPubgSquad"
+                                    >
+                                        <b-form-radio
+                                            v-model="selected"
+                                            name="pubg-squad-yes"
+                                            value="true"
+                                        >Yes</b-form-radio>
+                                        <b-form-radio
+                                            v-model="selected"
+                                            name="pubg-squad-no"
+                                            value="false"
+                                        >No</b-form-radio>
+                                    </b-form-group>
+
+                                    <div v-if="selected">
+                                        <div
+                                            v-for="(n, i) in 3"
+                                            :key="i"
+                                        >
+                                            <h4>PUBG Squad Member {{ n }} Details <small>(Optional)</small></h4>
+                                            <b-form-group
+                                                :id="`input-group-email-pubg-member-${n}`"
+                                                label="Email address:"
+                                                :label-for="`input-email-pubg-member-${n}`"
+                                                description="We'll never share your email with anyone else."
+                                            >
+                                                <b-form-input
+                                                    :id="`input-email-pubg-member-${n}`"
+                                                    v-model="enrollTeamForm.members[n+4].email"
+                                                    type="email"
+                                                    :class="{'is-invalid': errors.email}"
+                                                    :required="n+1 < minMembers"
+                                                    placeholder="you@domain.com"
+                                                ></b-form-input>
+                                                <div
+                                                    class="invalid-feedback"
+                                                    v-if="errors.email"
+                                                >{{ errors.email[0] }}</div>
+                                            </b-form-group>
+
+                                            <b-form-group
+                                                :id="`input-group-name-pubg-member-${n}`"
+                                                label="Name:"
+                                                :label-for="`input-name-pubg-member-${n}`"
+                                            >
+                                                <b-form-input
+                                                    :id="`input-name-pubg-member-${n}`"
+                                                    v-model="enrollTeamForm.members[n+4].name"
+                                                    :class="{'is-invalid': errors.name}"
+                                                    :required="n+1 < minMembers"
+                                                    placeholder="Enter name"
+                                                ></b-form-input>
+                                                <div
+                                                    class="invalid-feedback"
+                                                    v-if="errors.name"
+                                                >{{ errors.name[0] }}</div>
+                                            </b-form-group>
+
+                                            <b-form-group
+                                                :id="`input-group-college-id-pubg-member-${n}`"
+                                                label="College ID Number:"
+                                                :label-for="`input-college-id-pubg-member-${n}`"
+                                            >
+                                                <b-form-input
+                                                    :id="`input-college-id-pubg-member-${n}`"
+                                                    v-model="enrollTeamForm.members[n+4].college_id"
+                                                    :class="{'is-invalid': errors.college_id}"
+                                                    placeholder="GNIT/YYYY/XXXX"
+                                                ></b-form-input>
+                                                <p class="text-danger"><small>This ID needs to be produced at registration desk on event day</small></p>
+                                                <div
+                                                    class="invalid-feedback"
+                                                    v-if="errors.college_id"
+                                                >{{ errors.college_id[0] }}</div>
+                                            </b-form-group>
+
+                                            <b-form-group
+                                                :id="`input-group-phone-pubg-member-${n}`"
+                                                label="Phone number:"
+                                                :label-for="`input-phone-pubg-member-${n}`"
+                                            >
+                                                <b-form-input
+                                                    :id="`input-phobne-pubg-member-${n}`"
+                                                    v-model="enrollTeamForm.members[n+4].phone"
+                                                    :class="{'is-invalid': errors.phone}"
+                                                    placeholder="9150656598"
+                                                ></b-form-input>
+                                                <div
+                                                    class="invalid-feedback"
+                                                    v-if="errors.phone"
+                                                >{{ errors.phone[0] }}</div>
+                                            </b-form-group>
+                                        </div>
+                                    </div>
 
                                     <div
                                         v-for="(n,i) in maxMembers-1"
@@ -490,6 +586,7 @@ export default {
             isLoading: false,
             isSuccess: false,
             isError: false,
+            selected: false,
             enrollTeamForm: {
                 team: {
                     name: '',
@@ -537,7 +634,28 @@ export default {
                         college: 'GNIT',
                         phone: '',
                         year: '1st'
-                    }
+                    },
+                    {
+                        name: '',
+                        email: '',
+                        college: 'GNIT',
+                        phone: '',
+                        year: '1st'
+                    },
+                    {
+                        name: '',
+                        email: '',
+                        college: 'GNIT',
+                        phone: '',
+                        year: '1st'
+                    },
+                    {
+                        name: '',
+                        email: '',
+                        college: 'GNIT',
+                        phone: '',
+                        year: '1st'
+                    },
                 ],
                 events: [],
                 selectedEvents: [{ name: 'Model Display - ₹ 0', value: 18 }, { name: 'Poster Presentation - ₹ 0', value: 17 }],
@@ -619,6 +737,15 @@ export default {
             })
 
             return total
+        },
+        includesPubgSquad () {
+            let includes = false
+            this.enrollTeamForm.selectedEvents.forEach((e) => {
+                if (e.value === 19) {
+                    includes = true
+                }
+            })
+            return includes
         }
     },
     async asyncData ({ app, params }) {
