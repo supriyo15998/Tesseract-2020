@@ -36,11 +36,11 @@ Route::get('/', function() {
 // Route::get('/test', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
-Route::get('test', function() {
-	$order = \App\Order::findOrFail(18);
-	Mail::to($order->team->leader->email)->send(new \App\Mail\NaveenRegistered($order));
-	return 'Done';
-});
+// Route::get('test', function() {
+// 	$order = \App\Order::findOrFail(18);
+// 	Mail::to($order->team->leader->email)->send(new \App\Mail\NaveenRegistered($order));
+// 	return 'Done';
+// });
 
 Route::get('qr-code', function () {
   return QRCode::text('QR Code Generator for Laravel!')->url();    
