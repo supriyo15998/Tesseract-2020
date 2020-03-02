@@ -1054,7 +1054,7 @@
                 Volunteer Registration
             </template>
             <div class="d-block">
-
+<!-- 
                 <b-alert
                     variant="warning"
                     show
@@ -1062,14 +1062,14 @@
                 >
                     <h4>Volunteer Registration is Over!</h4>
                     <p>Thank you for showing your interest, but we are at capacity!</p>
-                </b-alert>
+                </b-alert> -->
 
-                <!-- <b-alert
+                <b-alert
                     variant="success"
                     show
                     v-if="isSuccess"
-                >Hey {{ successData.name }}, thanks for applying! We will contact you soon! </b-alert> -->
-                <!-- <div v-else>
+                >Hey {{ successData.name }}, thanks for applying! We will contact you soon! </b-alert>
+                <div v-else>
                     <p>Fill in the fields below to complete your registration!</p>
                     <b-form @submit.prevent="volunteerSubmit">
                         <b-form-group
@@ -1228,7 +1228,7 @@
                         >
                             <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
                     </b-form>
-                </div> -->
+                </div> 
             </div>
         </b-modal>
 
