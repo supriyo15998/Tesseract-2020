@@ -3,7 +3,9 @@ package com.example.tesseractadmin.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Pivot {
+import java.io.Serializable;
+
+public class Pivot implements Serializable {
     @SerializedName("order_id")
     @Expose
     private Integer orderId;

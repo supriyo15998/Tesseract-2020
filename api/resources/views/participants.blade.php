@@ -75,6 +75,7 @@
                   <tr>
                     <th>Order ID</th>
                     <th>Team/Solo Participant Name</th>
+                    <th>Category</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -83,6 +84,7 @@
                   <tr>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->is_team ? 'Team ' . $order->team->name : 'Player ' . $order->participant->name }}</td>
+                    <Td>{{ $order->events[0]->category->name }}
                     <td><a href="{{ route('orderDetails',$order->id) }}" class="btn btn-success">View</a></td>
                   </tr>
                   @endforeach

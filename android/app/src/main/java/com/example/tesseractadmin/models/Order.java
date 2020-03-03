@@ -3,9 +3,10 @@ package com.example.tesseractadmin.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;

@@ -3,7 +3,9 @@ package com.example.tesseractadmin.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Leader {
+import java.io.Serializable;
+
+public class Leader implements Serializable  {
     @SerializedName("id")
     @Expose
     private Integer id;
