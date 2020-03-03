@@ -1063,15 +1063,15 @@
             </template>
             <div class="d-block">
 
-                <!-- <b-alert
+                <b-alert
                     variant="warning"
                     show
                     class="text-center"
                 >
                     <h4>Volunteer Registration is Over!</h4>
                     <p>Thank you for showing your interest, but we are at capacity!</p>
-                </b-alert> -->
-
+                </b-alert>
+                <!-- 
                 <b-alert
                     variant="success"
                     show
@@ -1236,7 +1236,7 @@
                         >
                             <span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Submit</span></b-button>
                     </b-form>
-                </div>
+                </div>  -->
             </div>
         </b-modal>
 
