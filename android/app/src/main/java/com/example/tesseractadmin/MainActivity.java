@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Loading...");
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
@@ -110,15 +111,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchOrder(int orderId) {
+
+        progressDialog.show();
+
         apiService.getOrderDetails(orderId).enqueue(new Callback<GlobalResponse>() {
             @Override
             public void onResponse(Call<GlobalResponse> call, Response<GlobalResponse> response) {
+                progressDialog.dismiss();
                 if (response.isSuccessful()) {
                     order = response.body().getSuccess().getOrder();
                     if (order.isTeam())
                         textView.setText("Welcome " + response.body().getSuccess().getOrder().getTeam().getName());
                     else
                         textView.setText("Welcome " + response.body().getSuccess().getOrder().getParticipantId());
+
+                    startActivity(new Intent(MainActivity.this, OrderActivity.class).putExtra("order", order));
                 } else {
                     Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
                 }
@@ -126,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GlobalResponse> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
                 Log.e("MainActivity", t.getMessage());
                 t.printStackTrace();

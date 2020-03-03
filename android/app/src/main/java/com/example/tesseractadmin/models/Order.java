@@ -18,7 +18,7 @@ public class Order implements Serializable {
     private String updatedAt;
     @SerializedName("participant_id")
     @Expose
-    private Object participantId;
+    private Integer participantId;
     @SerializedName("is_team")
     @Expose
     private Integer isTeam;
@@ -56,11 +56,11 @@ public class Order implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public Object getParticipantId() {
+    public Integer getParticipantId() {
         return participantId;
     }
 
-    public void setParticipantId(Object participantId) {
+    public void setParticipantId(Integer participantId) {
         this.participantId = participantId;
     }
 
