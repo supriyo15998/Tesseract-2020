@@ -145,66 +145,64 @@
                         <div class="col-lg-12 col-md-6 text-center">
                             <h2>Highlighted Events</h2>
                         </div>
-                        <div
-                            class="col-lg-4"
-                        >   <center>
-                            <div class="speaker">
-                                <img
-                                    src="https://downloads.tesseractgnit.com/img/events/1582639374_8f736f632d3a003e.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3>
-                                        <nuxt-link
-                                            to="/gaming/pubg-mobile"
-                                            style="text-decoration: none"
-                                        >PUBG (Mobile) Squad</nuxt-link>
-                                    </h3>
-                                    <p>PLAYERUNKNOWN'S BATTLEGROUNDS (PUBG) is a competitive survival shooting game.</p>
+                        <div class="col-lg-4">
+                            <center>
+                                <div class="speaker">
+                                    <img
+                                        src="https://downloads.tesseractgnit.com/img/events/1582639374_8f736f632d3a003e.jpg"
+                                        alt="Speaker 1"
+                                        class="img-fluid"
+                                    >
+                                    <div class="details">
+                                        <h3>
+                                            <nuxt-link
+                                                to="/gaming/pubg-mobile"
+                                                style="text-decoration: none"
+                                            >PUBG (Mobile) Squad</nuxt-link>
+                                        </h3>
+                                        <p>PLAYERUNKNOWN'S BATTLEGROUNDS (PUBG) is a competitive survival shooting game.</p>
+                                    </div>
                                 </div>
-                            </div>
-                            </center>
-                        </div>                        <div
-                            class="col-lg-4"
-                        >   <center>
-                            <div class="speaker">
-                                <img
-                                    src="https://downloads.tesseractgnit.com/img/events/1581534529_138ee21e4aa71f61.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3>
-                                        <nuxt-link
-                                            to="/robotics/robo-war"
-                                            style="text-decoration: none"
-                                        >Robo War</nuxt-link>
-                                    </h3>
-                                    <p>The ultimate battle of two bots.</p>
-                                </div>
-                            </div>
                             </center>
                         </div>
-                        <div
-                            class="col-lg-4"
-                        >   <center>
-                            <div class="speaker">
-                                <img
-                                    src="https://downloads.tesseractgnit.com/img/events/1582639374_8f736f632d3a003e.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3>
-                                        <nuxt-link
-                                            to="/gaming/pubg-mobile-solo"
-                                            style="text-decoration: none"
-                                        >PUBG (Mobile) Solo</nuxt-link>
-                                    </h3>
-                                    <p>PLAYERUNKNOWN'S BATTLEGROUNDS (PUBG) is a competitive survival shooting game.</p>
+                        <div class="col-lg-4">
+                            <center>
+                                <div class="speaker">
+                                    <img
+                                        src="https://downloads.tesseractgnit.com/img/events/1581534529_138ee21e4aa71f61.jpg"
+                                        alt="Speaker 1"
+                                        class="img-fluid"
+                                    >
+                                    <div class="details">
+                                        <h3>
+                                            <nuxt-link
+                                                to="/robotics/robo-war"
+                                                style="text-decoration: none"
+                                            >Robo War</nuxt-link>
+                                        </h3>
+                                        <p>The ultimate battle of two bots.</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
+                        </div>
+                        <div class="col-lg-4">
+                            <center>
+                                <div class="speaker">
+                                    <img
+                                        src="https://downloads.tesseractgnit.com/img/events/1582639374_8f736f632d3a003e.jpg"
+                                        alt="Speaker 1"
+                                        class="img-fluid"
+                                    >
+                                    <div class="details">
+                                        <h3>
+                                            <nuxt-link
+                                                to="/gaming/pubg-mobile-solo"
+                                                style="text-decoration: none"
+                                            >PUBG (Mobile) Solo</nuxt-link>
+                                        </h3>
+                                        <p>PLAYERUNKNOWN'S BATTLEGROUNDS (PUBG) is a competitive survival shooting game.</p>
+                                    </div>
+                                </div>
                             </center>
                         </div>
                     </div>
@@ -214,25 +212,24 @@
                         </div>
                         <div class="col-lg-4">
                         </div>
-                        <div
-                            class="col-lg-4"
-                        >   <center>
-                            <div class="speaker">
-                                <img
-                                    src="/img/posters/naveen_vidyarthi_compressed.jpg"
-                                    alt="Speaker 1"
-                                    class="img-fluid"
-                                >
-                                <div class="details">
-                                    <h3>
-                                        <nuxt-link
-                                            to="/naveen-vidyarthi"
-                                            style="text-decoration: none"
-                                        >Naveen Vidyarthi Award</nuxt-link>
-                                    </h3>
-                                    <p>Naveen Vidyarthi</p>
+                        <div class="col-lg-4">
+                            <center>
+                                <div class="speaker">
+                                    <img
+                                        src="/img/posters/naveen_vidyarthi_compressed.jpg"
+                                        alt="Speaker 1"
+                                        class="img-fluid"
+                                    >
+                                    <div class="details">
+                                        <h3>
+                                            <nuxt-link
+                                                to="/naveen-vidyarthi"
+                                                style="text-decoration: none"
+                                            >Naveen Vidyarthi Award</nuxt-link>
+                                        </h3>
+                                        <p>Naveen Vidyarthi</p>
+                                    </div>
                                 </div>
-                            </div>
                             </center>
                         </div>
                     </div>
@@ -245,7 +242,10 @@
                             <h2>{{ category.name }}</h2>
                         </div>
 
-                        <div class="col-lg-4" v-if="category.events.length < 2">
+                        <div
+                            class="col-lg-4"
+                            v-if="category.events.length < 2"
+                        >
                         </div>
 
                         <div
@@ -612,6 +612,14 @@
                             alt=""
                         ></a>
                     <a
+                        href="img/gallery/line-follower.jpg"
+                        class="venobox"
+                        data-gall="gallery-carousel"
+                    ><img
+                            src="img/gallery/line-follower.jpg"
+                            alt=""
+                        ></a>
+                    <a
                         href="img/gallery/3-min.jpg"
                         class="venobox"
                         data-gall="gallery-carousel"
@@ -688,7 +696,7 @@
                             </div>
                             <p class="text-center">Coding Partner</p>
                         </div>
-                        
+
                         <div class="col-lg-3 col-md-4 col-xs-6">
                             <div class="supporter-logo">
                                 <img
@@ -1063,7 +1071,7 @@
                     <h4>Volunteer Registration is Over!</h4>
                     <p>Thank you for showing your interest, but we are at capacity!</p>
                 </b-alert>
-<!-- 
+                <!-- 
                 <b-alert
                     variant="success"
                     show
