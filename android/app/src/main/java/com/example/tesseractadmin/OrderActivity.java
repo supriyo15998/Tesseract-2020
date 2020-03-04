@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -33,6 +34,8 @@ public class OrderActivity extends AppCompatActivity {
         eventsTable = findViewById(R.id.eventsTable);
 
         getSupportActionBar().setTitle("Order " + order.getId());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         int i = 1;
 
@@ -148,5 +151,14 @@ public class OrderActivity extends AppCompatActivity {
 
         TextView teamName = findViewById(R.id.teamName);
         teamName.setText(order.getTeam().getName());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId()==android.R.id.home) {
+            finish();
+        }
+
+        return false;
     }
 }

@@ -66,11 +66,7 @@
             <div class="inner">
               <h3>{{ $naveenCount }}</h3>
 
-<<<<<<< HEAD
-              <p>Naveen Vidyarthis Registered</p>
-=======
               <p>First Year Nibbas Registered</p>
->>>>>>> 9f130d736573e91fb1de6998ba7efcea55306cd4
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
