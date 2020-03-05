@@ -17,7 +17,7 @@
             <td>{{ $order->is_team ? $order->team->leader->phone : $order->participant->phone }}</td>
             <td>{{ $order->is_team ? $order->team->leader->email : $order->participant->email }}</td>
             <td>{{ $order->is_team ? $order->team->leader->year : $order->participant->year }}</td>
-            <td>{{ $order->events[0]->id === 18 ? $order->team->subject : 'None' }}</td>
+            <td>{{ $order->events[0]->id === 18 ? 'Model Display Topic: ' . $order->team->subject : 'None' }}</td>
         </tr>
     @endforeach
     </tbody>
