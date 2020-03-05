@@ -58,6 +58,8 @@ Route::prefix('admin')->group(function () {
 	Route::post('/event', 'HomeController@registerEvent')->name('registerEvent');
 	Route::get('/event/list', 'HomeController@showEvent')->name('showEvent');
 	Route::get('/campuss-ambassador/list', 'HomeController@showCampussAmbassadors')->name('showCampussAmbassadors');
-	Route::get('/volunteers/export/', 'HomeController@exportVolunteers')->name('exportVolunteers');
+	Route::get('/export/volunteers', 'HomeController@exportVolunteers')->name('exportVolunteers');
+	Route::get('/export/orders', 'HomeController@exportOrdersGet')->name('exportOrdersGet');
+	Route::post('/export/orders', 'HomeController@exportOrdersPost')->name('exportOrdersPost');
 });
 

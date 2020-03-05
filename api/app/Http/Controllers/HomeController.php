@@ -10,6 +10,7 @@ use App\CampussAmbassador;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use App\Exports\VolunteersExport;
+use App\Exports\OrdersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 
@@ -117,6 +118,13 @@ class HomeController extends Controller
     public function exportVolunteers()
     {
         return Excel::download(new VolunteersExport, 'volunteers.xlsx');
+    }
+    public function exportOrdersGet() {
+        return view('exportOrders')->withEvents(\App\Event::all());
+    }
+    public function exportOrdersPost(Request $request) {
+        $event = \App\Event::findOrFail($request->event_id);
+        return Excel::download(new OrdersExport($request->event_id), $event->name . '_Orders_Report_' . \Carbon\Carbon::now() . '.xlsx');
     }
     public function orderDetails($orderId)
     {

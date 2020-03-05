@@ -8,10 +8,10 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 class OrdersExport implements FromView
 {
-	public $categoryId;
+	public $eventId;
 
-	public function __construct($categoryId) {
-		$this->categoryId = $categoryId;
+	public function __construct($eventId) {
+		$this->eventId = $eventId;
 	}
 
     /**
@@ -20,10 +20,11 @@ class OrdersExport implements FromView
     public function view(): View
     {
 
-
+        //;
+        $eventId = $this->eventId;
 
         return view('exports.orders', [
-            'volunteers' => Volunteer::all()
+            'orders' => \App\Order::whereHas('events', function ($query) use ($eventId) { $query->where('event_id', $eventId); })->get()
         ]);
     }
 }
