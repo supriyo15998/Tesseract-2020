@@ -61,5 +61,6 @@ Route::prefix('admin')->group(function () {
 	Route::get('/export/volunteers', 'HomeController@exportVolunteers')->name('exportVolunteers');
 	Route::get('/export/orders', 'HomeController@exportOrdersGet')->name('exportOrdersGet');
 	Route::post('/export/orders', 'HomeController@exportOrdersPost')->name('exportOrdersPost');
+	Route::get('/export/naveen', 'HomeController@exportNaveen')->name('exportNaveen');
 });
 

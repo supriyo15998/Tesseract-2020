@@ -11,6 +11,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use App\Exports\VolunteersExport;
 use App\Exports\OrdersExport;
+use App\Exports\NaveensExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 
@@ -118,6 +119,10 @@ class HomeController extends Controller
     public function exportVolunteers()
     {
         return Excel::download(new VolunteersExport, 'volunteers.xlsx');
+    }
+    public function exportNaveen()
+    {
+        return Excel::download(new NaveensExport, 'Naveen_Vidyarthi_Orders_Report_' . \Carbon\Carbon::now() . '.xlsx');
     }
     public function exportOrdersGet() {
         return view('exportOrders')->withEvents(\App\Event::all());

@@ -64,6 +64,7 @@
             <li><a href="{{ route('viewNaveen') }}"><i class="fa fa-circle-o"></i> View Naveen Vidyarthi</a></li>
             <li><a href="{{ route('viewSolo') }}"><i class="fa fa-circle-o"></i> View Solo Participants</a></li>
             <li><a href="{{ route('exportOrdersGet') }}"><i class="fa fa-circle-o"></i> Generate Event Wise Report</a></li>
+            <li><a href="{{ route('exportNaveen') }}"><i class="fa fa-circle-o"></i> Generate Naveen Vidyarthi Report</a></li>
           </ul>
         </li>
       </ul>
