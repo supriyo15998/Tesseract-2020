@@ -37,7 +37,7 @@ Route::get('/', function() {
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
 Route::get('test', function() {
-	$order = \App\Order::findOrFail(178);
+	$order = \App\Order::findOrFail(93);
 	Mail::to($order->team->leader->email)->send(new \App\Mail\TeamRegistered($order));
 	return 'Done';
 });
