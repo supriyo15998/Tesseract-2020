@@ -681,6 +681,31 @@
 
                 <div class="container">
                     <div class="section-header">
+                        <h2>Platinum Sponsors</h2>
+                    </div>
+
+                    <div class="row no-gutters supporters-wrap clearfix">
+
+                        <div class="col-lg-12 animated infinite pulse">
+                            <a
+                                href="sponsors/APLL_Prospectus_6.pdf"
+                                target="_blank"
+                            >
+                                <div class="supporter-logo">
+                                    <img
+                                        src="sponsors/apll_logo.jpg"
+                                        class="img-fluid"
+                                        alt=""
+                                    >
+                                </div>
+                                <p class="text-center">Platinum Partner</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="section-header">
                         <h2>Sponsors</h2>
                     </div>
 
