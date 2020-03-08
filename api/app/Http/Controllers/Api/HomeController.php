@@ -27,4 +27,16 @@ class HomeController extends Controller
             ]
         ]);
     }
+
+    public function markPlayed($orderId, $eventId) {
+        $order = \App\Order::findOrFail($orderId);
+
+        $order->events()->updateExistingPivot($eventId, ['played' => 1]);
+        
+        return response()->json([
+            'success' => [
+                'order' => \App\Order::with('events')->with('participant')->with(array('team' => function($q) { $q->with('leader')->with('members'); }))->findOrFail($orderId)
+            ]
+        ]);
+    }
 }

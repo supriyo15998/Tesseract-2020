@@ -1,12 +1,19 @@
 package com.example.tesseractadmin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -15,6 +22,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -42,6 +51,7 @@ public class OrderActivity extends AppCompatActivity {
     private Order order;
     private TableLayout membersTable, eventsTable;
     int i = 1;
+    private int playedEvent = 0;
     private APIService apiService;
     private ProgressDialog progressDialog;
 
@@ -55,6 +65,7 @@ public class OrderActivity extends AppCompatActivity {
 
         apiService = ApiUtils.getAPIService();
 
+        progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait");
         progressDialog.setMessage("Requesting...");
         progressDialog.setCancelable(false);
@@ -86,6 +97,9 @@ public class OrderActivity extends AppCompatActivity {
 
                 LinearLayout linearLayout = new LinearLayout(OrderActivity.this);
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+                int j = 0;
+
                 for (final Event event : order.getEvents()) {
                     if (!event.getPivot().isPaid()) {
                         CheckBox checkBox = new CheckBox(OrderActivity.this);
@@ -99,43 +113,71 @@ public class OrderActivity extends AppCompatActivity {
                                 } else {
                                     paidEvents.remove(event.getId());
                                 }
-                                Log.d("OrderActivity", new Gson().toJson(paidEvents));
                             }
                         });
                         linearLayout.addView(checkBox);
+                    } else {
+                        j++;
                     }
                 }
-                builder.setView(linearLayout);
 
-                builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                if (j==order.getEvents().size()) {
+                    TextView textView = new TextView(OrderActivity.this);
+                    SpannableString ss = new SpannableString("All events have been marked as paid!\nPlease contact Faraz Ali/Supriyo Das if there's any issue!");
+                    ss.setSpan(new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View view) {
+                            startActivity(new Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:+917044728852")));
+                        }
+                    }, 52, 61, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ss.setSpan(new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View view) {
+                            startActivity(new Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:+918013206937")));
+                        }
+                    }, 62, 73, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    textView.setText(ss);
+                    textView.setMovementMethod(LinkMovementMethod.getInstance());
+                    textView.setHighlightColor(Color.TRANSPARENT);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams.setMargins(20, 10, 10, 10);
+                    textView.setLayoutParams(layoutParams);
+                    textView.setTextSize(18);
+                    textView.setTextColor(getResources().getColor(android.R.color.black));
+                    linearLayout.addView(textView);
+                } else {
+                    builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                        progressDialog.show();
+                            progressDialog.show();
 
-                        GlobalReqeust globalReqeust = new GlobalReqeust();
-                        globalReqeust.setPaidEvents(paidEvents);
-                        apiService.markPaid(order.getId(), globalReqeust).enqueue(new Callback<GlobalResponse>() {
-                            @Override
-                            public void onResponse(Call<GlobalResponse> call, Response<GlobalResponse> response) {
-                                progressDialog.dismiss();
-                                if (response.isSuccessful()) {
-                                    Toast.makeText(OrderActivity.this, "Order updated successfully!", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                            GlobalReqeust globalReqeust = new GlobalReqeust();
+                            globalReqeust.setPaidEvents(paidEvents);
+                            apiService.markPaid(order.getId(), globalReqeust).enqueue(new Callback<GlobalResponse>() {
+                                @Override
+                                public void onResponse(Call<GlobalResponse> call, Response<GlobalResponse> response) {
+                                    progressDialog.dismiss();
+                                    if (response.isSuccessful()) {
+                                        Toast.makeText(OrderActivity.this, "Order updated successfully!", Toast.LENGTH_LONG).show();
+                                        order = response.body().getSuccess().getOrder();
+                                        populateEvents();
+                                    } else {
+                                        Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onFailure(Call<GlobalResponse> call, Throwable t) {
-                                progressDialog.dismiss();
-                                Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
-                                Log.e("OrderActivity", t.getMessage());
-                                t.printStackTrace();
-                            }
-                        });
-                    }
-                });
+                                @Override
+                                public void onFailure(Call<GlobalResponse> call, Throwable t) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                                    Log.e("OrderActivity", t.getMessage());
+                                    t.printStackTrace();
+                                }
+                            });
+                        }
+                    });
+                }
 
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -143,7 +185,109 @@ public class OrderActivity extends AppCompatActivity {
                         dialogInterface.dismiss();
                     }
                 });
+                builder.setView(linearLayout);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
+        findViewById(R.id.markPlayed).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(OrderActivity.this);
+                builder.setTitle("Choose event: ");
+
+                LinearLayout linearLayout = new LinearLayout(OrderActivity.this);
+                linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+                RadioGroup radioGroup = new RadioGroup(OrderActivity.this);
+                radioGroup.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                int j = 0;
+
+                for (final Event event : order.getEvents()) {
+                    if (!event.getPivot().isPlayed()) {
+                        RadioButton radioButton = new RadioButton(OrderActivity.this);
+                        radioButton.setText(event.getName());
+                        radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                                if (b) {
+                                    playedEvent = order.getId();
+                                }
+                            }
+                        });
+
+                        radioGroup.addView(radioButton);
+                    } else {
+                        j++;
+                    }
+                }
+
+                if (j==order.getEvents().size()) {
+                    TextView textView = new TextView(OrderActivity.this);
+                    SpannableString ss = new SpannableString("All events have been marked as played!\nPlease contact Faraz Ali/Supriyo Das if there's any issue!");
+                    ss.setSpan(new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View view) {
+                            startActivity(new Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:+917044728852")));
+                        }
+                    }, 52, 61, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ss.setSpan(new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View view) {
+                            startActivity(new Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:+918013206937")));
+                        }
+                    }, 62, 73, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    textView.setText(ss);
+                    textView.setMovementMethod(LinkMovementMethod.getInstance());
+                    textView.setHighlightColor(Color.TRANSPARENT);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams.setMargins(20, 10, 10, 10);
+                    textView.setLayoutParams(layoutParams);
+                    textView.setTextSize(18);
+                    textView.setTextColor(getResources().getColor(android.R.color.black));
+                    linearLayout.addView(textView);
+                } else {
+                    linearLayout.addView(radioGroup);
+                    builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            progressDialog.show();
+                            apiService.markPlayed(order.getId(), playedEvent).enqueue(new Callback<GlobalResponse>() {
+                                @Override
+                                public void onResponse(Call<GlobalResponse> call, Response<GlobalResponse> response) {
+                                    progressDialog.dismiss();
+                                    if (response.isSuccessful()) {
+                                        Toast.makeText(OrderActivity.this, "Order updated successfully!", Toast.LENGTH_LONG).show();
+                                        order = response.body().getSuccess().getOrder();
+                                        populateEvents();
+                                    } else {
+                                        Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<GlobalResponse> call, Throwable t) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                                    Log.e("OrderActivity", t.getMessage());
+                                    t.printStackTrace();
+                                }
+                            });
+                        }
+                    });
+                }
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setView(linearLayout);
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
@@ -261,6 +405,9 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void populateEvents() {
+
+        eventsTable.removeAllViews();
+
         for (Event event : order.getEvents()) {
             TableRow tr = new TableRow(this);
             tr.setId(i);

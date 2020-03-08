@@ -20,4 +20,8 @@ public interface APIService {
     @Headers("Accept: application/json")
     @POST("orders/{orderId}/mark/paid")
     Call<GlobalResponse> markPaid(@Path("orderId") int orderId, @Body GlobalReqeust globalReqeust);
+
+    @Headers("Accept: application/json")
+    @POST("orders/{orderId}/mark/{eventId}/played")
+    Call<GlobalResponse> markPlayed(@Path("orderId") int orderId, @Path("eventId") int eventId);
 }
