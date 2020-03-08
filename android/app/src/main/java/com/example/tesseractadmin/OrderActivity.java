@@ -254,12 +254,12 @@ public class OrderActivity extends AppCompatActivity {
                     builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
                             progressDialog.show();
                             apiService.markPlayed(order.getId(), playedEvent).enqueue(new Callback<GlobalResponse>() {
                                 @Override
                                 public void onResponse(Call<GlobalResponse> call, Response<GlobalResponse> response) {
                                     progressDialog.dismiss();
+                                    Log.e("OrderActivity", response.code()+"");
                                     if (response.isSuccessful()) {
                                         Toast.makeText(OrderActivity.this, "Order updated successfully!", Toast.LENGTH_LONG).show();
                                         order = response.body().getSuccess().getOrder();
