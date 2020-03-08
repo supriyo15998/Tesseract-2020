@@ -43,6 +43,10 @@ public class Pivot implements Serializable {
         this.paid = paid;
     }
 
+    public boolean isPaid() { return paid == 1; }
+
+    public boolean isPlayed() { return played == 1; }
+
     public Integer getPlayed() {
         return played;
     }

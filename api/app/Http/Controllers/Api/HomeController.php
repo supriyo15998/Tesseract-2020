@@ -23,7 +23,7 @@ class HomeController extends Controller
 
         return response()->json([
             'success' => [
-                'order' => \App\Order::findOrFail($orderId)
+                'order' => \App\Order::with('events')->with('participant')->with(array('team' => function($q) { $q->with('leader')->with('members'); }))->findOrFail($orderId)
             ]
         ]);
     }
