@@ -15,4 +15,16 @@ class HomeController extends Controller
             ]
         ]);
     }
+
+    public function markPaid(Request $request, $orderId) {
+        $order = \App\Order::findOrFail($orderId);
+        foreach($request->paidEvents as $paidEvent)
+            $order->events()->updateExistingPivot($paidEvent, ['paid' => 1]);
+
+        return response()->json([
+            'success' => [
+                'order' => \App\Order::findOrFail($orderId)
+            ]
+        ]);
+    }
 }

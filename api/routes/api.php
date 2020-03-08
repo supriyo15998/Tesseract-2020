@@ -28,3 +28,4 @@ Route::get('/events/{slug}', 'Api\\GenericController@getEventsWithSlug')->name('
 // Android App Routes
 
 Route::get('/orders/{orderId}/details', 'Api\\HomeController@getOrderDetails');
+Route::post('/orders/{orderId}/mark/paid', 'Api\\HomeController@markPaid');

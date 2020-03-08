@@ -30,7 +30,7 @@ public class Team implements Serializable {
     private Integer isNaveen;
     @SerializedName("leader")
     @Expose
-    private Leader leader;
+    private Member leader;
     @SerializedName("members")
     @Expose
     private List<Member> members = null;
@@ -91,11 +91,11 @@ public class Team implements Serializable {
         this.isNaveen = isNaveen;
     }
 
-    public Leader getLeader() {
+    public Member getLeader() {
         return leader;
     }
 
-    public void setLeader(Leader leader) {
+    public void setLeader(Member leader) {
         this.leader = leader;
     }
 

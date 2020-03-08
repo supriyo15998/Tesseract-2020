@@ -28,6 +28,9 @@ public class Order implements Serializable {
     @SerializedName("events")
     @Expose
     private List<Event> events = null;
+    @SerializedName("participant")
+    @Expose
+    private Member participant;
     @SerializedName("team")
     @Expose
     private Team team;
@@ -90,6 +93,14 @@ public class Order implements Serializable {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public Member getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(Member participant) {
+        this.participant = participant;
     }
 
     public Team getTeam() {
