@@ -53,7 +53,7 @@ public class OrderActivity extends AppCompatActivity {
 
     private Order order;
     private TableLayout membersTable, eventsTable;
-    int i = 1;
+    int i = 1, toCollect = 0;
     private APIService apiService;
     private ProgressDialog progressDialog;
 
@@ -102,6 +102,14 @@ public class OrderActivity extends AppCompatActivity {
 
                 int j = 0;
 
+                final TextView toCollectView = new TextView(OrderActivity.this);
+                toCollectView.setText(String.format("Total amount to be collected: %d", toCollect));
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams.setMargins(20, 10, 10, 10);
+                toCollectView.setLayoutParams(layoutParams);
+                toCollectView.setTextSize(18);
+                linearLayout.addView(toCollectView);
+
                 for (final Event event : order.getEvents()) {
                     if (!event.getPivot().isPaid()) {
                         CheckBox checkBox = new CheckBox(OrderActivity.this);
@@ -111,9 +119,13 @@ public class OrderActivity extends AppCompatActivity {
                             @Override
                             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                                 if (b) {
+                                    toCollect += event.getPrice();
                                     paidEvents.add(event.getId());
+                                    toCollectView.setText(String.format("Total amount to be collected: %d", toCollect));
                                 } else {
+                                    toCollect -= event.getPrice();
                                     paidEvents.remove(event.getId());
+                                    toCollectView.setText(String.format("Total amount to be collected: %d", toCollect));
                                 }
                             }
                         });
@@ -124,6 +136,7 @@ public class OrderActivity extends AppCompatActivity {
                 }
 
                 if (j==order.getEvents().size()) {
+                    toCollectView.setVisibility(View.GONE);
                     TextView textView = new TextView(OrderActivity.this);
                     SpannableString ss = new SpannableString("All events have been marked as paid!\nPlease contact Faraz Ali/Supriyo Das if there's any issue!");
                     ss.setSpan(new ClickableSpan() {
@@ -141,13 +154,14 @@ public class OrderActivity extends AppCompatActivity {
                     textView.setText(ss);
                     textView.setMovementMethod(LinkMovementMethod.getInstance());
                     textView.setHighlightColor(Color.TRANSPARENT);
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(20, 10, 10, 10);
                     textView.setLayoutParams(layoutParams);
                     textView.setTextSize(18);
                     textView.setTextColor(getResources().getColor(android.R.color.black));
                     linearLayout.addView(textView);
                 } else {
+                    toCollectView.setVisibility(View.VISIBLE);
+
                     builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -164,23 +178,7 @@ public class OrderActivity extends AppCompatActivity {
                                         Toast.makeText(OrderActivity.this, "Order updated successfully!", Toast.LENGTH_LONG).show();
                                         order = response.body().getSuccess().getOrder();
                                         populateEvents();
-                                    } else if (response.code() == 402 ) {
-                                        GlobalResponse errorsResponse = new GlobalResponse();
-                                        Gson gson = new Gson();
-                                        TypeAdapter<GlobalResponse> adapter = gson.getAdapter(GlobalResponse.class);
-                                        try {
-                                            if (response.errorBody() != null)
-                                                errorsResponse =
-                                                        adapter.fromJson(
-                                                                response.errorBody().string());
-
-                                            Error error = errorsResponse.getError();
-
-                                            Toast.makeText(OrderActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    } else {
+                                    }else {
                                         Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -274,7 +272,23 @@ public class OrderActivity extends AppCompatActivity {
                                         Toast.makeText(OrderActivity.this, "Order updated successfully!", Toast.LENGTH_LONG).show();
                                         order = response.body().getSuccess().getOrder();
                                         populateEvents();
-                                    } else {
+                                    } else if (response.code() == 402 ) {
+                                        GlobalResponse errorsResponse = new GlobalResponse();
+                                        Gson gson = new Gson();
+                                        TypeAdapter<GlobalResponse> adapter = gson.getAdapter(GlobalResponse.class);
+                                        try {
+                                            if (response.errorBody() != null)
+                                                errorsResponse =
+                                                        adapter.fromJson(
+                                                                response.errorBody().string());
+
+                                            Error error = errorsResponse.getError();
+
+                                            Toast.makeText(OrderActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }  else {
                                         Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -338,16 +352,16 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void populateTeam() {
+        TableRow.LayoutParams param = new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                1
+        );
+        param.setMargins(5, 5, 5, 5);
+
         for (Member member : order.getTeam().getMembers()) {
             TableRow tr = new TableRow(this);
             tr.setId(i);
-
-            TableRow.LayoutParams param = new TableRow.LayoutParams(
-                    TableRow.LayoutParams.WRAP_CONTENT,
-                    TableRow.LayoutParams.WRAP_CONTENT,
-                    1
-            );
-            param.setMargins(5, 5, 5, 5);
 
             TextView t1 = new TextView(this);
             t1.setId(i+222);
@@ -451,16 +465,67 @@ public class OrderActivity extends AppCompatActivity {
 
         eventsTable.removeAllViews();
 
+        int total = 0, paid = 0;
+
+        TableRow header = new TableRow(this);
+        header.setId(i);
+        header.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+        TableRow.LayoutParams param = new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                1
+        );
+        param.setMargins(5, 5, 5, 5);
+
+        TextView h1 = new TextView(this);
+        h1.setId(i+199);
+        h1.setLayoutParams(param);
+        h1.setGravity(Gravity.CENTER);
+        h1.setText("Name");
+        h1.setTextSize(17);
+        h1.setTextColor(getResources().getColor(android.R.color.white));
+
+        TextView h2 = new TextView(this);
+        h2.setId(i+299);
+        h2.setLayoutParams(param);
+        h2.setGravity(Gravity.CENTER);
+        h2.setText("Price");
+        h2.setTextSize(17);
+        h2.setTextColor(getResources().getColor(android.R.color.white));
+
+        TextView h3 = new TextView(this);
+        h3.setId(i+399);
+        h3.setLayoutParams(param);
+        h3.setGravity(Gravity.CENTER);
+        h3.setText("Paid Status");
+        h3.setTextSize(17);
+        h3.setTextColor(getResources().getColor(android.R.color.white));
+
+        TextView h4 = new TextView(this);
+        h4.setId(i+499);
+        h4.setLayoutParams(param);
+        h4.setGravity(Gravity.CENTER);
+        h4.setText("Played Status");
+        h4.setTextSize(17);
+        h4.setTextColor(getResources().getColor(android.R.color.white));
+
+        header.addView(h1);
+        header.addView(h2);
+        header.addView(h3);
+        header.addView(h4);
+
+        eventsTable.addView(header);
+
+        i++;
         for (Event event : order.getEvents()) {
+
+            total += event.getPrice();
+            if (event.getPivot().isPaid())
+                paid += event.getPrice();
+
             TableRow tr = new TableRow(this);
             tr.setId(i);
-
-            TableRow.LayoutParams param = new TableRow.LayoutParams(
-                    TableRow.LayoutParams.WRAP_CONTENT,
-                    TableRow.LayoutParams.WRAP_CONTENT,
-                    1
-            );
-            param.setMargins(5, 5, 5, 5);
 
             TextView t1 = new TextView(this);
             t1.setId(i+222);
@@ -504,6 +569,39 @@ public class OrderActivity extends AppCompatActivity {
             eventsTable.addView(tr);
             i++;
         }
+
+        TableRow footer = new TableRow(this);
+        footer.setId(i);
+        footer.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+        TextView f1 = new TextView(this);
+        f1.setId(i+199);
+        f1.setLayoutParams(param);
+        f1.setGravity(Gravity.CENTER);
+        f1.setText("Total");
+        f1.setTextSize(17);
+        f1.setTextColor(getResources().getColor(android.R.color.white));
+
+        TextView f2 = new TextView(this);
+        f2.setId(i+299);
+        f2.setLayoutParams(param);
+        f2.setGravity(Gravity.CENTER);
+        f2.setText(String.valueOf(total));
+        f2.setTextSize(17);
+        f2.setTextColor(getResources().getColor(android.R.color.white));
+
+        footer.addView(f1);
+        footer.addView(f2);
+        footer.addView(new TextView(this));
+        footer.addView(new TextView(this));
+
+        eventsTable.addView(footer);
+
+        TextView totalPaid = findViewById(R.id.totalPaid);
+        totalPaid.setText("Total paid: " + paid);
+        TextView totalRemaining = findViewById(R.id.totalRemaining);
+        totalRemaining.setText("Total Remaining: " + (total-paid));
+
     }
 
     @Override

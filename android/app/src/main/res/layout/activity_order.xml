@@ -10,11 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5">
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -97,54 +99,30 @@
                     android:id="@+id/eventsTable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:gravity="center"/>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:background="@color/colorAccent">
+                <TextView
+                    android:id="@+id/totalPaid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Total Paid: "/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Name"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/totalRemaining"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Total Remaining: "/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Price"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Paid Status"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Played Status"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp" />
-                    </TableRow>
-
-                </TableLayout>
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
@@ -158,6 +136,8 @@
             android:id="@+id/markPaid"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:background="@color/colorAccent"
+            android:textColor="#fff"
             android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:text="Mark Paid" />
@@ -165,6 +145,8 @@
         <Button
             android:id="@+id/markPlayed"
             android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:textColor="#fff"
             android:layout_width="0dp"
             android:layout_margin="10dp"
             android:layout_height="wrap_content"

@@ -14,7 +14,7 @@
             android:id="@+id/login"
             android:layout_centerHorizontal="true"
             android:layout_above="@id/userId"
-            android:textColor="#1730BC"
+            android:textColor="@color/colorAccent"
             android:text="Please Login to Continue" />
 
         <EditText
@@ -44,7 +44,7 @@
             android:text="Login"
             android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"
-            android:background="#1730BC"
+            android:background="@color/colorAccent"
             android:textColor="#fff"
             android:layout_marginTop="15dp"
             android:layout_margin="10dp"

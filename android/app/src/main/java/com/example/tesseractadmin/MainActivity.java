@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     fetchOrder(Integer.parseInt(jsonObject.getString("order")));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(this, "Something went wrong!", Toast.LENGTH_LONG).show();
                 }
             }
         }
