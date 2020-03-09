@@ -31,8 +31,14 @@ class HomeController extends Controller
     public function markPlayed($orderId, $eventId) {
         $order = \App\Order::findOrFail($orderId);
 
+        if(!$order->events()->findOrFail($eventId)->pivot->paid)
+            return response()->json([
+                'error' => [
+                    'message' => "This event hasn't been paid for, therfore it cannot be marked as played!"
+                ]
+            ], 402);
+
         $order->events()->updateExistingPivot($eventId, ['played' => 1]);
-        
         return response()->json([
             'success' => [
                 'order' => \App\Order::with('events')->with('participant')->with(array('team' => function($q) { $q->with('leader')->with('members'); }))->findOrFail($orderId)

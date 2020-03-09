@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="+91 79802 36982 (Saswata)"
+        android:textSize="18sp"
+        android:autoLink="phone"
+        android:textColor="@android:color/black"
+        android:linksClickable="true"/>
+
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="+91 70447 28852 (Faraz)"
+        android:textSize="18sp"
+        android:autoLink="phone"
+        android:textColor="@android:color/black"
+        android:linksClickable="true"/>
+
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="+91 80132 06937 (Supriyo)"
+        android:textSize="18sp"
+        android:autoLink="phone"
+        android:textColor="@android:color/black"
+        android:linksClickable="true"/>
+
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="+91 86175 56459 (Sandipan)"
+        android:textSize="18sp"
+        android:autoLink="phone"
+        android:textColor="@android:color/black"
+        android:linksClickable="true"/>
+
+</LinearLayout>

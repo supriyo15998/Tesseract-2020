@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:gravity="center"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn"
+        android:layout_centerInParent="true"
         android:textSize="16sp"
-        android:text="Scan QR Code"></Button>
+        android:text="Scan QR Code"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text=""
+        android:text="abcd1234"
+        android:layout_below="@id/btn"
         android:textSize="22sp"
         android:id="@+id/result"
-        android:layout_marginTop="20dp"></TextView>
+        android:layout_marginTop="20dp"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/buglabsPromotion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="10dp"
+        android:text="Made with ♥ by TheBugLabs.\nFacing issues? Contact Us now!" />
+</RelativeLayout>

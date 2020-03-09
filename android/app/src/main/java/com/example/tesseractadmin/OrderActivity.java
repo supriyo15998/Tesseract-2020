@@ -16,6 +16,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tesseractadmin.models.Error;
 import com.example.tesseractadmin.models.Event;
 import com.example.tesseractadmin.models.GlobalReqeust;
 import com.example.tesseractadmin.models.GlobalResponse;
@@ -37,7 +39,9 @@ import com.example.tesseractadmin.models.Order;
 import com.example.tesseractadmin.remote.APIService;
 import com.example.tesseractadmin.remote.ApiUtils;
 import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +51,9 @@ import retrofit2.Response;
 
 public class OrderActivity extends AppCompatActivity {
 
-
     private Order order;
     private TableLayout membersTable, eventsTable;
     int i = 1;
-    private int playedEvent = 0;
     private APIService apiService;
     private ProgressDialog progressDialog;
 
@@ -162,6 +164,22 @@ public class OrderActivity extends AppCompatActivity {
                                         Toast.makeText(OrderActivity.this, "Order updated successfully!", Toast.LENGTH_LONG).show();
                                         order = response.body().getSuccess().getOrder();
                                         populateEvents();
+                                    } else if (response.code() == 402 ) {
+                                        GlobalResponse errorsResponse = new GlobalResponse();
+                                        Gson gson = new Gson();
+                                        TypeAdapter<GlobalResponse> adapter = gson.getAdapter(GlobalResponse.class);
+                                        try {
+                                            if (response.errorBody() != null)
+                                                errorsResponse =
+                                                        adapter.fromJson(
+                                                                response.errorBody().string());
+
+                                            Error error = errorsResponse.getError();
+
+                                            Toast.makeText(OrderActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
                                     } else {
                                         Toast.makeText(OrderActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
                                     }
@@ -201,7 +219,7 @@ public class OrderActivity extends AppCompatActivity {
                 LinearLayout linearLayout = new LinearLayout(OrderActivity.this);
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-                RadioGroup radioGroup = new RadioGroup(OrderActivity.this);
+                final RadioGroup radioGroup = new RadioGroup(OrderActivity.this);
                 radioGroup.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
                 int j = 0;
@@ -209,16 +227,8 @@ public class OrderActivity extends AppCompatActivity {
                 for (final Event event : order.getEvents()) {
                     if (!event.getPivot().isPlayed()) {
                         RadioButton radioButton = new RadioButton(OrderActivity.this);
+                        radioButton.setId(event.getId());
                         radioButton.setText(event.getName());
-                        radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                                if (b) {
-                                    playedEvent = order.getId();
-                                }
-                            }
-                        });
-
                         radioGroup.addView(radioButton);
                     } else {
                         j++;
@@ -255,7 +265,7 @@ public class OrderActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             progressDialog.show();
-                            apiService.markPlayed(order.getId(), playedEvent).enqueue(new Callback<GlobalResponse>() {
+                            apiService.markPlayed(order.getId(), radioGroup.getCheckedRadioButtonId()).enqueue(new Callback<GlobalResponse>() {
                                 @Override
                                 public void onResponse(Call<GlobalResponse> call, Response<GlobalResponse> response) {
                                     progressDialog.dismiss();
@@ -292,6 +302,39 @@ public class OrderActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        TextView buglabsPromotion = findViewById(R.id.buglabsPromotion);
+        SpannableString ss = new SpannableString("Made with ♥ by TheBugLabs.\nFacing issues? Contact Us now!");
+        ss.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.thebuglabs.com")));
+            }
+        },15, 25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OrderActivity.this);
+                final AlertDialog alertDialog = dialogBuilder.create();
+                LayoutInflater inflater = OrderActivity.this.getLayoutInflater();
+                View alertView = inflater.inflate(R.layout.phone_numbers, null);
+                alertDialog.setView(alertView);
+                alertDialog.setTitle("Contact Us");
+                alertDialog.setMessage("Having trouble in updating? Worry not call us now!");
+
+                alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+                alertDialog.show();
+            }
+        }, 42, 52, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        buglabsPromotion.setText(ss);
+        buglabsPromotion.setMovementMethod(LinkMovementMethod.getInstance());
+        buglabsPromotion.setHighlightColor(Color.TRANSPARENT);
     }
 
     private void populateTeam() {
