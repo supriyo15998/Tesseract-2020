@@ -115,6 +115,14 @@
                 <a href=""><i class="fa fa-google-plus"></i></a>
                 <a href=""><i class="fa fa-linkedin"></i></a>
               </div> -->
+                                <b-alert
+                                    variant="warning"
+                                    show
+                                    class="text-center"
+                                >
+                                    <h6>Note:</h6>
+                                    <p>Registrtations have been closed for Naveen Vidyarthi Award.</p>
+                                </b-alert>
                                 <p>Each participating team must participate in two mandatory events (<b>Model Display</b> and <b>Poster Presentation</b>), and maximum <b>three</b> optional events. Each event holds some points (refer the table below). Highest point earning team will win the award.</p>
                                 <h2 class="text-center">Point Table</h2>
                                 <table class="table table-hover table-condensed">
@@ -183,7 +191,7 @@
                                             target="_blank"
                                         >View Rules</a>
                                     </li>
-                                    <li
+                                    <!-- <li
                                         class="buy-tickets"
                                         :class="{'is-hidden': (events.length > 0 && events[0].category.id !== 'naveen-vidyarthi') || (events.length > 0 && events[0].is_team !== 1),}"
                                     >
@@ -192,7 +200,7 @@
                                             style="text-decoration: none;"
                                             :disabled="isLoading"
                                         ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Enroll</span></nuxt-link>
-                                    </li>
+                                    </li> -->
                                     <li
                                         class="buy-tickets"
                                         v-if="eventIds.includes(0)"
