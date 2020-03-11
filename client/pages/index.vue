@@ -702,6 +702,20 @@
                             </a>
                         </div>
                     </div>
+
+                    <div class="row no-gutters supporters-wrap clearfix">
+
+                        <div class="col-lg-12 animated infinite pulse">
+                                <div class="supporter-logo">
+                                    <img
+                                        src="sponsors/lincoln_logo.jpeg"
+                                        class="img-fluid"
+                                        alt=""
+                                    >
+                                </div>
+                                <p class="text-center">Platinum Partner</p>
+                       </div>
+                    </div>
                 </div>
 
                 <div class="container">
