@@ -43,7 +43,7 @@ Route::get('/', function() {
 // });
 
 Route::get('qr-code', function () {
-  return QRCode::text('QR Code Generator for Laravel!')->url();    
+  return QRCode::text('QR Code Generator for Laravel')->url();    
 });
 
 Route::prefix('admin')->group(function () {
