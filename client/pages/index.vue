@@ -713,6 +713,7 @@
                                         alt=""
                                     >
                                 </div>
+                                <p class="text-center">Platinum Partner</p>
                        </div>
                     </div>
                 </div>
