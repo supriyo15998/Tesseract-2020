@@ -150,7 +150,6 @@
                                     <li
                                         class="buy-tickets"
                                         :class="{'is-hidden': (events.length > 0 && events[0].category.id !== event.category.id) || (events.length > 0 && events[0].is_team !== event.is_team),}"
-                                        v-if="event.id !== 18"
                                     >
                                         <button
                                             @click.prevent="addToCart()"
