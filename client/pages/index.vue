@@ -703,9 +703,21 @@
                         </div>
                     </div>
 
+                    
+                </div>
+
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Diamond Sponsors</h2>
+                    </div>
+
                     <div class="row no-gutters supporters-wrap clearfix">
 
                         <div class="col-lg-12 animated infinite pulse">
+                            <a
+                                href="#"
+                                target="_blank"
+                            >
                                 <div class="supporter-logo">
                                     <img
                                         src="sponsors/lincoln_logo.jpeg"
@@ -713,10 +725,59 @@
                                         alt=""
                                     >
                                 </div>
-                                <p class="text-center">Platinum Partner</p>
-                       </div>
+                                <p class="text-center">Diamond Partner</p>
+                            </a>
+                        </div>
                     </div>
+
+                    <div class="row no-gutters supporters-wrap clearfix">
+
+                        <div class="col-lg-12 animated infinite pulse">
+                            <a
+                                href="#"
+                                target="_blank"
+                            >
+                                <div class="supporter-logo">
+                                    <img
+                                        src="sponsors/webskitters_logo.jpeg"
+                                        class="img-fluid"
+                                        alt=""
+                                    >
+                                </div>
+                                <p class="text-center">Gold Partner</p>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
+
+                <!-- <div class="container">
+                    <div class="section-header">
+                        <h2>Gold Sponsors</h2>
+                    </div>
+
+                        
+
+                    <div class="row no-gutters supporters-wrap clearfix">
+
+                        <div class="col-lg-12 animated infinite pulse">
+                            <a
+                                href="#"
+                                target="_blank"
+                            >
+                                <div class="supporter-logo">
+                                    <img
+                                        src="sponsors/webskitters_logo.jpeg"
+                                        class="img-fluid"
+                                        alt=""
+                                    >
+                                </div>
+                                <p class="text-center">Gold Partner</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div> -->
 
                 <div class="container">
                     <div class="section-header">

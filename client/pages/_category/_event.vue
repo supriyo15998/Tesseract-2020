@@ -123,7 +123,7 @@
                                     v-if="event.id === 18"
                                 >
                                     <h6>Note:</h6>
-                                    <p>This event is exclusively for Guru Nanak Institute of Technology Students.</p>
+                                    <p>This event is exclusively for Guru Nanak Institute of Technology Students. <br><small>Registrations Closed!</small></p>
                                 </b-alert>
                                 <h3 style="font-weight: bold;">Price : ₹ {{ event.price }} <span v-if="event.is_price_per_head">Per member</span></h3>
                                 <h4 style="font-weight: bold;">Timing : {{ event.event_time }}</h4>
@@ -150,6 +150,7 @@
                                     <li
                                         class="buy-tickets"
                                         :class="{'is-hidden': (events.length > 0 && events[0].category.id !== event.category.id) || (events.length > 0 && events[0].is_team !== event.is_team),}"
+                                        v-if="event.id !== 18"
                                     >
                                         <button
                                             @click.prevent="addToCart()"
