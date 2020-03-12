@@ -36,11 +36,16 @@ Route::get('/', function() {
 // Route::get('/test', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
-// Route::get('test', function() {
-// 	$order = \App\Order::findOrFail(93);
-// 	Mail::to($order->team->leader->email)->send(new \App\Mail\TeamRegistered($order));
-// 	return 'Done';
-// });
+Route::get('test', function() {
+
+	$orders = [164, 75, 348, 349];
+
+	foreach($orders as $o) {
+		$order = \App\Order::findOrFail($o);
+		Mail::to($order->team->leader->email)->send(new \App\Mail\TeamRegistered($order));
+	}
+	return 'Done';
+});
 
 Route::get('qr-code', function () {
   return QRCode::text('QR Code Generator for Laravel')->url();    
@@ -63,4 +68,3 @@ Route::prefix('admin')->group(function () {
 	Route::post('/export/orders', 'HomeController@exportOrdersPost')->name('exportOrdersPost');
 	Route::get('/export/naveen', 'HomeController@exportNaveen')->name('exportNaveen');
 });
-
