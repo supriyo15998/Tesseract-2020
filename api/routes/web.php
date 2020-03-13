@@ -41,7 +41,7 @@ Route::get('test', function() {
 
 	foreach($orders as $o) {
 		$order = \App\Order::findOrFail($o);
-		Mail::to($order->team->leader->email)->send(new \App\Mail\TeamRegistered($order));
+		Mail::to($order->participant->email)->send(new \App\Mail\SoloRegistered($order));
 	}
 	return 'Done';
 });
