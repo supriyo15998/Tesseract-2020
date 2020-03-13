@@ -14,7 +14,7 @@ class AttendanceExport implements FromView
     */
     public function view(): View
     {
-        return view('exports.orders', [
+        return view('exports.attendance', [
             'orders' => \App\Order::all()
         ]);
     }
