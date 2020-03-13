@@ -24,7 +24,7 @@ class OrdersExport implements FromView
         $eventId = $this->eventId;
 
         return view('exports.orders', [
-            'orders' => \App\Order::whereHas('events', function ($query) use ($eventId) { $query->where('event_id', $eventId); })->where('is_paid', 1)->get()
+            'orders' => \App\Order::whereHas('events', function ($query) use ($eventId) { $query->where('event_id', $eventId); })->get()
         ]);
     }
 }
