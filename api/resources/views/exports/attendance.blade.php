@@ -23,7 +23,7 @@
                 <td>
                     @foreach($order->events as $event)
                         {{ $event->pivot->paid == 1 ? $event->name : '' }},
-                        $event->pivot->paid == 1 ? $totalPaid += $event->price : $totalPaid += 0
+                        @php $event->pivot->paid == 1 ? $totalPaid += $event->price : $totalPaid += 0 @endphp
                     @endforeach
                 </td>
                 <td>{{ $totalPaid }}</td>
