@@ -5,9 +5,6 @@
         <th>Team/Participant Name</th>
         <th>POC Name</th>
         <th>POC Phone</th>
-        <th>Events Paid For</th>
-        <th>Team/Solo</th>
-        <th>Total Participants (Team)</th>
         <th>Total Paid</th>
     </tr>
     </thead>
@@ -28,14 +25,6 @@
                         @php $event->pivot->paid == 1 ? $totalPaid += $event->price : $totalPaid += 0 @endphp
                     @endforeach
                 </td>
-                <td>{{ $order->is_team ? 'Team' : 'Solo' }}</td>
-                <td>
-                    @if($order->is_team)
-                        {{ $order->team->participants->count() }}
-                    @else
-                        1
-                    @endif
-                </td>   
                 <td>{{ $totalPaid }}</td>
             </tr>
         @endif
