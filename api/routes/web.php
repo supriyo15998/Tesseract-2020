@@ -67,4 +67,6 @@ Route::prefix('admin')->group(function () {
 	Route::post('/export/orders', 'HomeController@exportOrdersPost')->name('exportOrdersPost');
 	Route::get('/export/naveen', 'HomeController@exportNaveen')->name('exportNaveen');
 	Route::get('/export/attendance', 'HomeController@exportAttendance')->name('exportAttendance');
+	Route::get('/export/attendance/events', 'HomeController@exportAttendanceEventsGet')->name('exportAttendanceEventsGet');
+	Route::post('/export/attendance/events', 'HomeController@exportAttendanceEventsPost')->name('exportAttendanceEventsPost');
 });

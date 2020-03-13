@@ -157,7 +157,7 @@
                                     <div class="details">
                                         <h3>
                                             <nuxt-link
-                                                to="/gaming/pubg-mobile"
+                                                to="/robotics/terranova"
                                                 style="text-decoration: none"
                                             >Terranova</nuxt-link>
                                         </h3>
@@ -197,7 +197,7 @@
                                     <div class="details">
                                         <h3>
                                             <nuxt-link
-                                                to="/gaming/pubg-mobile-solo"
+                                                to="/robotics/micro-mouse"
                                                 style="text-decoration: none"
                                             >Micro Mouse</nuxt-link>
                                         </h3>

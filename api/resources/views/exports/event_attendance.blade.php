@@ -5,6 +5,7 @@
         <th>Team/Participant Name</th>
         <th>POC Name</th>
         <th>POC Phone</th>
+        <th>Total Participants (Team)</th>
         <th>Total Paid</th>
     </tr>
     </thead>
@@ -19,12 +20,16 @@
                 @php
                     $totalPaid = 0;
                 @endphp
+                @foreach($order->events as $event)
+                    @php $event->pivot->paid == 1 ? $totalPaid += $event->price : $totalPaid += 0 @endphp
+                @endforeach
                 <td>
-                    @foreach($order->events as $event)
-                        {{ $event->pivot->paid == 1 ? $event->name : '' }},
-                        @php $event->pivot->paid == 1 ? $totalPaid += $event->price : $totalPaid += 0 @endphp
-                    @endforeach
-                </td>
+                    @if($order->is_team)
+                        {{ $order->team->members->count() }}
+                    @else
+                        1
+                    @endif
+                </td>   
                 <td>{{ $totalPaid }}</td>
             </tr>
         @endif
