@@ -13,7 +13,7 @@ use App\Exports\VolunteersExport;
 use App\Exports\OrdersExport;
 use App\Exports\NaveensExport;
 use App\Exports\AttendanceExport;
-use App\Exports\EventATtendanceExport;
+use App\Exports\EventAttendanceExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 
