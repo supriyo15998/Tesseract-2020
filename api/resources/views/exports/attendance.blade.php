@@ -31,7 +31,7 @@
                 <td>{{ $order->is_team ? 'Team' : 'Solo' }}</td>
                 <td>
                     @if($order->is_team)
-                        {{ $order->team->participants->count() }}
+                        {{ $order->team->members->count() }}
                     @else
                         1
                     @endif
