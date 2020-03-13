@@ -14,11 +14,8 @@ class AttendanceExport implements FromView
     */
     public function view(): View
     {
-        $orders = \App\Order::all();
-
-        dd($orders->events()->wherePivot('paid', 1));
         return view('exports.orders', [
-            'orders' => \App\Order::events()->wherePivot('paid', 1)
+            'orders' => \App\Order::all()
         ]);
     }
 }
