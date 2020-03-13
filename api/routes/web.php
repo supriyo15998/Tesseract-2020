@@ -37,7 +37,7 @@ Route::get('/', function() {
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
 Route::get('test', function() {
-	$orders = [170, 300];
+	$orders = [406];
 
 	foreach($orders as $o) {
 		$order = \App\Order::findOrFail($o);
