@@ -71,7 +71,7 @@
             <div class="intro-container wow fadeIn">
                 <h1 class="mb-4 pb-0">Tesseract<br>The Annual <span>Tech Fest</span> of <span>GNIT</span></h1>
                 <h2 class="mb-4 pb-0">
-                    <div
+                    <!-- <div
                         id="days"
                         style="display: inline;"
                     ></div> <span>Days</span>
@@ -86,7 +86,8 @@
                     <div
                         id="secs"
                         style="display: inline;"
-                    ></div> <span>Seconds</span>
+                    ></div> <span>Seconds</span> -->
+                    LIVE NOW
                 </h2>
                 <p class="mb-4 pb-0">13-14 March, Guru Nanak Institute of Technology, Kolkata</p>
                 <a
@@ -1583,11 +1584,11 @@ export default {
             this.isPreLoading = false;
         }, 3000);
 
-        this.$nextTick(function () {
-            window.setInterval(() => {
-                this.countDown();
-            }, 1000);
-        })
+        // this.$nextTick(function () {
+        //     window.setInterval(() => {
+        //         this.countDown();
+        //     }, 1000);
+        // })
 
         this.$root.$on('bv::modal::hide', (bvEvent, modalId) => {
             if (this.isSuccess)
