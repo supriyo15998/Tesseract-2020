@@ -68,7 +68,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-              <form method="POST" action="{{ route('exportOrdersPost') }}">
+              <form method="POST" action="{{ route('exportAttendanceEventsPost') }}">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
