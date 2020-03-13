@@ -818,6 +818,17 @@
                             </div>
                             <p class="text-center">Gaming Partner</p>
                         </div>
+
+                        <div class="col-lg-3 col-md-4 col-xs-6">
+                            <div class="supporter-logo">
+                                <img
+                                    src="sponsors/ad.png"
+                                    class="img-fluid"
+                                    alt=""
+                                >
+                            </div>
+                            <p class="text-center">Merchandise Partner</p>
+                        </div>
                     </div>
 
                 </div>
