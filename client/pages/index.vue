@@ -150,18 +150,18 @@
                             <center>
                                 <div class="speaker">
                                     <img
-                                        src="https://downloads.tesseractgnit.com/img/events/1582639374_8f736f632d3a003e.jpg"
+                                        src="https://downloads.tesseractgnit.com/img/events/1581608096_402ebdd7d59a82a6.jpg"
                                         alt="Speaker 1"
                                         class="img-fluid"
                                     >
                                     <div class="details">
                                         <h3>
                                             <nuxt-link
-                                                to="/gaming/pubg-mobile"
+                                                to="/robotics/terranova"
                                                 style="text-decoration: none"
-                                            >PUBG (Mobile) Squad</nuxt-link>
+                                            >Terranova</nuxt-link>
                                         </h3>
-                                        <p>PLAYERUNKNOWN'S BATTLEGROUNDS (PUBG) is a competitive survival shooting game.</p>
+                                        <p>The bot has to pass through a given arena in the minimum time possible.</p>
                                     </div>
                                 </div>
                             </center>
@@ -190,18 +190,18 @@
                             <center>
                                 <div class="speaker">
                                     <img
-                                        src="https://downloads.tesseractgnit.com/img/events/1582639374_8f736f632d3a003e.jpg"
+                                        src="https://downloads.tesseractgnit.com/img/events/1581607932_de12641c0bdd0675.jpg"
                                         alt="Speaker 1"
                                         class="img-fluid"
                                     >
                                     <div class="details">
                                         <h3>
                                             <nuxt-link
-                                                to="/gaming/pubg-mobile-solo"
+                                                to="/robotics/micro-mouse"
                                                 style="text-decoration: none"
-                                            >PUBG (Mobile) Solo</nuxt-link>
+                                            >Micro Mouse</nuxt-link>
                                         </h3>
-                                        <p>PLAYERUNKNOWN'S BATTLEGROUNDS (PUBG) is a competitive survival shooting game.</p>
+                                        <p>The bot has to complete the entire maze with as minimum time as possible.</p>
                                     </div>
                                 </div>
                             </center>
@@ -704,7 +704,6 @@
                         </div>
                     </div>
 
-                    
                 </div>
 
                 <div class="container">
@@ -818,6 +817,17 @@
                                 >
                             </div>
                             <p class="text-center">Gaming Partner</p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-xs-6">
+                            <div class="supporter-logo">
+                                <img
+                                    src="sponsors/ad.png"
+                                    class="img-fluid"
+                                    alt=""
+                                >
+                            </div>
+                            <p class="text-center">Merchandise Partner</p>
                         </div>
                     </div>
 

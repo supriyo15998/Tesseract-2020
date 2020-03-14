@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use App\Exports\VolunteersExport;
 use App\Exports\OrdersExport;
 use App\Exports\NaveensExport;
+use App\Exports\AttendanceExport;
+use App\Exports\EventAttendanceExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 
@@ -130,6 +132,16 @@ class HomeController extends Controller
     public function exportOrdersPost(Request $request) {
         $event = \App\Event::findOrFail($request->event_id);
         return Excel::download(new OrdersExport($request->event_id), $event->name . '_Orders_Report_' . \Carbon\Carbon::now() . '.xlsx');
+    }
+    public function exportAttendance() {
+        return Excel::download(new AttendanceExport, 'Attendance_Report_' . \Carbon\Carbon::now() . '.xlsx');
+    }
+    public function exportAttendanceEventsGet() {
+        return view('exportOrdersAttendance')->withEvents(\App\Event::all());
+    }
+    public function exportAttendanceEventsPost(Request $request) {
+        $event = \App\Event::findOrFail($request->event_id);
+        return Excel::download(new EventAttendanceExport($request->event_id), $event->name . '_Attendance_Report_' . \Carbon\Carbon::now() . '.xlsx');
     }
     public function orderDetails($orderId)
     {

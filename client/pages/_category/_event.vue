@@ -150,6 +150,7 @@
                                     <li
                                         class="buy-tickets"
                                         :class="{'is-hidden': (events.length > 0 && events[0].category.id !== event.category.id) || (events.length > 0 && events[0].is_team !== event.is_team),}"
+                                        v-if="allowed.includes(event.id)"
                                     >
                                         <button
                                             @click.prevent="addToCart()"
@@ -165,6 +166,9 @@
                                             v-else
                                             :disabled="isLoading"
                                         ><span v-if="isLoading"><i class="fa fa-spinner fa-spin"></i> Please wait</span> <span v-else>Remove from Cart</span></button>
+                                    </li>
+                                    <li v-else>
+                                        <p class="text-danger">Registration has been closed for this event! Thanks for stopping by!</p>
                                     </li>
                                     <li
                                         class="buy-tickets"
@@ -662,6 +666,7 @@ export default {
                 year: null,
 
             },
+            allowed: [3, 4, 5, 6, 7, 14],
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
 
         }
