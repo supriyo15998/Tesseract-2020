@@ -37,11 +37,12 @@ Route::get('/', function() {
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
 Route::get('test', function() {
-	$orders = [530];
+	$orders = [390];
 
 	foreach($orders as $o) {
 		$order = \App\Order::findOrFail($o);
-		Mail::to($order->participant->email)->send(new \App\Mail\ParticipantRegistered($order));
+		Mail::to($order->team->leader->email)->send(new \App\Mail\TeamRegistered($order));
+		//Mail::to($order->participant->email)->send(new \App\Mail\ParticipantRegistered($order));
 	}
 	return 'Done';
 });
