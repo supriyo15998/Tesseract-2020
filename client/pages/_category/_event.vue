@@ -666,7 +666,7 @@ export default {
                 year: null,
 
             },
-            allowed: [3, 4, 5, 6, 7, 14],
+            allowed: [], // [3, 4, 5, 6, 7, 14],
             years: [{ text: 'Select One', value: null }, { text: 'First year', value: '1st' }, { text: 'Second Year', value: '2nd' }, { text: 'Third Year', value: '3rd' }, { text: 'Fourth Year', value: '4th' }],
 
         }

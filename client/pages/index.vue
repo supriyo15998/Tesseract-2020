@@ -87,9 +87,9 @@
                         id="secs"
                         style="display: inline;"
                     ></div> <span>Seconds</span> -->
-                    LIVE NOW
+                    See you next year!
                 </h2>
-                <p class="mb-4 pb-0">13-14 March, Guru Nanak Institute of Technology, Kolkata</p>
+                <p class="mb-4 pb-0">Tesseract 2k20 was 🔥! Results for all the events will be published soon!</p>
                 <a
                     href="https://www.youtube.com/watch?v=okFFwnLY9Ew"
                     class="venobox play-btn mb-4"
