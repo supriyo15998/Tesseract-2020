@@ -83,4 +83,7 @@
     'italic' => $fontDir . '/Protos',
     'bold_italic' => $fontDir . '/Protos',
   ),
+  'cedarville cursive' => array(
+    'normal' => $fontDir . '/cedarville-cursive-normal_14e718e0cdcc8e3d3bcb28af90e35e18',
+  ),
 ) ?>
