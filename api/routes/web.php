@@ -13,6 +13,10 @@
 
 // Route::get('/', 'Auth\\LoginController@showLoginForm')->name('login');
 
+Route::get('/test-winners', function() {
+	return view('winners');
+});
+
 Route::domain('downloads.tesseractgnit.com')->group(function() {
 	Route::get('/', function() {
 		return redirect('https://www.tesseractgnit.com');
