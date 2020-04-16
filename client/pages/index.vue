@@ -89,7 +89,7 @@
                     ></div> <span>Seconds</span> -->
                     See you next year!
                 </h2>
-                <p class="mb-4 pb-0">Tesseract 2k20 was 🔥! Results for all the events will be published soon!</p>
+                <p class="mb-4 pb-0">Tesseract 2k20 was 🔥! Results have been published!</p>
                 <a
                     href="https://www.youtube.com/watch?v=okFFwnLY9Ew"
                     class="venobox play-btn mb-4"
@@ -100,18 +100,17 @@
                     href="#"
                     class="about-btn add-button"
                 >Download the App</a>
-                <a
-                    v-b-modal.register-volunteer
-                    href="#"
-                    style="text-decoration: none;"
-                    class="about-btn"
-                >Volunteer Registration</a>
-                <a
+                <nuxt-link to="/winners"><a
+                        href="#"
+                        style="text-decoration: none;"
+                        class="about-btn"
+                    >View Results</a></nuxt-link>
+                <!-- <a
                     v-b-modal.register-campus-ambassador
                     href="#"
                     class="about-btn"
                     style="text-decoration: none;"
-                >Campus Ambassador Registration</a>
+                >Campus Ambassador Registration</a> -->
             </div>
         </section>
         <main id="main">
