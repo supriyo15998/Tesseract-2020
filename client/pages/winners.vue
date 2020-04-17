@@ -26,7 +26,7 @@
                                             ></p>
                                         <h4 class="card-title">Team: Robosapienz</h4>
                                         <h5 class="card-text">Leader: Swayam Das</h5>
-                                        <p class="card-text">College:  Main Saltlake</p>
+                                        <p class="card-text">College: Techno Main Saltlake</p>
                                     </div>
                                 </div>
                             </div>
@@ -1142,7 +1142,7 @@
                                                 src="img/winners/second.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Team: Picturewale Entertainment</h4>
+                                        <h4 class="card-title">Team: Picturewaale Entertainments</h4>
                                         <h5 class="card-text">Leader: Koustav Majumder</h5>
                                         <p class="card-text">College: Guru Nanak Institute of Hotel Management</p>
                                     </div>
