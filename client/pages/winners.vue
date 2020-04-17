@@ -26,7 +26,7 @@
                                             ></p>
                                         <h4 class="card-title">Team: Robosapienz</h4>
                                         <h5 class="card-text">Leader: Swayam Das</h5>
-                                        <p class="card-text">College: Tecnho Main Saltlake</p>
+                                        <p class="card-text">College:  Main Saltlake</p>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +310,7 @@
                                             ></p>
                                         <h4 class="card-title">Team: Robosapienz</h4>
                                         <h5 class="card-text">Leader: Swayam Das</h5>
-                                        <p class="card-text">College: Tecnho Main Saltlake</p>
+                                        <p class="card-text">College: Techno Main Saltlake</p>
                                     </div>
                                 </div>
                             </div>
