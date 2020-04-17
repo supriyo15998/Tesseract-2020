@@ -1269,7 +1269,7 @@
                                             ></p>
                                         <h4 class="card-title">Team: Fast and Furious</h4>
                                         <h5 class="card-text">Leader: Abhishek Shil</h5>
-                                        <p class="card-text">College: </p>
+                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
                                     </div>
                                 </div>
                             </div>
@@ -1293,8 +1293,8 @@
                                                 alt="card image"
                                             ></p>
                                         <h4 class="card-title">Team: Inquisitive</h4>
-                                        <h5 class="card-text">Leader: Debharghya Dutta</h5>
-                                        <p class="card-text">College: </p>
+                                        <h5 class="card-text">Leader: Krishna Kumar Choudhury</h5>
+                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
                                     </div>
                                 </div>
                             </div>
