@@ -569,12 +569,12 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/second.jpg"
+                                                src="img/winners/first.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Team: Dose of Death</h4>
-                                        <h5 class="card-text">Leader: Samrat Mahanti</h5>
-                                        <p class="card-text">College: IGNOU</p>
+                                        <h4 class="card-title">Team: Half Life</h4>
+                                        <h5 class="card-text">Leader: Saptarshi Sanyal</h5>
+                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
                                     </div>
                                 </div>
                             </div>
@@ -594,12 +594,12 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/first.jpg"
+                                                src="img/winners/second.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Team: Half Life</h4>
-                                        <h5 class="card-text">Leader: Saptarshi Sanyal</h5>
-                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
+                                        <h4 class="card-title">Team: Dose of Death</h4>
+                                        <h5 class="card-text">Leader: Samrat Mahanti</h5>
+                                        <p class="card-text">College: IGNOU</p>
                                     </div>
                                 </div>
                             </div>
@@ -607,6 +607,7 @@
                     </div>
                 </div>
                 <!-- ./Team member -->
+                
                 <!-- Team member -->
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div
@@ -790,12 +791,12 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/second.jpg"
+                                                src="img/winners/first.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Team:NOVA</h4>
-                                        <h5 class="card-text">Leader: Ausaf Masuf</h5>
-                                        <p class="card-text">College: Guru Nanak Institute Of Technology</p>
+                                        <h4 class="card-title">Team: ZOMBIEZ</h4>
+                                        <h5 class="card-text">Leader: Saumyadeep Bhattacharyya</h5>
+                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
                                     </div>
                                 </div>
                             </div>
@@ -815,12 +816,12 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/first.jpg"
+                                                src="img/winners/second.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Team: ZOMBIEZ</h4>
-                                        <h5 class="card-text">Leader: Saumyadeep Bhattacharyya</h5>
-                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
+                                        <h4 class="card-title">Team:NOVA</h4>
+                                        <h5 class="card-text">Leader: Ausaf Masuf</h5>
+                                        <p class="card-text">College: Guru Nanak Institute Of Technology</p>
                                     </div>
                                 </div>
                             </div>
@@ -828,6 +829,7 @@
                     </div>
                 </div>
                 <!-- ./Team member -->
+                
                 <!-- Team member -->
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div
@@ -963,11 +965,11 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/second.jpg"
+                                                src="img/winners/first.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Player: Sonali Das</h4>
-                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
+                                        <h4 class="card-title">Player: Anusuya Pal</h4>
+                                        <p class="card-text">College: Adamas</p>
                                     </div>
                                 </div>
                             </div>
@@ -987,11 +989,11 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/first.jpg"
+                                                src="img/winners/second.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Player: Anusuya Pal</h4>
-                                        <p class="card-text">College: Adamas</p>
+                                        <h4 class="card-title">Player: Sonali Das</h4>
+                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
                                     </div>
                                 </div>
                             </div>
@@ -999,6 +1001,7 @@
                     </div>
                 </div>
                 <!-- ./Team member -->
+                
                 <!-- Team member -->
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div
@@ -1038,11 +1041,11 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/second.jpg"
+                                                src="img/winners/first.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Player: Imran Ali Sapui</h4>
-                                        <p class="card-text">College: Elitte College of Engineering</p>
+                                        <h4 class="card-title">Player: Sudipto Mondal</h4>
+                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
                                     </div>
                                 </div>
                             </div>
@@ -1062,11 +1065,11 @@
                                     <div class="card-body text-center">
                                         <p><img
                                                 class=" img-fluid"
-                                                src="img/winners/first.jpg"
+                                                src="img/winners/second.jpg"
                                                 alt="card image"
                                             ></p>
-                                        <h4 class="card-title">Player: Sudipto Mondal</h4>
-                                        <p class="card-text">College: Guru Nanak Institute of Technology</p>
+                                        <h4 class="card-title">Player: Imran Ali Sapui</h4>
+                                        <p class="card-text">College: Elitte College of Engineering</p>
                                     </div>
                                 </div>
                             </div>
@@ -1074,6 +1077,7 @@
                     </div>
                 </div>
                 <!-- ./Team member -->
+                
                 <!-- Team member -->
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div
