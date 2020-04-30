@@ -8,8 +8,8 @@
         <th>POC College Name</th>
         <th>POC Year</th>
         <th>Extra Notes</th>
-        <th>Paid Status</th>
-        <th>Played Status</th>
+<!--         <th>Paid Status</th>
+        <th>Played Status</th> -->
     </tr>
     </thead>
     <tbody>
@@ -22,8 +22,8 @@
             <td>{{ $order->is_team ? $order->team->leader->college : $order->participant->college }}</td>
             <td>{{ $order->is_team ? $order->team->leader->year : $order->participant->year }}</td>
             <td>{{ $order->events[0]->id === 18 ? 'Model Display Topic: ' . $order->team->subject : 'None' }}</td>
-            <td>{{ $order->events()->find($eventId)->pivot->paid == 1 ? 'Paid' : 'Not Paid' }}</td>
-            <td>{{ $order->events()->find($eventId)->pivot->played == 1 ? 'Played' : 'Not Played' }}</td>
+<!--             <td>{{ $order->events()->find($eventId)->pivot->paid == 1 ? 'Paid' : 'Not Paid' }}</td>
+            <td>{{ $order->events()->find($eventId)->pivot->played == 1 ? 'Played' : 'Not Played' }}</td> -->
         </tr>
     @endforeach
     </tbody>
