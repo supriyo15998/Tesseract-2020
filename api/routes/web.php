@@ -81,8 +81,8 @@ Route::prefix('admin')->group(function () {
 Route::get('/test-volunteer', function() {
 
 	$pdf = \PDF::loadView('pdf.volunteer')->setPaper('a4', 'landscape');
-	\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\VolunteerCertificate());
-	//return $pdf->stream('volunteer.pdf');
-	//return view('pdf/volunteer');
+	\Mail::to('shourochat@gmail.com')->send(new App\Mail\VolunteerCertificate());
+	// return $pdf->stream('volunteer.pdf');
+	//return view('pdf/volunteer'); pehele mere me test kare
 	echo "Done";
 });

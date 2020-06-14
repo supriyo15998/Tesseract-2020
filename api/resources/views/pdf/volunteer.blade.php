@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive&display=swap" rel="stylesheet">
 	<style type="text/css">	
+	@page { margin: 100px; }
+	#watermark { position: fixed; bottom: 65%; top: -15%; left: -10%;}
 	.container{
 		position: relative;
 	  text-align: center;
@@ -13,22 +13,21 @@
 	.name{
 		color: black;
 		position: absolute;
-		margin-top: 33%;
+		margin-top: 41%;
 		font-family: 'Bebas Neue', cursive;
 		font-weight: bold;
 		font-size: 30px;
-		margin-left: 40%;
+		width: 100%;
+		text-align: center;
+		margin-left: 13%;
 	}
 	</style>
 </head>
 <body>
 	<!-- <img src="{{ asset('img/certificates/volunteermin.jpg') }}"> -->
-	<div class="container">
-		<div class="name">Faraz Ali</div>
-		<img src="img/certificates/volunteermin.jpg" height="600" width="950">		
+	<div id="watermark">
+		<div class="name">Souro Chatterjee</div>
+		<img src="img/certificates/Volunteer_Certificate_test-min.jpg" height="800" width="1150">		
 	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
