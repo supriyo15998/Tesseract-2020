@@ -16,7 +16,7 @@
 		margin-top: 41%;
 		font-family: 'Bebas Neue', cursive;
 		font-weight: bold;
-		font-size: 30px;
+		font-size: 32px;
 		width: 100%;
 		text-align: center;
 		margin-left: 13%;
@@ -26,8 +26,8 @@
 <body>
 	<!-- <img src="{{ asset('img/certificates/volunteermin.jpg') }}"> -->
 	<div id="watermark">
-		<div class="name">Souro Chatterjee</div>
-		<img src="img/certificates/Volunteer_Certificate_test-min.jpg" height="800" width="1150">		
+		<div class="name">Supriyo Das</div>
+		<img src="img/certificates/final/volunteer-min.jpg" height="800" width="1150">		
 	</div>
 </body>
 </html>
