@@ -31,9 +31,9 @@ Route::domain('downloads.tesseractgnit.com')->group(function() {
 
 });
 
-Route::get('/', function() {
-	return redirect('/admin/login');
-});
+// Route::get('/', function() {
+// 	return redirect('/admin/login');
+// });
 
 // test routing for pdf's
 // Route::get('/teams', 'PDFController@generatePdfForTeam')->name('generatePdfForTeam');
@@ -55,26 +55,26 @@ Route::get('qr-code', function () {
   return QRCode::text('QR Code Generator for Laravel')->url();    
 });
 
-Route::prefix('admin')->group(function () {
-	Auth::routes(['register' => false]);
-	Route::get('/home', 'HomeController@index')->name('home');
-	Route::get('/volunteers-list', 'HomeController@getVolunteers')->name('getVolunteers');
-	Route::get('/add-event', 'HomeController@viewEventForm')->name('viewEventForm');
-	Route::get('/show-participants', 'HomeController@viewTeams')->name('viewParticipants');
-	Route::get('/show-naveen', 'HomeController@viewNaveen')->name('viewNaveen');
-	Route::get('/show-solo', 'HomeController@viewSolo')->name('viewSolo');
-	Route::get('/orders/{orderId}/details', 'HomeController@orderDetails')->name('orderDetails');
-	Route::post('/event', 'HomeController@registerEvent')->name('registerEvent');
-	Route::get('/event/list', 'HomeController@showEvent')->name('showEvent');
-	Route::get('/campuss-ambassador/list', 'HomeController@showCampussAmbassadors')->name('showCampussAmbassadors');
-	Route::get('/export/volunteers', 'HomeController@exportVolunteers')->name('exportVolunteers');
-	Route::get('/export/orders', 'HomeController@exportOrdersGet')->name('exportOrdersGet');
-	Route::post('/export/orders', 'HomeController@exportOrdersPost')->name('exportOrdersPost');
-	Route::get('/export/naveen', 'HomeController@exportNaveen')->name('exportNaveen');
-	Route::get('/export/attendance', 'HomeController@exportAttendance')->name('exportAttendance');
-	Route::get('/export/attendance/events', 'HomeController@exportAttendanceEventsGet')->name('exportAttendanceEventsGet');
-	Route::post('/export/attendance/events', 'HomeController@exportAttendanceEventsPost')->name('exportAttendanceEventsPost');
-});
+// Route::prefix('admin')->group(function () {
+// 	Auth::routes(['register' => false]);
+// 	Route::get('/home', 'HomeController@index')->name('home');
+// 	Route::get('/volunteers-list', 'HomeController@getVolunteers')->name('getVolunteers');
+// 	Route::get('/add-event', 'HomeController@viewEventForm')->name('viewEventForm');
+// 	Route::get('/show-participants', 'HomeController@viewTeams')->name('viewParticipants');
+// 	Route::get('/show-naveen', 'HomeController@viewNaveen')->name('viewNaveen');
+// 	Route::get('/show-solo', 'HomeController@viewSolo')->name('viewSolo');
+// 	Route::get('/orders/{orderId}/details', 'HomeController@orderDetails')->name('orderDetails');
+// 	Route::post('/event', 'HomeController@registerEvent')->name('registerEvent');
+// 	Route::get('/event/list', 'HomeController@showEvent')->name('showEvent');
+// 	Route::get('/campuss-ambassador/list', 'HomeController@showCampussAmbassadors')->name('showCampussAmbassadors');
+// 	Route::get('/export/volunteers', 'HomeController@exportVolunteers')->name('exportVolunteers');
+// 	Route::get('/export/orders', 'HomeController@exportOrdersGet')->name('exportOrdersGet');
+// 	Route::post('/export/orders', 'HomeController@exportOrdersPost')->name('exportOrdersPost');
+// 	Route::get('/export/naveen', 'HomeController@exportNaveen')->name('exportNaveen');
+// 	Route::get('/export/attendance', 'HomeController@exportAttendance')->name('exportAttendance');
+// 	Route::get('/export/attendance/events', 'HomeController@exportAttendanceEventsGet')->name('exportAttendanceEventsGet');
+// 	Route::post('/export/attendance/events', 'HomeController@exportAttendanceEventsPost')->name('exportAttendanceEventsPost');
+// });
 
 
 //certificates test
@@ -85,4 +85,8 @@ Route::get('/test-volunteer', function() {
 	//return $pdf->stream('volunteer.pdf');
 	//return view('pdf/volunteer'); pehele mere me test kare
 	echo "Done";
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
