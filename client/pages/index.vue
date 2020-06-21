@@ -105,12 +105,12 @@
                         style="text-decoration: none;"
                         class="about-btn"
                     >View Results</a></nuxt-link>
-                <!-- <a
-                    v-b-modal.register-campus-ambassador
+                <a
+                    v-b-modal.register-volunteer
                     href="#"
                     class="about-btn"
                     style="text-decoration: none;"
-                >Campus Ambassador Registration</a> -->
+                >Volunteer Registration</a>
             </div>
         </section>
         <main id="main">
