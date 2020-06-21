@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+	<style media="screen" type="text/css">/*<![CDATA[*/@import 'stylesheet.css';/*]]>*/</style>
 	<style type="text/css">	
 	@page { margin: 100px; }
 	#watermark { position: fixed; bottom: 65%; top: -15%; left: -10%;}
@@ -14,8 +15,7 @@
 		color: black;
 		position: absolute;
 		margin-top: 41%;
-		font-family: 'Bebas Neue', cursive;
-		font-weight: bold;
+		font-family: 'Tangerine';
 		font-size: 32px;
 		width: 100%;
 		text-align: center;
