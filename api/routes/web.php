@@ -81,15 +81,12 @@ Route::get('qr-code', function () {
 Route::get('/test-volunteer', function() {
 
 	$pdf = \PDF::loadView('pdf.volunteer')->setPaper('a4', 'landscape');
-	//\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\VolunteerCertificate());
-	return $pdf->stream('volunteer.pdf');
-	// return view('pdf/volunteer');
+	\Mail::to('saswata032@gmail.com')->send(new App\Mail\VolunteerCertificate());
+	//return $pdf->stream('volunteer.pdf');
+	//return view('pdf/volunteer');
 	echo "Done";
 });
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-});
-Route::get('/hoola', function() {
-	return view('hoola');
 });

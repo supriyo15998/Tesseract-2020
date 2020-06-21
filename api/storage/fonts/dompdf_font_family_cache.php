@@ -77,11 +77,11 @@
     'italic' => $rootDir . '/lib/fonts/DejaVuSerif-Italic',
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
-  'protos' => array(
-    'normal' => $fontDir . '/Protos',
-    'bold' => $fontDir . '/Protos',
-    'italic' => $fontDir . '/Protos',
-    'bold_italic' => $fontDir . '/Protos',
+  'tangerine' => array(
+    'normal' => $fontDir . '/Tangerine-Regular',
+    'bold' => $fontDir . '/Tangerine-Regular',
+    'italic' => $fontDir . '/Tangerine-Regular',
+    'bold_italic' => $fontDir . '/Tangerine-Regular',
   ),
   'cedarville cursive' => array(
     'normal' => $fontDir . '/cedarville-cursive-normal_14e718e0cdcc8e3d3bcb28af90e35e18',
