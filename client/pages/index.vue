@@ -57,7 +57,7 @@
                         </li>
                         <li class="buy-tickets">
                             <a
-                                v-b-modal.register-volunteer
+                                v-b-modal="'register-volunteer'"
                                 href="#"
                                 style="text-decoration: none;"
                             >Volunteer Registration</a>
@@ -106,7 +106,7 @@
                         class="about-btn"
                     >View Results</a></nuxt-link>
                 <a
-                    v-b-modal.register-volunteer
+                    v-b-modal="'register-volunteer'"
                     href="#"
                     class="about-btn"
                     style="text-decoration: none;"
