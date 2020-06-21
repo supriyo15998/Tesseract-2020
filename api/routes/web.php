@@ -87,6 +87,15 @@ Route::get('/test-volunteer', function() {
 	echo "Done";
 });
 
+Route::get('/test-participant', function() {
+
+	$pdf = \PDF::loadView('pdf.participant')->setPaper('a4', 'landscape');
+	\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
+	//return $pdf->stream('participant.pdf');
+	//return view('pdf/volunteer');
+	echo "Done";
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
