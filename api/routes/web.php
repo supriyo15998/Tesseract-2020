@@ -81,8 +81,8 @@ Route::get('qr-code', function () {
 Route::get('/test-volunteer', function() {
 
 	$pdf = \PDF::loadView('pdf.volunteer')->setPaper('a4', 'landscape');
-	\Mail::to('saswata032@gmail.com')->send(new App\Mail\VolunteerCertificate());
-	//return $pdf->stream('volunteer.pdf');
+	// \Mail::to('saswata032@gmail.com')->send(new App\Mail\VolunteerCertificate());
+	return $pdf->stream('volunteer.pdf');
 	//return view('pdf/volunteer');
 	echo "Done";
 });
