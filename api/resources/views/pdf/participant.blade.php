@@ -40,7 +40,7 @@
 	<!-- <img src="{{ asset('img/certificates/volunteermin.jpg') }}"> -->
 	<div id="watermark">
 		<div class="name">Supriyo Das</div>
-        <div class="event">Short Film</div>
+        <div class="event">Code Golf</div>
 		<img src="img/certificates/final/participation-min.jpg" height="800" width="1150">		
 	</div>
 </body>

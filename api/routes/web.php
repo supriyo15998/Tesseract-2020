@@ -90,8 +90,8 @@ Route::get('/test-volunteer', function() {
 Route::get('/test-participant', function() {
 
 	$pdf = \PDF::loadView('pdf.participant')->setPaper('a4', 'landscape');
-	\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
-	//return $pdf->stream('participant.pdf');
+	//\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
+	return $pdf->stream('participant.pdf');
 	//return view('pdf/volunteer');
 	echo "Done";
 });
