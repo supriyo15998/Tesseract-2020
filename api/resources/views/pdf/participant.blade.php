@@ -2,10 +2,12 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
 	<style media="screen" type="text/css">/*<![CDATA[*/@import 'stylesheet.css';/*]]>*/</style>
 	<style type="text/css">	
 	@page { margin: 100px; }
 	@import url('https://fonts.googleapis.com/css3?family=Tangerine:wght@700&display=swap');
+	@import url('https://fonts.googleapis.com/css?family=Bebas Neue');
 	#watermark { position: fixed; bottom: 65%; top: -13%; left: -10%;}
 	.container{
 		position: relative;
@@ -37,8 +39,8 @@
 	.verify {
 		color: black;
 		position: absolute;
-		font-family: 'Roboto';
-		margin-top: 81%;
+		font-family: 'Bebas Neue';
+		margin-top: 80%;
 		text-align: center;
 		margin-right: 1%;
 		width: 100%;

@@ -86,4 +86,7 @@
   'cedarville cursive' => array(
     'normal' => $fontDir . '/cedarville-cursive-normal_14e718e0cdcc8e3d3bcb28af90e35e18',
   ),
+  'bebas neue' => array(
+    'normal' => $fontDir . '/bebas-neue-normal_c7b4331ba29a24ec703f504eb31383dd',
+  ),
 ) ?>
