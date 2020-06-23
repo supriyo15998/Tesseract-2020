@@ -50,10 +50,23 @@ Route::get('test', function() {
 	// }
 	// return 'Done';
 
-	$emails = ['farazappy@gmail.com', 'farazappy@esportsindia.in', 'farazappy@thebuglabs.com', 'shourochat@gmail.com', 'shourochat@hotmail.com', 'avikavikavikavik1234@gmail.com', 'subhamay.may@gmail.com', 'saswata@thebuglabs.com', 'saswata032@gmail.com', 'supriyo.das@thebuglabs.com', 'supriyo15998@gmail.com', 'sandipan.sau99@gmail.com', 'sandipan@thebuglabs.com'];
+	// $emails = ['farazappy@gmail.com', 'farazappy@esportsindia.in', 'farazappy@thebuglabs.com', 'shourochat@gmail.com', 'shourochat@hotmail.com', 'avikavikavikavik1234@gmail.com', 'subhamay.may@gmail.com', 'saswata@thebuglabs.com', 'saswata032@gmail.com', 'supriyo.das@thebuglabs.com', 'supriyo15998@gmail.com', 'sandipan.sau99@gmail.com', 'sandipan@thebuglabs.com'];
 
-	foreach($emails as $email)
-		Mail::to($email)->send(new \App\Mail\TestMail());
+	// foreach($emails as $email)
+	// 	Mail::to($email)->send(new \App\Mail\TestMail());
+
+	$o = Order::firstOrFail();
+
+	if($o->is_team) {
+		foreach($o->team->members as $participant) {
+			if($o->team->is_naveen)
+				Mail::to($participant->email)->send(new \App\Mail\NaveenCertificate($participant));
+			else
+				Mail::to($participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
+		}
+	} else {
+		Mail::to($o->participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
+	}
 
 	return 'Done';
 });

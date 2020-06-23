@@ -18,7 +18,7 @@
 		margin-top: 42%;
 		font-family: 'Tangerine', cursive;
 		font-weight: bold;
-		font-size: 3.5em;
+		font-size: 4.2em;
 		width: 100%;
 		text-align: center;
 		margin-left: 6%;
@@ -39,8 +39,8 @@
 <body>
 	<!-- <img src="{{ asset('img/certificates/volunteermin.jpg') }}"> -->
 	<div id="watermark">
-		<div class="name">Debmalya Das Gajendra Mahapatra</div>
-        <div class="event">Code Golf</div>
+		<div class="name">{{ $user->name }}</div>
+        <div class="event">{{ $event->name }}</div>
 		<img src="img/certificates/final/participation-min.jpg" height="800" width="1150">		
 	</div>
 </body>
