@@ -41,13 +41,20 @@ Route::domain('downloads.tesseractgnit.com')->group(function() {
 // Route::get('/solo', 'PDFController@generatePdfSolo')->name('generatePdfSolo');
 
 Route::get('test', function() {
-	$orders = [390];
+	// $orders = [390];
 
-	foreach($orders as $o) {
-		$order = \App\Order::findOrFail($o);
-		Mail::to($order->team->leader->email)->send(new \App\Mail\TeamRegistered($order));
-		//Mail::to($order->participant->email)->send(new \App\Mail\ParticipantRegistered($order));
-	}
+	// foreach($orders as $o) {
+	// 	$order = \App\Order::findOrFail($o);
+	// 	Mail::to($order->team->leader->email)->send(new \App\Mail\TeamRegistered($order));
+	// 	//Mail::to($order->participant->email)->send(new \App\Mail\ParticipantRegistered($order));
+	// }
+	// return 'Done';
+
+	$emails = ['farazappy@gmail.com'];
+
+	foreach($emails as $email)
+		Mail::to($email)->send(new \App\Mail\TestMail());
+
 	return 'Done';
 });
 
