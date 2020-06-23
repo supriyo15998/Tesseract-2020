@@ -10,7 +10,7 @@ export default {
         }
     },
     async asyncData ({ app, params }) {
-        const resp = await app.$axios.$get(`/validate/certificate/${param.type}/${param.id}`)
+        const resp = await app.$axios.$get(`/validate/certificate/${params.type}/${params.id}`)
         return {
             user: resp.success.user,
         }
