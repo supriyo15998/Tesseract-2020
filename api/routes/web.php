@@ -55,7 +55,7 @@ Route::get('test', function() {
 	// foreach($emails as $email)
 	// 	Mail::to($email)->send(new \App\Mail\TestMail());
 
-	$o = Order::firstOrFail();
+	$o = \App\Order::firstOrFail();
 
 	if($o->is_team) {
 		foreach($o->team->members as $participant) {
