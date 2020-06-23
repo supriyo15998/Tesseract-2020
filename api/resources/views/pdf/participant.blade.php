@@ -6,7 +6,7 @@
 	<style type="text/css">	
 	@page { margin: 100px; }
 	@import url('https://fonts.googleapis.com/css3?family=Tangerine:wght@700&display=swap');
-	#watermark { position: fixed; bottom: 65%; top: -15%; left: -10%;}
+	#watermark { position: fixed; bottom: 65%; top: -13%; left: -10%;}
 	.container{
 		position: relative;
 	  text-align: center;
@@ -18,7 +18,7 @@
 		margin-top: 42%;
 		font-family: 'Tangerine', cursive;
 		font-weight: bold;
-		font-size: 4.2em;
+		font-size: 3.8em;
 		width: 100%;
 		text-align: center;
 		margin-left: 6%;
@@ -32,16 +32,31 @@
 		font-size: 4.2em;
 		width: 100%;
 		text-align: center;
-		margin-left: 16%;
+		margin-left: 20%;
+	}
+	.verify {
+		color: black;
+		position: absolute;
+		font-family: 'Roboto';
+		margin-top: 81%;
+		text-align: center;
+		margin-right: 1%;
+		width: 100%;
 	}
 	</style>
 </head>
 <body>
-	<!-- <img src="{{ asset('img/certificates/volunteermin.jpg') }}"> -->
 	<div id="watermark">
-		<div class="name">{{ $user->name }}</div>
-        <div class="event">{{ $event->name }}</div>
-		<img src="img/certificates/final/participation-min.jpg" height="800" width="1150">		
+		<div class="name">{{ $participant->name }}</div>
+		<div class="event">{{ $event->name }}</div>
+
+		@php
+			$gen = "https://www.tesseractgnit.com/validate/certificate/participant/" . base_convert($participant->id+100000, 10, 16);
+		@endphp
+		<img style="position: absolute; margin-top: 65%;margin-left: 42%;" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->backgroundColor(251, 245, 231)->size(150)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate($gen)) !!} ">		
+		<div class="verify">Scan To Verify</div>
+
+		<img src="img/certificates/final/participation-min.jpg" height="800" width="1150">
 	</div>
 </body>
 </html>

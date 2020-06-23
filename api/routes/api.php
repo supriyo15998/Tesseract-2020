@@ -30,3 +30,5 @@ Route::get('/events/{slug}', 'Api\\GenericController@getEventsWithSlug')->name('
 Route::get('/orders/{orderId}/details', 'Api\\HomeController@getOrderDetails');
 Route::post('/orders/{orderId}/mark/paid', 'Api\\HomeController@markPaid');
 Route::post('/orders/{orderId}/mark/{eventId}/played', 'Api\\HomeController@markPlayed');
+
+Route::get('/validate/certificate/{type}/{id}'. 'Api\\HomeController@validateCertificate');

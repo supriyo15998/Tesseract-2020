@@ -109,10 +109,10 @@ Route::get('/test-volunteer', function() {
 
 Route::get('/test-participant', function() {
 
-	$pdf = \PDF::loadView('pdf.participant')->setPaper('a4', 'landscape');
+	$pdf = \PDF::loadView('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()])->setPaper('a4', 'landscape');
 	//\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
 	return $pdf->stream('participant.pdf');
-	//return view('pdf/volunteer');
+	//return view('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()]);
 	echo "Done";
 });
 

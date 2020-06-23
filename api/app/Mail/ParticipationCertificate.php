@@ -12,18 +12,18 @@ use App\Participant;
 class ParticipationCertificate extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    public $events, $user;
+    public $events, $participant;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($events, Participant $user)
+    public function __construct($events, Participant $participant)
     {
         //
         $this->events = $events;
-        $this->user = $user;
+        $this->participant = $participant;
     }
 
     /**
@@ -33,10 +33,10 @@ class ParticipationCertificate extends Mailable implements ShouldQueue
      */
     public function build()
     {   
-        $email = $this->markdown('emails.participants.certificate', ['user' => $this->user]);
+        $email = $this->markdown('emails.participants.certificate', ['participant' => $this->participant]);
 
         foreach($this->events as $event) {
-            $pdf = \PDF::loadView('pdf.participant', ['event' => $event, 'user' => $this->user])->setPaper('a4', 'landscape');
+            $pdf = \PDF::loadView('pdf.participant', ['event' => $event, 'participant' => $this->participant])->setPaper('a4', 'landscape');
             $email->attachData($pdf->output(), Str::snake($event->name) . '_certificate.pdf', ['mime' => 'application/pdf']);
         }
 

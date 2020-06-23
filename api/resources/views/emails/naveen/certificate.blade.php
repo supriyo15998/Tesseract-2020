@@ -1,7 +1,7 @@
 @component('mail::message')
 # Thank you for taking part in Tesseract 2020
 
-Dear {{ $user->name }},
+Dear {{ $participant->name }},
 
 Team Tesseract congratulates you on your performance in Tesseract 2020. Thank you for your support and cooperation throughout the event . 
 
