@@ -9,6 +9,9 @@ Your esteemed participation has led to the success of Tesseract 2020. We are pro
 
 Until then,  we wish you the best of health! Please find attached your participation certificate.
 
+Note: The signatures contained in these documents/certificates is confidential, privileged and only for the authenticity.
+You are hereby notified that any use of these signatures without permission is strictly prohibited.
+
 Regards
 Team Tesseract
 

@@ -9,6 +9,9 @@ We extend our sincerest gratitude for your indispensable contribution as a volun
 
 Please find attached your volunteer certificate.
 
+Note: The signatures contained in these documents/certificates is confidential, privileged and only for the authenticity.
+You are hereby notified that any use of these signatures without permission is strictly prohibited.
+
 Thanks,<br>
 Tesseract-2020
 @endcomponent
