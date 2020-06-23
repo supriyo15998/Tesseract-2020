@@ -51,9 +51,9 @@
 		<div class="event">{{ $event->name }}</div>
 
 		@php
-			$gen = "https://www.tesseractgnit.com/validate/certificate/participant/" . base_convert($participant->id+100000, 10, 16);
+			$gen = "https://www.tesseractgnit.com/validate/certificate/" . base_convert(1+1000, 10, 16) . "-" . base_convert($participant->id+100000, 10, 16);
 		@endphp
-		<img style="position: absolute; margin-top: 65%;margin-left: 42%;" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->backgroundColor(251, 245, 231)->size(150)->merge('img/tesseract_transparent.png', .3, true)->errorCorrection('H')->generate($gen)) !!} ">		
+		<img style="position: absolute; margin-top: 65%;margin-left: 42%;" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->backgroundColor(251, 245, 231)->size(150)->merge('img/tesseract_transparent.png', .25, true)->errorCorrection('H')->generate($gen)) !!} ">		
 		<div class="verify">Scan To Verify</div>
 
 		<img src="img/certificates/final/participation-min.jpg" height="800" width="1150">

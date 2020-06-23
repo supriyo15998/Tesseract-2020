@@ -16,29 +16,21 @@ class HomeController extends Controller
         ]);
     }
 
-    public function validateCertificate($type, $id) {
-        $converted = base_convert($id, 16, 10) - 100000;
+    public function validateCertificate($id) {
+        $converted = base_convert((explode('-', $id)[1]), 16, 10) - 100000;
+        $type = base_convert((explode('-', $id)[0]), 16, 10) - 1000;
 
-        if($type == "participant") {
+        if($type == 1)
+            $user = \App\Participant::findOrFail($converted);
+        else if ($type == 2)
+            $user = \App\Volunteer::findOrFail($converted);
 
-            $participant = \App\Participant::findOrFail($converted);
-
-            return response()->json([
-                'success' => [
-                    'user' => $participant
-                ]
-            ]);
-
-        } else if ($type == "volunteer") {
-
-            $volunteer = \App\Volunteer::findOrFail($converted);
-
-            return response()->json([
-                'success' => [
-                    'user' => $volunteer
-                ]
-            ]);
-        }
+        return response()->json([
+            'success' => [
+                'user' => $user
+            ]
+        ]);
+        
     }
 
     public function markPaid(Request $request, $orderId) {
