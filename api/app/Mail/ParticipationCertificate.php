@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
-use App\User;
+use App\Participant;
 
 class ParticipationCertificate extends Mailable implements ShouldQueue
 {
@@ -19,7 +19,7 @@ class ParticipationCertificate extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($events, User $user)
+    public function __construct($events, Participant $user)
     {
         //
         $this->events = $events;

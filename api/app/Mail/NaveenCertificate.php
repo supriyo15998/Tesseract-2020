@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
-use App\User;
+use App\Participant;
 
 class NaveenCertificate extends Mailable implements ShouldQueue
 {
@@ -19,7 +19,7 @@ class NaveenCertificate extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Participant $user)
     {
         //
         $this->user = $user;
