@@ -157,9 +157,8 @@ Route::get('test-test', function() {
 		foreach($orders as $order) {
 			$participants = $order->team->members->whereIn('email', $recipients)->whereNotIn('id', $not);
 			foreach($participants as $participant)
-				$final_result->push(['email' => $participant->email, 'id' => $participant->id]);
+				$participant->update(['certificate_sent' => 1]);
 		}
-		dd($final_result);
 		return "Kya bantai";
 });
 
