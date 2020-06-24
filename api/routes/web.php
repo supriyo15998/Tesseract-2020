@@ -155,7 +155,7 @@ Route::get('test-test', function() {
 		foreach($orders as $order) {
 			$participants = $order->team->members->whereIn('email', $recipients);
 			foreach($participants as $participant)
-				$final_result->push($participant);
+				$final_result->push($participant->email);
 		}
 		dd($final_result);
 		return "Kya bantai";
