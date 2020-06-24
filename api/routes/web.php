@@ -148,7 +148,7 @@ Route::get('test-test', function() {
 			'deepbanerjee68@gmail.com'
 		];
 
-		$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('participant', function($q) { $q->whereIn('email', $recipients); } );})->get();
+		$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('members', function($q) { $q->whereIn('email', $recipients); } );})->get();
 
 		dd(count($orders));
 
