@@ -47,7 +47,7 @@
 </head>
 <body>
 	<div id="watermark">
-		<div class="name">{{ $participant->name }}</div>
+		<div class="name">{{ ucwords(strtolower($participant->name)) }}</div>
 		<div class="event">{{ $event->name }}</div>
 
 		@php
