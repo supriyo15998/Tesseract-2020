@@ -147,10 +147,16 @@ Route::get('test-test', function() {
 			'digantadutta96@gmail.com',
 			'deepbanerjee68@gmail.com'
 		];
+		
+		$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) use($recipients) { $q->where('is_naveen', 0);})->get();
 
-		$participants = \App\Participant::whereIn('email', $recipients)->get();
-
-		dd($participants->count());
+        $final_result = new Collection();
+		
+		foreach($orders as $order) {
+			$participants = $order->team->members->whereIn('email', $recipients);
+			$final_result->push($participants);
+		}
+		dd($final_result);
 		return "Kya bantai";
 });
 
