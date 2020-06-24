@@ -150,7 +150,7 @@ Route::get('test-test', function() {
 		
 		$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) use($recipients) { $q->where('is_naveen', 0);})->get();
 
-        $final_result = new Collection();
+        $final_result = new Illuminate\Support\Collection();
 		
 		foreach($orders as $order) {
 			$participants = $order->team->members->whereIn('email', $recipients);
