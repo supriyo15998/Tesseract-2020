@@ -57,33 +57,33 @@ Route::get('test', function() {
 
 	$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0);})->get();
 
-	$o = $orders[0];
+	// $o = $orders[0];
 	
-	if($o->is_team) {
-		$participant = $o->team->members[0];
-		if($o->team->is_naveen)
-			Mail::to('farazappy@gmail.com')->send(new \App\Mail\NaveenCertificate($participant));
-		else
-			Mail::to('farazappy@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
+	// if($o->is_team) {
+	// 	$participant = $o->team->members[0];
+	// 	if($o->team->is_naveen)
+	// 		Mail::to('farazappy@gmail.com')->send(new \App\Mail\NaveenCertificate($participant));
+	// 	else
+	// 		Mail::to('farazappy@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
 
-	} else {
-		Mail::to('farazappy@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
-	}
-	
-
-	// foreach($orders as $o) {
-
-	// 	if($o->is_team) {
-	// 		foreach($o->team->members as $participant) {
-	// 			if($o->team->is_naveen)
-	// 				Mail::to($participant->email)->send(new \App\Mail\NaveenCertificate($participant));
-	// 			else
-	// 				Mail::to($participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
-	// 		}
-	// 	} else {
-	// 		Mail::to($o->participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
-	// 	}
+	// } else {
+	// 	Mail::to('farazappy@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
 	// }
+	
+
+	foreach($orders as $o) {
+
+		if($o->is_team) {
+			foreach($o->team->members as $participant) {
+				if($o->team->is_naveen)
+					Mail::to($participant->email)->send(new \App\Mail\NaveenCertificate($participant));
+				else
+					Mail::to($participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
+			}
+		} else {
+			Mail::to($o->participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
+		}
+	}
 
 	return 'Done';
 });
