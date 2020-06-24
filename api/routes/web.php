@@ -150,16 +150,16 @@ Route::get('test-test', function() {
 
 		$not = [1756, 1757, 1758, 1759, 1760, 1767, 1768, 1769, 1785, 1786, 1787];
 		
-		$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) use($recipients) { $q->where('is_naveen', 0);})->get();
+		// $orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) use($recipients) { $q->where('is_naveen', 0);})->get();
 
-        $final_result = new Illuminate\Support\Collection();
+        // $final_result = new Illuminate\Support\Collection();
 		
-		foreach($orders as $order) {
-			$participants = $order->team->members->whereIn('email', $recipients)->whereNotIn('id', $not);
-			foreach($participants as $participant)
-				$participant->update(['certificate_sent' => 1]);
-		}
-		return "Kya bantai";
+		// foreach($orders as $order) {
+		// 	$participants = $order->team->members->whereIn('email', $recipients)->whereNotIn('id', $not);
+		// 	foreach($participants as $participant)
+		// 		$participant->update(['certificate_sent' => 1]);
+		// }
+		return \App\Participant::where('certificate_sent', 1)->get()->count();
 });
 
 Route::get('test', function() {
