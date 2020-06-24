@@ -55,7 +55,7 @@ Route::get('test', function() {
 	// foreach($emails as $email)
 	// 	Mail::to($email)->send(new \App\Mail\TestMail());
 
-	$orders = Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0);})->get();
+	$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0);})->get();
 
 	$o = $orders[0];
 	
