@@ -62,12 +62,12 @@ Route::get('test', function() {
 	if($o->is_team) {
 		$participant = $o->team->members[0];
 		if($o->team->is_naveen)
-			Mail::to('supriyo15598@gmail.com')->send(new \App\Mail\NaveenCertificate($participant));
+			Mail::to('supriyo15998@gmail.com')->send(new \App\Mail\NaveenCertificate($participant));
 		else
-			Mail::to('supriyo15598@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
+			Mail::to('supriyo15998@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
 
 	} else {
-		Mail::to('supriyo15598@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
+		Mail::to('supriyo15998@gmail.com')->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
 	}
 	
 
