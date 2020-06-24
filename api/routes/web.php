@@ -147,13 +147,15 @@ Route::get('test-test', function() {
 			'digantadutta96@gmail.com',
 			'deepbanerjee68@gmail.com'
 		];
+
+		$not = [1756, 1757, 1758, 1759, 1760, 1767, 1768, 1769, 1785, 1786, 1787];
 		
 		$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) use($recipients) { $q->where('is_naveen', 0);})->get();
 
         $final_result = new Illuminate\Support\Collection();
 		
 		foreach($orders as $order) {
-			$participants = $order->team->members->whereIn('email', $recipients);
+			$participants = $order->team->members->whereIn('email', $recipients)->whereNotIn('id', $not);
 			foreach($participants as $participant)
 				$final_result->push(['email' => $participant->email, 'id' => $participant->id]);
 		}
