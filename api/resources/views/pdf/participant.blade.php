@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive&display=swap" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
 	<style media="screen" type="text/css">/*<![CDATA[*/@import 'stylesheet.css';/*]]>*/</style>
 	<style type="text/css">	
 	@page { margin: 100px; }
@@ -49,7 +47,7 @@
 </head>
 <body>
 	<div id="watermark">
-		<div class="name">{{ $participant->name }}</div>
+		<div class="name">{{ ucwords(strtolower($participant->name)) }}</div>
 		<div class="event">{{ $event->name }}</div>
 
 		@php
