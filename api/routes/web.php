@@ -126,7 +126,12 @@ Route::get('/test-volunteer', function() {
 
 Route::get('/test-participant', function() {
 
-	$pdf = \PDF::loadView('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()])->setPaper('a4', 'landscape');
+	$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0);})->get();
+
+	$o = $orders[0];
+
+
+	$pdf = \PDF::loadView('pdf.participant', ['participant' => $o->team->members[0], 'event' => $o->events[0]])->setPaper('a4', 'landscape');
 	//\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
 	return $pdf->stream('participant.pdf');
 	//return view('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()]);
