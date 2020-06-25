@@ -198,7 +198,6 @@ Route::get('test', function() {
 	
 	$x = 0;
 	foreach($orders as $o) {
-		echo "X is $x<br>";
 
 		if($x==99)
 			return "Done";
@@ -206,19 +205,19 @@ Route::get('test', function() {
 		if($o->is_team) {
 			foreach($o->team->members as $participant) {
 
-				// if($o->team->is_naveen)
-				// 	Mail::to($participant->email)->send(new \App\Mail\NaveenCertificate($participant));
-				// else
-				// 	Mail::to($participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
+				if($o->team->is_naveen)
+					Mail::to($participant->email)->send(new \App\Mail\NaveenCertificate($participant));
+				else
+					Mail::to($participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $participant));
 
-				// $participant->update(['certificate_sent' => 1]);
+				$participant->update(['certificate_sent' => 1]);
 
 				$x++;
 			}
 		} else {
-			// Mail::to($o->participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
+			Mail::to($o->participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
 
-			// $o->participant->update(['certificate_sent' => 1]);
+			$o->participant->update(['certificate_sent' => 1]);
 
 			$x++;
 		}
