@@ -197,7 +197,7 @@ Route::get('test', function() {
 	$x = 0;
 	foreach($orders as $o) {
 
-		if($x==100)
+		if($x==99)
 			break;
 
 		if($o->is_team) {
