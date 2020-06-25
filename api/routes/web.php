@@ -199,7 +199,7 @@ Route::get('test', function() {
 	$x = 0;
 	foreach($orders as $o) {
 
-		if($x==99)
+		if($x==60)
 			return "Done";
 
 		if($o->is_team) {
