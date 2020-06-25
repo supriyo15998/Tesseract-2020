@@ -179,7 +179,7 @@ Route::get('test', function() {
 
 	//$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [8, 9, 10]); })->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->get();
 	
-	$orders = \App\Order::whereHas('events', function($q) { $q->where('paid', 1)->whereIn('event_id', [19, 20, 21, 22]); })->where(function ($q) { $q->whereHas('team', function($q) { $q->where('is_naveen', 1)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->orWhereHas('participant', function($q) { $q->where('certificate_sent', 0); }); })->get();
+	$orders = \App\Order::whereHas('events', function($q) { $q->where('paid', 1)->whereIn('event_id', [19, 20, 21, 22]); })->where(function ($q) { $q->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->orWhereHas('participant', function($q) { $q->where('certificate_sent', 0); }); })->get();
 
 	// $o = $orders[0];
 	
@@ -212,14 +212,16 @@ Route::get('test', function() {
 
 				$participant->update(['certificate_sent' => 1]);
 
+				$x++;
 			}
 		} else {
 			Mail::to($o->participant->email)->send(new \App\Mail\ParticipationCertificate($o->events, $o->participant));
 
 			$o->participant->update(['certificate_sent' => 1]);
+
+			$x++;
 		}
 
-		$x++;
 	}
 
 	return 'Done';
