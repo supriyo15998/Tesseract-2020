@@ -177,7 +177,7 @@ Route::get('test', function() {
 	// foreach($emails as $email)
 	// 	Mail::to($email)->send(new \App\Mail\TestMail());
 
-	$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->get();
+	$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [8, 9, 10]); })->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->get();
 
 	// $o = $orders[0];
 	
