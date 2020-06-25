@@ -198,9 +198,10 @@ Route::get('test', function() {
 	
 	$x = 0;
 	foreach($orders as $o) {
+		echo "X is $x<br>";
 
 		if($x==99)
-			break;
+			return "Done";
 
 		if($o->is_team) {
 			foreach($o->team->members as $participant) {
@@ -221,8 +222,6 @@ Route::get('test', function() {
 
 			$x++;
 		}
-
-		echo "X is $x<br>";
 
 	}
 
