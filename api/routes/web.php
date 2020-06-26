@@ -179,7 +179,7 @@ Route::get('test', function() {
 
 	//$orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [8, 9, 10]); })->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->get();
 	
-	$orders = \App\Order::whereHas('events', function($q) { $q->where('paid', 1)->whereIn('event_id', [11, 12, 13, 14, 15, 16, 17]); })->where(function ($q) { $q->whereHas('team', function($q) { $q->where('is_naveen', 0)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->orWhereHas('participant', function($q) { $q->where('certificate_sent', 0); }); })->get();
+	$orders = \App\Order::whereHas('events', function($q) { $q->where('paid', 1); })->where(function ($q) { $q->whereHas('team', function($q) { $q->where('is_naveen', 1)->whereHas('members', function($q) { $q->where('certificate_sent', 0); });})->orWhereHas('participant', function($q) { $q->where('certificate_sent', 0); }); })->get();
 
 	// $o = $orders[0];
 	
@@ -199,12 +199,14 @@ Route::get('test', function() {
 	$x = 0;
 	foreach($orders as $o) {
 
-		if($x==60)
+		if($x==99)
 			return "Done";
 
 		if($o->is_team) {
 			foreach($o->team->members as $participant) {
-
+				if($x==99)
+					return "Done";
+					
 				if($o->team->is_naveen)
 					Mail::to($participant->email)->send(new \App\Mail\NaveenCertificate($participant));
 				else
