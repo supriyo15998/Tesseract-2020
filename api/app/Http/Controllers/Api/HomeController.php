@@ -24,6 +24,8 @@ class HomeController extends Controller
             $user = \App\Participant::findOrFail($converted);
         else if ($type == 2)
             $user = \App\Volunteer::findOrFail($converted);
+        else if ($type == 6)
+            $user = \App\CoOrdinator::findOrFail($converted);
 
         return response()->json([
             'success' => [

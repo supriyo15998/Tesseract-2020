@@ -279,6 +279,22 @@ Route::get('/test-participant', function() {
 	echo "Done";
 });
 
+Route::get('/test-coordinator', function() {
+
+	// $orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0);})->get();
+
+	// $o = $orders[0];
+
+	\Mail::to('farazappy@gmail.com')->send(new App\Mail\CoOrdinatorCertficiate(\App\CoOrdinator::first()));
+
+
+	// $pdf = \PDF::loadView('pdf.co_ordinator')->setPaper('a4', 'landscape');
+	// //\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
+	// return $pdf->stream('participant.pdf');
+	//return view('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()]);
+	echo "Done";
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
