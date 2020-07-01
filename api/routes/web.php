@@ -287,10 +287,12 @@ Route::get('/test-coordinator', function() {
 
 	$coOrdinators = \App\CoOrdinator::where('certificate_sent', 0)->get();
 
-	dd($coOrdinators);
+	// dd($coOrdinators);
 
 	// \Mail::to('farazappy@gmail.com')->send(new App\Mail\CoOrdinatorCertificate(\App\CoOrdinator::first()));
 
+	foreach($coOrdinators as $coodinator)
+		Mail::to($coodinator->email)->send(new App\Mail\CoOrdinatorCertificate($coodinator));
 
 	// $pdf = \PDF::loadView('pdf.co_ordinator')->setPaper('a4', 'landscape');
 	// //\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
