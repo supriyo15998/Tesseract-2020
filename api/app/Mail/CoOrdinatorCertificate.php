@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 
 use \App\CoOrdinator;
 
-class CoOrdinatorCertificate extends Mailable implements Shoul
+class CoOrdinatorCertificate extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     public $coordinator;
