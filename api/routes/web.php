@@ -301,6 +301,28 @@ Route::get('/test-coordinator', function() {
 	echo "Done";
 });
 
+Route::get('/test-eventhead', function() {
+
+	// $orders = \App\Order::whereHas('events', function($q) { $q->where('played', 1)->whereIn('event_id', [3, 4, 5, 6, 7]); })->whereHas('team', function($q) { $q->where('is_naveen', 0);})->get();
+
+	// $o = $orders[0];
+
+	$eventHeads = \App\EventHead::where('certificate_sent', 0)->get();
+
+	// dd($coOrdinators);
+
+	\Mail::to('farazappy@gmail.com')->send(new App\Mail\EventHeadCertificate(\App\EventHead::first()));
+
+	// foreach($eventHeads as $eventHead)
+	// 	Mail::to($eventHead->email)->send(new App\Mail\EventHeadCertificate($eventHead));
+
+	// $pdf = \PDF::loadView('pdf.co_ordinator')->setPaper('a4', 'landscape');
+	// //\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
+	// return $pdf->stream('participant.pdf');
+	//return view('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()]);
+	echo "Done";
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
