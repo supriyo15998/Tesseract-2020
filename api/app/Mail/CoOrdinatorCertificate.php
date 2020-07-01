@@ -32,8 +32,10 @@ class CoOrdinatorCertificate extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.core.coordinator', ['coordinator' => $this->coordinator]);
+        $email = $this->markdown('emails.core.coordinator', ['coordinator' => $this->coordinator]);
         $pdf = \PDF::loadView('pdf.co_ordinator', ['coordinator' => $this->coordinator])->setPaper('a4', 'landscape');
         $email->attachData($pdf->output(), 'coordinator_certificate.pdf', ['mime' => 'application/pdf']);
+        
+        return $email;
     }
 }
