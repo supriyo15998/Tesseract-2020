@@ -291,8 +291,10 @@ Route::get('/test-coordinator', function() {
 
 	// \Mail::to('farazappy@gmail.com')->send(new App\Mail\CoOrdinatorCertificate(\App\CoOrdinator::first()));
 
-	foreach($coOrdinators as $coodinator)
+	foreach($coOrdinators as $coodinator) {
 		Mail::to($coodinator->email)->send(new App\Mail\CoOrdinatorCertificate($coodinator));
+		$coodinator->update(['certificate_sent' => 1]);
+	}
 
 	// $pdf = \PDF::loadView('pdf.co_ordinator')->setPaper('a4', 'landscape');
 	// //\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
@@ -311,10 +313,12 @@ Route::get('/test-eventhead', function() {
 
 	// dd($coOrdinators);
 
-	\Mail::to('farazappy@gmail.com')->send(new App\Mail\EventHeadCertificate(\App\EventHead::first()));
+	// \Mail::to('farazappy@gmail.com')->send(new App\Mail\EventHeadCertificate(\App\EventHead::first()));
 
-	// foreach($eventHeads as $eventHead)
-	// 	Mail::to($eventHead->email)->send(new App\Mail\EventHeadCertificate($eventHead));
+	foreach($eventHeads as $eventHead) {
+		Mail::to($eventHead->email)->send(new App\Mail\EventHeadCertificate($eventHead));
+		$eventHead->update(["certificate_sent" => 1]);
+	}
 
 	// $pdf = \PDF::loadView('pdf.co_ordinator')->setPaper('a4', 'landscape');
 	// //\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
