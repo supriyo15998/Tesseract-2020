@@ -285,7 +285,7 @@ Route::get('/test-coordinator', function() {
 
 	// $o = $orders[0];
 
-	\Mail::to('farazappy@gmail.com')->send(new App\Mail\CoOrdinatorCertficiate(\App\CoOrdinator::first()));
+	\Mail::to('farazappy@gmail.com')->send(new App\Mail\CoOrdinatorCertificate(\App\CoOrdinator::first()));
 
 
 	// $pdf = \PDF::loadView('pdf.co_ordinator')->setPaper('a4', 'landscape');
