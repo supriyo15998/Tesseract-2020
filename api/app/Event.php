@@ -19,5 +19,9 @@ class Event extends Model
 
    	public function getEventTimeAttribute() {
    		return \Carbon\Carbon::createFromTimeStamp(strtotime($this->attributes['event_time']))->format('l jS \\of F Y, h:i A');
-   	}
+	}
+	   
+	public function winners() {
+		return $this->hasMany('App\Winner');
+	}
 }
