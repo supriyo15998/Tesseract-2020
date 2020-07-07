@@ -70,11 +70,17 @@
                     $relationshipData = (isset($data)) ? $data : $dataTypeContent;
                     $model = app($options->model);
 
-                    $selected_values = $model::where($options->column, '=', $relationshipData->{$options->key})->get()->map(function ($item, $key) use ($options) {
-                        return $item->{$options->label};
-                    })->all();
+                    if($options->model == "\App\Participant") {
+                        $selected_values = $model::where($options->column, '=', $relationshipData->{$options->key})->get()->map(function ($item, $key) use ($options) {
+                            return $item->email_name;
+                        })->all();
+                    } else {
+                        $selected_values = $model::where($options->column, '=', $relationshipData->{$options->key})->get()->map(function ($item, $key) use ($options) {
+                            return $item->{$options->label};
+                        })->all();
+                    }
+
                 @endphp
-                {{ $options->label }}
 
                 @if($view == 'browse')
                     @php
