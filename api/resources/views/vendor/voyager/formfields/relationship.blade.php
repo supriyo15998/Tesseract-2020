@@ -74,7 +74,7 @@
                         return $item->{$options->label};
                     })->all();
                 @endphp
-                {{ $selected_values }}
+                {{ $options->label }}
 
                 @if($view == 'browse')
                     @php
