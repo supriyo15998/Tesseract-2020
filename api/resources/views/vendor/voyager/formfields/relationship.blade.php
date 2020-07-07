@@ -65,7 +65,6 @@
 
             @if(isset($view) && ($view == 'browse' || $view == 'read'))
 
-                {{ $relationshipData->{$options->key} }}
 
                 @php
                     $relationshipData = (isset($data)) ? $data : $dataTypeContent;
@@ -75,6 +74,7 @@
                         return $item->{$options->label};
                     })->all();
                 @endphp
+                {{ $relationshipData->{$options->key} }}
 
                 @if($view == 'browse')
                     @php
