@@ -74,7 +74,7 @@
                         return $item->{$options->label};
                     })->all();
                 @endphp
-                {{ $relationshipData }}
+                {{ $selected_values }}
 
                 @if($view == 'browse')
                     @php
