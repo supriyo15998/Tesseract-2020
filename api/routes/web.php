@@ -330,3 +330,10 @@ Route::get('/test-eventhead', function() {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+Route::get('/test-winner', function() {
+	$pdf = \PDF::loadView('pdf.winner')->setPaper('a4', 'landscape');
+	//\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
+	 return $pdf->stream('winner.pdf');
+	//return view('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()]);
+	//echo "Done";
+});
