@@ -32,7 +32,7 @@
 		font-size: 3.2em;
 		width: 100%;
 		text-align: center;
-		margin-left: 35%;
+		margin-left: 37%;
 	}
     .position{
 		color: black;
@@ -43,16 +43,43 @@
 		font-size: 5.5em;
 		width: 100%;
 		text-align: center;
-		margin-left: -40px;
+		margin-left: -150px;
+	}
+	.sup {
+		font-size: 0.5em;
+		margin: 5px;
+	}
+	.verify {
+		color: black;
+		position: absolute;
+		font-family: 'Bebas Neue';
+		margin-top: 65%;
+		text-align: center;
+		margin-left: 87%;
+		width: 100%;
 	}
 	</style>
 </head>
 <body>
 	<!-- <img src="{{ asset('img/certificates/volunteermin.jpg') }}"> -->
 	<div id="watermark">
-		<div class="name">Shreya Mukhopadhyay</div>
-        <div class="event">Robo War</div>
-        <div class="position">1st</div>
+		<div class="name">{{ ucwords(strtolower($winner->name)) }}</div>
+        <div class="event">{{ $winner->event->name }}</div>
+		@php
+			$sup = "";
+			if($winner->position == 1)
+				$sup = "st";
+			else if($winner->position == 2)
+				$sup = "nd";
+			else
+				$sup = "rd";
+
+			$gen = "https://www.tesseractgnit.com/validate/certificate/" . base_convert(3+1000, 10, 16) . "-" . base_convert($winner->id+100000, 10, 16);
+		@endphp
+
+		<img style="position: absolute; margin-top: 50%;margin-left: 86%;" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->backgroundColor(251, 245, 231)->size(150)->merge('https://downloads.tesseractgnit.com/img/tesseract_transparent.png', .25, true)->errorCorrection('H')->generate($gen)) !!} ">		
+		<div class="verify">Scan To Verify</div>
+        <div class="position">{{ $winner->position }}<sup class="sup">{{ $sup }}</sup></div>
 		<img src="img/certificates/final/winners-min.jpg" height="800" width="1150">		
 	</div>
 </body>
