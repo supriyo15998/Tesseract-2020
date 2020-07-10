@@ -332,10 +332,15 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/test-winner', function() {
-	$w = \App\Winner::first();
-	$pdf = \PDF::loadView('pdf.winner', ['winner' => $w])->setPaper('a4', 'landscape');
-	//\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
-	 return $pdf->stream('winner.pdf');
+	// $w = \App\Winner::first();
+	// $pdf = \PDF::loadView('pdf.winner', ['winner' => $w])->setPaper('a4', 'landscape');
+	// //\Mail::to('supriyo15998@gmail.com')->send(new App\Mail\ParticipationCertificate());
+	//  return $pdf->stream('winner.pdf');
 	//return view('pdf.participant', ['participant' => \App\Participant::firstOrFail(), 'event' => \App\Event::firstOrFail()]);
-	//echo "Done";
+	
+	$w = \App\Winner::first();
+
+	Mail::to('farazappy@gmail.com')->send(new \App\Mail\PositionCertificate($w));
+	
+	echo "Done";
 });
