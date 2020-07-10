@@ -331,6 +331,23 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+Route::get('/winner', function() {
+	$winners = \App\Winner::where('certificate_sent', 0)->get();
+	$x = 0;
+	foreach($winners as $w) {
+
+		if($x==99)
+			return "Done";
+		
+		Mail::to($w->email)->send(new \App\Mail\PositionCertificate($w));
+
+		$w->update(['certificate_sent' => 1]);
+
+	}
+
+	return "Done 2";
+});
+
 Route::get('/test-winner', function() {
 	// $w = \App\Winner::first();
 	// $pdf = \PDF::loadView('pdf.winner', ['winner' => $w])->setPaper('a4', 'landscape');
