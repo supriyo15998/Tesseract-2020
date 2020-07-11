@@ -18,8 +18,6 @@ We extend our heartfelt gratitude for your participation in Tesseract 2020 and y
 <p>Note: The signatures contained in these documents/certificates is confidential, privileged and only for the authenticity. You are hereby notified that any use of these signatures without permission is strictly prohibited.</p>
 
 
-Regards,<br>
-Team Tesseract<br>
-Thanks,<br>
-{{ config('app.name') }}
+Thanks and Regards,<br>
+Team {{ config('app.name') }}
 @endcomponent
