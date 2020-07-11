@@ -16,8 +16,10 @@ In wake of the ongoing Covid-19 pandemic and the subsequent lockdown guidelines 
 
 We extend our heartfelt gratitude for your participation in Tesseract 2020 and your contribution to its success. We look forward to your cooperation amidst these unprecedented circumstances and hope to work with you in the future as well. Till then, we wish you and your loved ones the best of health.
 <p>Note: The signatures contained in these documents/certificates is confidential, privileged and only for the authenticity. You are hereby notified that any use of these signatures without permission is strictly prohibited.</p>
-Regards,
-Team Tesseract
+
+
+Regards,<br>
+Team Tesseract<br>
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
