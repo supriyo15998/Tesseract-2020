@@ -258,9 +258,11 @@ Route::get('qr-code', function () {
 //certificates test
 Route::get('/test-volunteer', function() {
 
-	$pdf = \PDF::loadView('pdf.volunteer')->setPaper('a4', 'landscape');
-	// \Mail::to('saswata032@gmail.com')->send(new App\Mail\VolunteerCertificate());
-	return $pdf->stream('volunteer.pdf');
+	$volunteer = \App\Volunteer::where('was_active', 1)->where('certificate_sent', 0)->first();
+
+	// $pdf = \PDF::loadView('pdf.volunteer', ['volunteer' => $volunteer])->setPaper('a4', 'landscape');
+	\Mail::to('farazappy@gmail.com')->send(new App\Mail\VolunteerCertificate($volunteer));
+	// return $pdf->stream('volunteer.pdf');
 	//return view('pdf/volunteer');
 	echo "Done";
 });

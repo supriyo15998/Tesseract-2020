@@ -1,7 +1,7 @@
 @component('mail::message')
 # Thank you being a part of Tesseract 2020
 
-Dear volunteer,
+Dear {{ $volunteer->name }},
 
 Thank you for being a part of our collective effort that has led to the success of Tesseract 2020.
 
