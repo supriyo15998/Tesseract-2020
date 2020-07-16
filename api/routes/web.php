@@ -350,6 +350,24 @@ Route::get('/winner', function() {
 	return "Done 2";
 });
 
+Route::get('/volunteer', function() {
+	$volunteers = \App\Volunteer::where('was_active', 1)->where('certificate_sent', 0)->get();
+	$x = 0;
+	foreach($volunteers as $v) {
+
+		if($x==99)
+			return "Done";
+		
+		Mail::to($v->email)->send(new \App\Mail\VolunteerCertificate($v));
+
+		$v->update(['certificate_sent' => 1]);
+		
+		$x++;
+	}
+
+	return "Done 2";
+});
+
 Route::get('/test-winner', function() {
 	// $w = \App\Winner::first();
 	// $pdf = \PDF::loadView('pdf.winner', ['winner' => $w])->setPaper('a4', 'landscape');
