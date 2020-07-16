@@ -38,6 +38,6 @@ class VolunteerCertificate extends Mailable implements ShouldQueue
         $pdf = \PDF::loadView('pdf.volunteer', ['volunteer' => $this->volunteer])->setPaper('a4', 'landscape');
         //return $this->markdown('emails.teams.registered')->attachData($pdf->output(), 'order_' . md5($this->order->id) . '_receipt.pdf');
 
-        return $this->markdown('emails.volunteers.certificate', ['volunteer' => $this->volunteer])->attachData($pdf->output(), 'certificate.pdf');
+        return $this->markdown('emails.volunteers.certificate', ['volunteer' => $this->volunteer])->attachData($pdf->output(), 'volunteer_certificate.pdf');
     }
 }
