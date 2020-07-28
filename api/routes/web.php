@@ -381,3 +381,24 @@ Route::get('/test-winner', function() {
 	
 	echo "Done";
 });
+Route::get('/send-jt-convener', function() {
+	// $jt_convener = \App\JointConvener::findOrFail(1);
+	// \Mail::to('farazappy@gmail.com')->send(new App\Mail\JtConvenerCertificate($jt_convener));
+	// echo "done";
+	$jt_conveners = \App\JointConvener::where('certificate_sent', 0)->get();
+	foreach($jt_conveners as $jt_convener)
+	{
+		\Mail::to($jt_convener->email)->send(new App\Mail\JtConvenerCertificate($jt_convener));
+		$jt_convener->update(["certificate_sent" => 1]);
+	}
+	echo "Done!";
+});
+Route::get('/send-convener', function() {
+	$conveners = \App\Convener::where('certificate_sent', 0)->get();
+	foreach($conveners as $convener)
+	{
+		\Mail::to($convener->email)->send(new App\Mail\ConvenerCertificate($convener));
+		$convener->update(["certificate_sent" => 1]);
+	}
+	echo "Done!";
+});

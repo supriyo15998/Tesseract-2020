@@ -30,7 +30,10 @@ class HomeController extends Controller
             $user = \App\EventHead::findOrFail($converted);
         else if ($type == 3)
             $user = \App\Winner::findOrFail($converted);
-
+        else if ($type == 8)
+            $user = \App\JointConvener::findOrFail($converted);
+        else if($type == 4)
+            $user = \App\Convener::findOrFail($converted);
         return response()->json([
             'success' => [
                 'user' => $user
