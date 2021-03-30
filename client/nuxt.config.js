@@ -91,7 +91,8 @@ export default {
     // Development
     // baseURL: 'http://127.0.0.1:8000/api/'
     // Production
-    baseURL: 'https://api.tesseractgnit.com/api/'
+    // baseURL: 'https://api.tesseractgnit.com/api/'
+    baseURL: 'https://tesseract-api.thebuglabs.com/api/'
   },
   /*
   ** Build configuration
