@@ -17,7 +17,8 @@ Route::get('/test-winners', function() {
 	return view('winners');
 });
 
-Route::domain('downloads.tesseractgnit.com')->group(function() {
+// Route::domain('downloads.tesseractgnit.com')->group(function() {
+Route::domain('tesseract-downloads.thebuglabs.com')->group(function() {
 	Route::get('/', function() {
 		return redirect('https://www.tesseractgnit.com');
 	});
