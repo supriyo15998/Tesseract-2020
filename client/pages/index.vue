@@ -149,7 +149,7 @@
                             <center>
                                 <div class="speaker">
                                     <img
-                                        src="https://downloads.tesseractgnit.com/img/events/1581608096_402ebdd7d59a82a6.jpg"
+                                        src="https://tesseract-downloads.thebuglabs.com/img/events/1581608096_402ebdd7d59a82a6.jpg"
                                         alt="Speaker 1"
                                         class="img-fluid"
                                     >
@@ -169,7 +169,7 @@
                             <center>
                                 <div class="speaker">
                                     <img
-                                        src="https://downloads.tesseractgnit.com/img/events/1581534529_138ee21e4aa71f61.jpg"
+                                        src="https://tesseract-downloads.thebuglabs.com/img/events/1581534529_138ee21e4aa71f61.jpg"
                                         alt="Speaker 1"
                                         class="img-fluid"
                                     >
@@ -189,7 +189,7 @@
                             <center>
                                 <div class="speaker">
                                     <img
-                                        src="https://downloads.tesseractgnit.com/img/events/1581607932_de12641c0bdd0675.jpg"
+                                        src="https://tesseract-downloads.thebuglabs.com/img/events/1581607932_de12641c0bdd0675.jpg"
                                         alt="Speaker 1"
                                         class="img-fluid"
                                     >
@@ -255,7 +255,7 @@
                         >
                             <div class="speaker">
                                 <img
-                                    :src="`https://downloads.tesseractgnit.com/img/events/${event.photo}`"
+                                    :src="`https://tesseract-downloads.thebuglabs.com/img/events/${event.photo}`"
                                     alt="Speaker 1"
                                     class="img-fluid"
                                 >
@@ -343,7 +343,7 @@
                                 <div class="col-md-10">
                                     <div class="speaker">
                                         <img
-                                            :src="`https://downloads.tesseractgnit.com/img/events/${event.photo}`"
+                                            :src="`https://tesseract-downloads.thebuglabs.com/img/events/${event.photo}`"
                                             alt="Brenden Legros"
                                         >
                                     </div>
